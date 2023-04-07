@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title>Database verification</title>
+  </head>
+  <body>
+    <h1>DB verification</h1>
+    {% for year in year %}
+    <p>
+      {{year.id}} | 
+      {{year.year_no}} | 
+      <!-- {{totalemission.year}} | 
+      {{totalemission.total}} | 
+      {{totalemission.coal}} | 
+      {{totalemission.oil}} |
+      {{totalemission.gas}} |
+      {{totalemission.cement}} | 
+      {{totalemission.flaring}} -->
+    </p>
+    {% endfor %}
+  </body>
+</html>

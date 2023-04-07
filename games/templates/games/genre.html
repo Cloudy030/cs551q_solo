@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title>Database verification</title>
+  </head>
+  <body>
+    <h1>DB verification</h1>
+    {% for genre in genre %}
+    <p>
+      {{genre.id}} | 
+      {{genre.genre_name}} | 
+      <!-- {{totalemission.year}} | 
+      {{totalemission.total}} | 
+      {{totalemission.coal}} | 
+      {{totalemission.oil}} |
+      {{totalemission.gas}} |
+      {{totalemission.cement}} | 
+      {{totalemission.flaring}} -->
+    </p>
+    {% endfor %}
+  </body>
+</html>

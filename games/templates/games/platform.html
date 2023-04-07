@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>Database verification</title>
+  </head>
+  <body>
+    <h1>DB verification</h1>
+    {% for platform in platform %}
+    <p>
+      {{platform.id}} | 
+      {{platform.platform_name}} | 
+      {{platform.url}} | 
+      <!-- {{totalemission.year}} | 
+      {{totalemission.total}} | 
+      {{totalemission.coal}} | 
+      {{totalemission.oil}} |
+      {{totalemission.gas}} |
+      {{totalemission.cement}} | 
+      {{totalemission.flaring}} -->
+    </p>
+    {% endfor %}
+  </body>
+</html>

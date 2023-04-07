@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <title>Database verification</title>
+  </head>
+  <body>
+    <h1>DB verification</h1>
+    {% for game in game %}
+    <p>
+      {{game.id}} | 
+      {{game.rank}} | 
+      {{game.name}} | 
+      {{game.platform}} | 
+      {{game.year}} | 
+      {{game.genre}} |
+      {{game.publisher}} |
+      {{game.na_sales}} | 
+      {{game.eu_sales}} |
+      {{game.jp_sales}} | 
+      {{game.other_sales}} |
+      {{game.global_sales}} | 
+    </p>
+    {% endfor %}
+  </body>
+</html>
