@@ -1,3 +1,4 @@
+* 71d6893 - POK NGA HO, Sat Apr 8 18:25:57 2023 +0000 : 2 test game cases added
 * 6f65d9f - POK NGA HO, Sat Apr 8 18:15:48 2023 +0000 : first test work
 * e8061f0 - POK NGA HO, Sat Apr 8 16:57:50 2023 +0000 : index.html add style.css bootstrap, google font and navigation bar
 * 2da7d94 - POK NGA HO, Fri Apr 7 13:27:12 2023 +0000 : add database verification html to all 5 tables
