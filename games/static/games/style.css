@@ -1,0 +1,20 @@
+body {
+  background-color: rgb(255, 240, 212);
+  /*same background color for all pages*/
+  width: 100%;
+  font-family: 'Shantell Sans', cursive;
+}
+
+.sticky-top {
+  background-color: rgb(255, 222, 161);
+  padding-top: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.sticky-top h1 {
+  color: brown;
+  text-align: center;
+  font-weight: bold;
+  font-family: 'Shantell Sans', cursive;
+}

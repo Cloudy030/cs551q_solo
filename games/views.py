@@ -4,10 +4,12 @@ from .models import Year, Genre, Platform, Publisher, Game
 
 # Create your views here.
 def index(request):
-    year=Year.objects.all()
-    # countries=Country.objects.all()
-    #for the 2 drop down filters
-    return render(request, 'games/index.html', {'year':year})
+    game=Game.objects.all()
+    return render(request, 'games/index.html', {'game':game})
+    # year=Year.objects.all()
+    # # countries=Country.objects.all()
+    # #for the 2 drop down filters
+    # return render(request, 'games/index.html', {'year':year})
 
 def year(request):
     year=Year.objects.all()

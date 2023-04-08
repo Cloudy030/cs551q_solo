@@ -1,21 +1,68 @@
-<html>
-  <head>
-    <title>Database verification</title>
-  </head>
-  <body>
-    <h1>DB verification</h1>
-    {% for year in year %}
+<!DOCTYPE html>
+
+{%load static%}
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Video Games 🎮</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <!-- goole text -->
+  <link rel="stylesheet" href="{%static 'games/style.css'%}">
+  <!--all pages link to same stylesheet to keep look and feel-->
+</head>
+
+<body>
+  <header>
+    <!-- heading with navigation bar -->
+    <div class="sticky-top">
+      <!--header need to be responsive to the window changing-->
+      <h1>Top 3000 Video Games</h1>
+      <ul class="nav nav-tabs">
+        <!--bootstrap navigation tab with custom background color-->
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'game'%}">Video Games🕹️</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'genre'%}">Genre</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'platform'%}">Platform</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'publisher'%}">Publisher</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'year'%}">Year</a>
+        </li>
+      </ul>
+    </div>
+  </header>
+  <h1>DB verification</h1>
+    {% for game in game %}
     <p>
-      {{year.id}} | 
-      {{year.year_no}} | 
-      <!-- {{totalemission.year}} | 
-      {{totalemission.total}} | 
-      {{totalemission.coal}} | 
-      {{totalemission.oil}} |
-      {{totalemission.gas}} |
-      {{totalemission.cement}} | 
-      {{totalemission.flaring}} -->
+      {{game.id}} | 
+      {{game.rank}} | 
+      {{game.name}} | 
+      {{game.platform}} | 
+      {{game.year}} | 
+      {{game.genre}} |
+      {{game.publisher}} |
+      {{game.na_sales}} | 
+      {{game.eu_sales}} |
+      {{game.jp_sales}} | 
+      {{game.other_sales}} |
+      {{game.global_sales}} | 
     </p>
     {% endfor %}
   </body>
+
 </html>
