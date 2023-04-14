@@ -7,5 +7,6 @@ urlpatterns=[
   path('genre',views.genre, name='genre'),
   path('platform',views.platform, name='platform'),
   path('publisher',views.publisher, name='publisher'),
-  path('game',views.game, name='game'),
+  path('gamedetail/<int:id>',views.gamedetail, name='gamedetail'),
+  path('gamefilter',views.gamefilter, name='gamefilter')
 ]
