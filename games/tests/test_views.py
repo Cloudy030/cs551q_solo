@@ -75,7 +75,7 @@ class GameViewsTests(TestCase):
       # print("response: ~~~~~~~~~~~",response.content,"~~~~~~~~~~~~~~~~")
       self.assertEqual(response.status_code,200)
       self.assertContains(response, "Top 3000 Video Games")
-      self.assertContains(response, "DB verification")
+      self.assertContains(response, "Video Game Name")
         
         
     

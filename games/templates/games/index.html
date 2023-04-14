@@ -1,7 +1,5 @@
-<!DOCTYPE html>
-
+<!DOCTYPE html
 {%load static%}
-
 <html lang="en">
 
 <head>
@@ -46,7 +44,28 @@
       </ul>
     </div>
   </header>
-  <h1>DB verification</h1>
+  <div class="content">
+    <br>
+    <!-- search bar -->
+    <table class="data_table" style="width:100%">
+      <tr>
+        <th>Video Game Name</th>
+        <th>Platform</th>
+        <th>Year</th>
+        <th>Genre</th>
+        <th>Publisher</th>
+      </tr>
+      {% for game in game %}
+      <tr>
+        <td>{{game.name}}</td>
+        <td>{{game.platform.platform_name}}</td>
+        <td>{{game.year}}</td>
+        <td>{{game.genre}}</td>
+        <td>{{game.publisher}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    <!-- <h1>DB verification</h1>
     {% for game in game %}
     <p>
       {{game.id}} | 
@@ -62,7 +81,8 @@
       {{game.other_sales}} |
       {{game.global_sales}} | 
     </p>
-    {% endfor %}
-  </body>
+    {% endfor %} -->
+  </div>
+</body>
 
 </html>
