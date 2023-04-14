@@ -60,12 +60,13 @@
     <table class="data_table" style="width:100%">
       <tr>
         <th>Platform</th>
-        <th>URL</th>
+        <th>Image of platform</th>
       </tr>
       {% for platform in platforms %}
       <tr>
         <td>{{platform.platform_name}}</td>
-        <td>{{platform.url}}</td>
+        <td><img src="{{platform.url}}" alt="platform image" style="width:200px"></td>
+        <!-- <td>{{platform.url}}</td> -->
         <!-- <td>{{game.year}}</td>
         <td>{{game.genre}}</td>
         <td>{{game.publisher}}</td> -->
