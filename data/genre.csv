@@ -1,13 +1,13 @@
-Genre
-Action
-Adventure
-Fighting
-Misc
-Platform
-Puzzle
-Racing
-Role-Playing
-Shooter
-Simulation
-Sports
-Strategy
+Genre,Description
+Action,"Action games emphasis physical challenges including hand-eye corrdination and reaction time. Player typically control a character and navigate through a level, collecting objects, avoiding obstacles and battle enemies."
+Adventure,"Advanture games put the player in the role of a protagonist in an interactive way, driven by exploration or puzzle-solving. This genre of games focus on story allowing to depend heavily on narrative-based literature or film."
+Fighting,Fighting games put the player against one other human-controlled character or a CPU-controlled AI. The aim of fighting games is to defeat the oppoent using hand-to-hand fighting technics and combinations.
+Misc,Miscellaneous games are other games which are not included in the other specified genres.
+Platform,"Platform games focus on running, jumping, climbing on platforms to navigate through a virtual environment, emphasising on the character's movement and get to the finishing point."
+Puzzle,"Puzzle games emphasis on problem-solving include logic, pattern recognition, sequence solving, spatial recognition and word completion."
+Racing,Racing games can be considered sport-type games which focus only on vehicles challenging others to reach a finish line.
+Role-Playing,Role-playing games put the player into the role of a single character that can sometimes created from scratch. The character learns and gain experience points by overvoming obstacles and enemies and develop new abilities to keep the game evolving and gets harder.
+Shooter,All shooter games involve gun play as core. First-person shooters can be considered as a sub-category of action games. Third-person shooters pull camera back giving a wider vision and ability to see the character entirely.
+Simulation,"Simulation games immersing players into a simulated world, usually their own creation. Story and end goals are not the main facter where the freedom of choice only rely on the player."
+Sports,"Sports games are the emulations of already popular physical sports but in video game format. Every professional sport can have a sanitized game version emphasis on fun, user-friendly controls and easy entry level."
+Strategy,"Strategy games reward the player with strategic plannign over brute force, where the usual goal is to destory the opposing team's main structure with the CPU-controlled minions that march along predetermined paths."
