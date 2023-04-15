@@ -27,13 +27,13 @@
       <ul class="nav nav-tabs">
         <!--bootstrap navigation tab with custom background color-->
         <li class="nav-item">
-          <a class="nav-link active" href="{% url 'index'%}">Video Games🕹️</a>
+          <a class="nav-link" href="{% url 'index'%}">Video Games🕹️</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'genre'%}">Genre</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'platform'%}">Platform</a>
+          <a class="nav-link active" href="{% url 'platform'%}">Platform🕹️</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'publisher'%}">Publisher</a>
@@ -46,37 +46,10 @@
   </header>
   <div class="content">
     <br>
-    <!-- search bar -->
-    <form method="POST" action="{%url 'gamefilter' %}">
-      {% csrf_token %}
-      <select id="plfilter" name="plfilter" platform="platform">
-        <option selected disabled=true>--Select Platform--</option>
-        {% for platform in platforms %}
-        <option value="{{platform.platform_name}}">{{platform.platform_name}}</option>
-        {% endfor %}
-      </select>
-      <select id="yfilter" name="yfilter" platform="year">
-        <option selected disabled=true>--Select Year--</option>
-        {% for year in years %}
-        <option value="{{year.year_no}}">{{year.year_no}}</option>
-        {% endfor %}
-      </select>
-      <select id="gfilter" name="gfilter" platform="genre">
-        <option selected disabled=true>--Select Genre--</option>
-        {% for genre in genres %}
-        <option value="{{genre.genre_name}}">{{genre.genre_name}}</option>
-        {% endfor %}
-      </select>
-      <select id="pufilter" name="pufilter" platform="publisher">
-        <option selected disabled=true>--Select Publisher--</option>
-        {% for publisher in publishers %}
-        <option value="{{publisher.publisher_name}}">{{publisher.publisher_name}}</option>
-        {% endfor %}
-      </select>
-      <button type="submit" class="btn btn-success">Search</button>
-    </form>
-    {% if filgame %}
     <table class="data_table" style="width:100%">
+      <h2>{{platform.platform_name}}</h2>
+      <img src="{{platform.url}}" alt="platform image" style="width:200px">
+      <br><br>
       <tr>
         <th>Video Game Name</th>
         <th>Platform</th>
@@ -84,7 +57,7 @@
         <th>Genre</th>
         <th>Publisher</th>
       </tr>
-      {% for game in filgame %}
+      {% for game in games %}
       <tr>
         <td><a href="{%url 'gamedetail' id=game.id%}">{{game.name}}</td>
         <td><a href="{%url 'platformgame' id=game.platform.id%}">{{game.platform.platform_name}}</td>
@@ -94,9 +67,6 @@
       </tr>
       {% endfor %}
     </table>
-    {% else %}
-    <p>No available video games with selected requirements.</p>
-    {% endif %}
     <!-- <h1>DB verification</h1>
     {% for game in game %}
     <p>

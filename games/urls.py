@@ -8,5 +8,9 @@ urlpatterns=[
   path('platform',views.platform, name='platform'),
   path('publisher',views.publisher, name='publisher'),
   path('gamedetail/<int:id>',views.gamedetail, name='gamedetail'),
-  path('gamefilter',views.gamefilter, name='gamefilter')
+  path('gamefilter',views.gamefilter, name='gamefilter'),
+  path('year/<int:id>',views.yeargame, name='yeargame'),
+  path('genre/<int:id>',views.genregame, name='genregame'),
+  path('platform/<int:id>',views.platformgame, name='platformgame'),
+  path('publisher/<int:id>',views.publishergame, name='publishergame'),
 ]

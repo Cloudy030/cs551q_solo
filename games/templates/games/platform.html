@@ -64,7 +64,7 @@
       </tr>
       {% for platform in platforms %}
       <tr>
-        <td>{{platform.platform_name}}</td>
+        <td><a href="{%url 'platformgame' id=game.platform.id%}">{{platform.platform_name}}</td>
         <td><img src="{{platform.url}}" alt="platform image" style="width:200px"></td>
         <!-- <td>{{platform.url}}</td> -->
         <!-- <td>{{game.year}}</td>

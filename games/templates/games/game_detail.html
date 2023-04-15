@@ -86,7 +86,7 @@
       </tr>
       <tr>
         <th>Platform</th>
-        <td>{{game.platform.platform_name}}</td>
+        <td><a href="{%url 'platformgame' id=game.platform.id%}">{{game.platform.platform_name}}</td>
       </tr>
       <tr>
         <th>Platform Image</th>
@@ -99,7 +99,7 @@
       </tr>
       <tr>
         <th>Genre</th>
-        <td>{{game.genre}}</td>
+        <td>{{game.genre.genre_name}}</td>
       </tr>
       <tr>
         <th>Publisher</th>

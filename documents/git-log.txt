@@ -1,3 +1,4 @@
+* 69a5348 - POK NGA HO, Sat Apr 15 03:07:05 2023 +0000 : filter function work
 * 68bf0af - POK NGA HO, Sat Apr 15 01:35:31 2023 +0000 : add genre description in csv, model, parse_csv, html
 * 29803f9 - POK NGA HO, Fri Apr 14 20:30:52 2023 +0000 : add genre description
 * 0f788a6 - POK NGA HO, Fri Apr 14 19:18:41 2023 +0000 : add platform image to game details html

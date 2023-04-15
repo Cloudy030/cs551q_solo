@@ -4,25 +4,29 @@ from .models import Year, Genre, Platform, Publisher, Game
 
 # Create your views here.
 def index(request):
+
+    # show every data
     games=Game.objects.all()
-    # for dropdown search bar
+
+    # for 4 dropdown search bar
     platforms=Platform.objects.all()
     years=Year.objects.all()
     genres=Genre.objects.all()
     publishers=Publisher.objects.all()
+
     return render(request, 'games/index.html', {'games':games, 'platforms':platforms, 'years':years, 'genres':genres, 'publishers':publishers})
-    # year=Year.objects.all()
-    # # countries=Country.objects.all()
-    # #for the 2 drop down filters
-    # return render(request, 'games/index.html', {'year':year})
 
 def gamefilter(request):
+
+    # base before every filter
     games=Game.objects.all()
+
     # for drop down search bar
     platforms=Platform.objects.all()
     years=Year.objects.all()
     genres=Genre.objects.all()
     publishers=Publisher.objects.all()
+
     # filter function
     pl=request.POST.get('plfilter')
     print('platform: ',pl,request)
@@ -83,20 +87,40 @@ def gamefilter(request):
 
 def year(request):
     years=Year.objects.all()
-
     return render(request, 'games/year.html', {'years':years})
+
+def yeargame(request,id):
+    games=Game.objects.all()
+    years.Year.objects.all()
+    return render(request, 'games/year_game.html', {'years': years, 'games':games})
 
 def genre(request):
     genres=Genre.objects.all()
     return render(request, 'games/genre.html', {'genres':genres})
 
+def genregame(request,id):
+    games=Game.objects.all()
+    genres=Genre.objects.all()
+    return render(request, 'games/genre_game.html', {'genres':genres, 'games':games})
+
 def platform(request):
     platforms=Platform.objects.all()
     return render(request, 'games/platform.html', {'platforms':platforms})
 
+def platformgame(request,id):
+    # game=get_object_or_404(Game,id=id)
+    platform=get_object_or_404(Platform,id=id)
+    games=Game.objects.filter(platform__id=id)
+    return render(request, 'games/platform_game.html', {'platform':platform, 'games':games})
+
 def publisher(request):
     publishers=Publisher.objects.all()
     return render(request, 'games/publisher.html', {'publishers':publishers})
+
+def publishergame(request,id):
+    games=Game.objects.all()
+    publishers=Publisher.objects.all()
+    return render(request, 'games/publisher_game.html', {'publishers':publishers, 'games':games})
 
 def gamedetail(request,id):
     # games=Game.objects.all()
