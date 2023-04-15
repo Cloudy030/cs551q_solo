@@ -25,9 +25,15 @@ class GameViewsTests(TestCase):
     Year.objects.create(year_no='2022')
     year2=Year.objects.get(year_no='2022')
 
-    Genre.objects.create(genre_name='Racing')
+    Genre.objects.create(
+      genre_name='Racing',
+      genre_description='racing testing description'
+      )
     genre1=Genre.objects.get(genre_name='Racing')
-    Genre.objects.create(genre_name='RPG')
+    Genre.objects.create(
+      genre_name='RPG',
+      genre_description='RPG testing description'
+      )
     genre2=Genre.objects.get(genre_name='RPG')
 
     Publisher.objects.create(publisher_name='20th Century Fox Video Games')
@@ -69,13 +75,19 @@ class GameViewsTests(TestCase):
     self.assertEqual(games.count(),2)
             
 
-  def test_home(self):
+  def test_index(self):
       client = Client
       response = self.client.get('')
       # print("response: ~~~~~~~~~~~",response.content,"~~~~~~~~~~~~~~~~")
       self.assertEqual(response.status_code,200)
       self.assertContains(response, "Top 3000 Video Games")
       self.assertContains(response, "Video Game Name")
+      self.assertContains(response, "Pokemon")
+      self.assertContains(response, "Wii")
+      self.assertContains(response, "2023")
+      self.assertContains(response, "Racing")
+      self.assertContains(response, "20th Century Fox Video Games")
+
         
         
     

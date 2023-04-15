@@ -66,9 +66,15 @@ class GameModelTestCase(TestCase):
     Year.objects.create(year_no='2022')
     year2=Year.objects.get(year_no='2022')
 
-    Genre.objects.create(genre_name='Racing')
+    Genre.objects.create(
+      genre_name='Racing',
+      genre_description='racing testing description'
+      )
     genre1=Genre.objects.get(genre_name='Racing')
-    Genre.objects.create(genre_name='RPG')
+    Genre.objects.create(
+      genre_name='RPG',
+      genre_description='RPG testing description'
+      )
     genre2=Genre.objects.get(genre_name='RPG')
 
     Publisher.objects.create(publisher_name='20th Century Fox Video Games')

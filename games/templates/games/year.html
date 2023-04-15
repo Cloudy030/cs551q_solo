@@ -64,7 +64,7 @@
       </tr>
       {% for year in years %}
       <tr>
-        <td>{{year.year_no}}</td>
+        <td><a href="{%url 'yeargame' id=year.id%}">{{year.year_no}}</td>
       </tr>
       {% endfor %}
     </table>
