@@ -1,4 +1,4 @@
-<!DOCTYPE html
+<!DOCTYPE html>
 {%load static%}
 <html lang="en">
 
@@ -70,15 +70,12 @@ https://en.wikipedia.org/wiki/Video_game_genre
     <table class="data_table" style="width:100%">
       <tr>
         <th>Genre</th>
-        <!-- <th>Publisher</th> -->
+        <th>Description</th>
       </tr>
       {% for genre in genres %}
       <tr>
         <td>{{genre.genre_name}}</td>
-        <!-- <td>{{game.platform.platform_name}}</td>
-        <td>{{game.year}}</td>
-        <td>{{game.genre}}</td>
-        <td>{{game.publisher}}</td> -->
+        <td>{{genre.genre_description}}</td>
       </tr>
       {% endfor %}
     </table>

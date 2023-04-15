@@ -48,6 +48,7 @@ class Command(BaseCommand):
 
           genre=Genre.objects.create(
             genre_name=row[0],
+            genre_description=row[1],
           )
           genre.save()
       print('Genre Table Parsed Successfully')

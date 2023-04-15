@@ -1,3 +1,4 @@
+* 29803f9 - POK NGA HO, Fri Apr 14 20:30:52 2023 +0000 : add genre description
 * 0f788a6 - POK NGA HO, Fri Apr 14 19:18:41 2023 +0000 : add platform image to game details html
 * 280ee04 - POK NGA HO, Fri Apr 14 19:09:32 2023 +0000 : add pictures into platform html
 * da62539 - POK NGA HO, Fri Apr 14 19:01:17 2023 +0000 : add css to all templates and add game details page
