@@ -63,7 +63,7 @@
       </tr>
       {% for publisher in publishers %}
       <tr>
-        <td>{{publisher.publisher_name}}</td>
+        <td><a href="{%url 'pugame' id=publisher.id%}">{{publisher.publisher_name}}</td>
       </tr>
       {% endfor %}
     </table>

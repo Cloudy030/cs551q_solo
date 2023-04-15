@@ -75,6 +75,7 @@
       </select>
       <button type="submit" class="btn btn-success">Search</button>
     </form>
+    <br>
     {% if filgame %}
     <table class="data_table" style="width:100%">
       <tr>
@@ -90,7 +91,7 @@
         <td><a href="{%url 'platformgame' id=game.platform.id%}">{{game.platform.platform_name}}</td>
         <td>{{game.year}}</td>
         <td><a href="{%url 'genregame' id=game.genre.id%}">{{game.genre.genre_name}}</td>
-        <td>{{game.publisher}}</td>
+        <td><a href="{%url 'pugame' id=game.publisher.id%}">{{game.publisher}}</td>
       </tr>
       {% endfor %}
     </table>

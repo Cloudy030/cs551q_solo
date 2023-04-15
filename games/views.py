@@ -5,7 +5,7 @@ from .models import Year, Genre, Platform, Publisher, Game
 # Create your views here.
 def index(request):
 
-    # show every data
+    # show every data in table
     games=Game.objects.all()
 
     # for 4 dropdown search bar
@@ -14,7 +14,10 @@ def index(request):
     genres=Genre.objects.all()
     publishers=Publisher.objects.all()
 
-    return render(request, 'games/index.html', {'games':games, 'platforms':platforms, 'years':years, 'genres':genres, 'publishers':publishers})
+    content=games
+    # print(games)
+
+    return render(request, 'games/index.html', {'content':content, 'games':games, 'platforms':platforms, 'years':years, 'genres':genres, 'publishers':publishers})
 
 def gamefilter(request):
 
@@ -111,6 +114,7 @@ def platform(request):
 
 def platformgame(request,id):
     # game=get_object_or_404(Game,id=id)
+    # publishers=Publisher.objects.all()
     platform=get_object_or_404(Platform,id=id)
     games=Game.objects.filter(platform__id=id)
     return render(request, 'games/platform_game.html', {'platform':platform, 'games':games})
@@ -119,11 +123,12 @@ def publisher(request):
     publishers=Publisher.objects.all()
     return render(request, 'games/publisher.html', {'publishers':publishers})
 
-def publishergame(request,id):
+def pugame(request,id):
     # games=Game.objects.all()
     # publishers=Publisher.objects.all()
     publisher=get_object_or_404(Publisher,id=id)
     games=Game.objects.filter(publisher__id=id)
+    print("publisher: ",id, request)
     return render(request, 'games/publisher_game.html', {'publisher':publisher, 'games':games})
 
 def gamedetail(request,id):

@@ -75,6 +75,8 @@
       </select>
       <button type="submit" class="btn btn-success">Search</button>
     </form>
+    <br>
+    {% if content %}
     <table class="data_table" style="width:100%">
       <tr>
         <th>Video Game Name</th>
@@ -83,16 +85,17 @@
         <th>Genre</th>
         <th>Publisher</th>
       </tr>
-      {% for game in games %}
+      {% for game in content %}
       <tr>
         <td><a href="{%url 'gamedetail' id=game.id%}">{{game.name}}</td>
         <td><a href="{%url 'platformgame' id=game.platform.id%}">{{game.platform.platform_name}}</td>
         <td>{{game.year}}</td>
         <td><a href="{%url 'genregame' id=game.genre.id%}">{{game.genre.genre_name}}</td>
-        <td>{{game.publisher}}</td>
+        <td>{{game.publisher.publisher_name}}</td>
       </tr>
       {% endfor %}
     </table>
+    {% endif %}
     <!-- <h1>DB verification</h1>
     {% for game in game %}
     <p>

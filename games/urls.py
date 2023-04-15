@@ -12,5 +12,5 @@ urlpatterns=[
   path('year/<int:id>',views.yeargame, name='yeargame'),
   path('genre/<int:id>',views.genregame, name='genregame'),
   path('platform/<int:id>',views.platformgame, name='platformgame'),
-  path('publisher/<int:id>',views.publishergame, name='publishergame'),
+  path('publisher/<int:id>',views.pugame, name='pugame'),
 ]
