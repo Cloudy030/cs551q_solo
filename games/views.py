@@ -15,7 +15,7 @@ def index(request):
     publishers=Publisher.objects.all()
 
     content=games
-    # print(games)
+    # print(game.publisher.id)
 
     return render(request, 'games/index.html', {'content':content, 'games':games, 'platforms':platforms, 'years':years, 'genres':genres, 'publishers':publishers})
 
@@ -93,9 +93,11 @@ def year(request):
     return render(request, 'games/year.html', {'years':years})
 
 def yeargame(request,id):
-    games=Game.objects.all()
-    years.Year.objects.all()
-    return render(request, 'games/year_game.html', {'years': years, 'games':games})
+    # games=Game.objects.all()
+    # years.Year.objects.all()
+    year=get_object_or_404(Year,id=id)
+    games=Game.objects.filter(year__id=id)
+    return render(request, 'games/year_game.html', {'year': year, 'games':games})
 
 def genre(request):
     genres=Genre.objects.all()
