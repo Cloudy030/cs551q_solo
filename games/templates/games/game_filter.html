@@ -83,12 +83,12 @@
         <th>Genre</th>
         <th>Publisher</th>
       </tr>
-      {% for game in games %}
+      {% for game in filgame %}
       <tr>
         <td>{{game.name}}</td>
         <td>{{game.platform.platform_name}}</td>
         <td>{{game.year}}</td>
-        <td>{{game.genre}}</td>
+        <td>{{game.genre.genre_name}}</td>
         <td>{{game.publisher}}</td>
       </tr>
       {% endfor %}
