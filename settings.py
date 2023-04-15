@@ -26,8 +26,8 @@ SECRET_KEY = 'django-insecure-_ehfkjhq)eo5!nv1al3vq&tv5srfef8v&58#ven&es73o3ym5p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['wheelpioneer-bananashock-8000.codio-box.uk']
-CSRF_TRUSTED_ORIGINS=['https://wheelpioneer-bananashock-8000.codio-box.uk']
+ALLOWED_HOSTS = ['wheelpioneer-bananashock-8000.codio-box.uk','cs551q-games.onrender.com']
+CSRF_TRUSTED_ORIGINS=['https://wheelpioneer-bananashock-8000.codio-box.uk','https://cs551q-games.onrender.com']
 
 
 # Application definition
@@ -52,6 +52,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 ROOT_URLCONF = 'mysite.urls'
 
 TEMPLATES = [
