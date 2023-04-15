@@ -1,3 +1,4 @@
+* f1325c8 - POK NGA HO, Sat Apr 15 18:44:06 2023 +0000 : add render website to settings.py
 * c7efc73 - POK NGA HO, Sat Apr 15 18:26:48 2023 +0000 : Django change from 4.1.2 to 3.2.18
 * 254fa76 - POK NGA HO, Sat Apr 15 18:25:50 2023 +0000 : pip upgrade
 * 2805cd9 - POK NGA HO, Sat Apr 15 18:22:09 2023 +0000 : pip upgrade
