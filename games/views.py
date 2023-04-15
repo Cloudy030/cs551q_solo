@@ -120,9 +120,11 @@ def publisher(request):
     return render(request, 'games/publisher.html', {'publishers':publishers})
 
 def publishergame(request,id):
-    games=Game.objects.all()
-    publishers=Publisher.objects.all()
-    return render(request, 'games/publisher_game.html', {'publishers':publishers, 'games':games})
+    # games=Game.objects.all()
+    # publishers=Publisher.objects.all()
+    publisher=get_object_or_404(Publisher,id=id)
+    games=Game.objects.filter(publisher__id=id)
+    return render(request, 'games/publisher_game.html', {'publisher':publisher, 'games':games})
 
 def gamedetail(request,id):
     # games=Game.objects.all()
