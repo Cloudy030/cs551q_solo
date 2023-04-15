@@ -99,9 +99,11 @@ def genre(request):
     return render(request, 'games/genre.html', {'genres':genres})
 
 def genregame(request,id):
-    games=Game.objects.all()
-    genres=Genre.objects.all()
-    return render(request, 'games/genre_game.html', {'genres':genres, 'games':games})
+    # games=Game.objects.all()
+    # genres=Genre.objects.all()
+    genre=get_object_or_404(Genre,id=id)
+    games=Game.objects.filter(genre__id=id)
+    return render(request, 'games/genre_game.html', {'genre':genre, 'games':games})
 
 def platform(request):
     platforms=Platform.objects.all()

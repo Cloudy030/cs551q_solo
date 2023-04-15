@@ -74,7 +74,7 @@ https://en.wikipedia.org/wiki/Video_game_genre
       </tr>
       {% for genre in genres %}
       <tr>
-        <td>{{genre.genre_name}}</td>
+        <td><a href="{%url 'genregame' id=game.genre.id%}">{{genre.genre_name}}</td>
         <td>{{genre.genre_description}}</td>
       </tr>
       {% endfor %}
