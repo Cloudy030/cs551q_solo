@@ -1,3 +1,4 @@
+* 407d838 - POK NGA HO, Sat Apr 15 20:16:10 2023 +0000 : add test for templates without id included
 * bbeb20d - POK NGA HO, Sat Apr 15 19:13:40 2023 +0000 : add render.yaml
 * 84bc78f - POK NGA HO, Sat Apr 15 18:56:17 2023 +0000 : try render deploy add empty render.yaml
 * 6e6d159 - POK NGA HO, Sat Apr 15 18:54:55 2023 +0000 : try render deploy

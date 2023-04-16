@@ -40,11 +40,3 @@ class TestViews(TestCase):
     response=self.client.get(url)
     self.assertEqual(response.status_code,200)
     self.assertContains(response, "Year")
-
-  # def test_game_detail_view(self):
-  #   url=reverse('gamedetail')
-  #   response=self.client.get(url)
-  #   self.assertEqual(response.status_code,200)
-  #   self.assertContains(response, "Sales in the rest of the world (millions)")
-
-  
