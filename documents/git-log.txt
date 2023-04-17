@@ -1,3 +1,4 @@
+* 2b9b96d - POK NGA HO, Mon Apr 17 12:26:33 2023 +0000 : add https://cs551q-games.onrender.com/ to settings.py in mysite
 * a8637c3 - POK NGA HO, Mon Apr 17 12:22:41 2023 +0000 : add https://cs551q-games.onrender.com/ to allowed hosts for render deploy
 * 0ee6a1f - POK NGA HO, Sun Apr 16 16:14:48 2023 +0000 : add filter test
 * 407d838 - POK NGA HO, Sat Apr 15 20:16:10 2023 +0000 : add test for templates without id included
