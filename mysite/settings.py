@@ -26,8 +26,8 @@ SECRET_KEY = 'django-insecure-q$p40k!!@kw00#tv5gajd=$ow%t#ra&z$$e^_egk3ge-*z@fmi
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['wheelpioneer-bananashock-8000.codio-box.uk']
-CSRF_TRUSTED_ORIGINS=['https://wheelpioneer-bananashock-8000.codio-box.uk']
+ALLOWED_HOSTS = ['wheelpioneer-bananashock-8000.codio-box.uk','cs551q-games.onrender.com']
+CSRF_TRUSTED_ORIGINS=['https://wheelpioneer-bananashock-8000.codio-box.uk','https://cs551q-games.onrender.com/']
 
 # Application definition
 
