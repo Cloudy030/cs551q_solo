@@ -1,6 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from .models import Year, Genre, Platform, Publisher, Game
+from games.models import Year, Genre, Platform, Publisher, Game
+from games.forms import SignUpForm
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -17,7 +20,7 @@ def index(request):
     content=games
     # print(game.publisher.id)
 
-    return render(request, 'games/index.html', {'content':content, 'games':games, 'platforms':platforms, 'years':years, 'genres':genres, 'publishers':publishers})
+    return render(request, 'games/game_full_list.html', {'games':games, 'platforms':platforms, 'years':years, 'genres':genres, 'publishers':publishers})
 
 def gamefilter(request):
 
@@ -137,3 +140,18 @@ def gamedetail(request,id):
     # games=Game.objects.all()
     game=get_object_or_404(Game,id=id)
     return render(request, 'games/game_detail.html', {'game':game})
+
+# def game_list(request):
+#     games=Game.obejcts.all()
+#     deleted=request.session.get('deleted', 'empty')
+#     request.session['deleted']='hello'
+
+#     return render(request, 'index.html', {'games': games, 'deleted': deleted})
+
+# def game_delete(request, id):
+#     game=get_object_or_404(Game, id=id)
+#     deleted=request.session.get('deleted', 'empty')
+#     request.session['deleted']=game.name
+#     game.delete()
+#     return redirect('index')
+

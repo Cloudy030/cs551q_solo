@@ -1,0 +1,26 @@
+  {% extends 'games/index.html' %}
+  {% block content %}
+{% if filgame %}
+    <table class="data_table" style="width:100%">
+      <tr>
+        <th>Video Game Name</th>
+        <th>Platform</th>
+        <th>Year</th>
+        <th>Genre</th>
+        <th>Publisher</th>
+      </tr>
+      {% for game in filgame %}
+      <tr>
+        <td><a href="{%url 'gamedetail' id=game.id%}">{{game.name}}</td>
+        <td><a href="{%url 'platformgame' id=game.platform.id%}">{{game.platform.platform_name}}</td>
+        <td><a href="{%url 'yeargame' id=game.year.id%}">{{game.year}}</td>
+        <td><a href="{%url 'genregame' id=game.genre.id%}">{{game.genre.genre_name}}</td>
+        <td><a href="{%url 'pugame' id=game.publisher.id%}">{{game.publisher}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% else %}
+    <p>No available video games with selected requirements.</p>
+    {% endif %}
+
+    {% endblock %}
