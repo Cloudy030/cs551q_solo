@@ -10,17 +10,19 @@ class SignUpForm(UserCreationForm):
     email = forms.EmailField(max_length=50)
     address = forms.CharField()
 
+    # class Meta:cs551q_solo/games/__pycache__
+
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2', 
         'address', 'first_name', 'last_name', )
 
-# class ProductForm (forms.ModelForm):
-#     name= forms.CharField(max_length=200)
+class GameForm (forms.ModelForm):
+    name= forms.CharField(max_length=200)
 
-#     class Meta:
-#         model = Product
-#         fields = ('name','price',)
+    class Meta:
+        model = Game
+        fields = ('name',)
 
 GAME_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 30)]
 

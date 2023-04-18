@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>{{publisher.publisher_name}} 🎮</title>
+  <title>Video Games 🎮</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -13,7 +13,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@400;700&display=swap" rel="stylesheet">
-  <!-- goole text -->
+  <!-- google text -->
+  <!-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"rel="stylesheet"/> -->
   <link rel="stylesheet" href="{%static 'games/style.css'%}">
   <!--all pages link to same stylesheet to keep look and feel-->
 </head>
@@ -23,11 +24,11 @@
     <!-- heading with navigation bar -->
     <div class="sticky-top">
       <!--header need to be responsive to the window changing-->
-      <h1>Video Games from {{publisher.publisher_name}}</h1>
+      <h1>Top 3000 Video Games</h1>
       <ul class="nav nav-tabs">
         <!--bootstrap navigation tab with custom background color-->
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'index'%}">Video Games</a>
+          <a class="nav-link active" href="{% url 'index'%}">Video Games🕹️</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'genre'%}">Genre</a>
@@ -36,20 +37,53 @@
           <a class="nav-link" href="{% url 'platform'%}">Platform</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="{% url 'publisher'%}">Publisher🕹️</a>
+          <a class="nav-link" href="{% url 'publisher'%}">Publisher</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'year'%}">Year</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'signup'%}">Login</a>
         </li>
       </ul>
     </div>
   </header>
   <div class="content">
     <br>
+    <!-- search bar -->
+    <form method="POST" action="{%url 'gamefilter' %}">
+      {% csrf_token %}
+      <select id="plfilter" name="plfilter" platform="platform">
+        <option selected disabled=true>--Select Platform--</option>
+        {% for platform in platforms %}
+        <option value="{{platform.platform_name}}">{{platform.platform_name}}</option>
+        {% endfor %}
+      </select>
+      <select id="yfilter" name="yfilter" platform="year">
+        <option selected disabled=true>--Select Year--</option>
+        {% for year in years %}
+        <option value="{{year.year_no}}">{{year.year_no}}</option>
+        {% endfor %}
+      </select>
+      <select id="gfilter" name="gfilter" platform="genre">
+        <option selected disabled=true>--Select Genre--</option>
+        {% for genre in genres %}
+        <option value="{{genre.genre_name}}">{{genre.genre_name}}</option>
+        {% endfor %}
+      </select>
+      <select id="pufilter" name="pufilter" platform="publisher">
+        <option selected disabled=true>--Select Publisher--</option>
+        {% for publisher in publishers %}
+        <option value="{{publisher.publisher_name}}">{{publisher.publisher_name}}</option>
+        {% endfor %}
+      </select>
+      <button type="submit" class="btn btn-success">Search</button>
+    </form>
+    <br>
+    {% block content %}
+    {% endblock %}
+    <!-- {% if content %}
     <table class="data_table" style="width:100%">
-      <h2>{{publisher.publisher_name}}</h2>
-      <!-- <p>{{genre.genre_description}}</p> -->
-      <br>
       <tr>
         <th>Video Game Name</th>
         <th>Platform</th>
@@ -57,16 +91,17 @@
         <th>Genre</th>
         <th>Publisher</th>
       </tr>
-      {% for game in games %}
+      {% for game in content %}
       <tr>
         <td><a href="{%url 'gamedetail' id=game.id%}">{{game.name}}</td>
         <td><a href="{%url 'platformgame' id=game.platform.id%}">{{game.platform.platform_name}}</td>
         <td><a href="{%url 'yeargame' id=game.year.id%}">{{game.year}}</td>
         <td><a href="{%url 'genregame' id=game.genre.id%}">{{game.genre.genre_name}}</td>
-        <td><a href="{%url 'pugame' id=publisher.id%}">{{game.publisher}}</td>
+        <td>{{game.publisher.id}}: {{game.publisher.publisher_name}}</td>
       </tr>
       {% endfor %}
     </table>
+    {% endif %} -->
     <!-- <h1>DB verification</h1>
     {% for game in game %}
     <p>

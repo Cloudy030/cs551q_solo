@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Year 🎮</title>
+  <title>Publisher 🎮</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -23,7 +23,7 @@
     <!-- heading with navigation bar -->
     <div class="sticky-top">
       <!--header need to be responsive to the window changing-->
-      <h1>Year</h1>
+      <h1>Publisher</h1>
       <ul class="nav nav-tabs">
         <!--bootstrap navigation tab with custom background color-->
         <li class="nav-item">
@@ -36,10 +36,13 @@
           <a class="nav-link" href="{% url 'platform'%}">Platform</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'publisher'%}">Publisher</a>
+          <a class="nav-link active" href="{% url 'publisher'%}">Publisher🕹️</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="{% url 'year'%}">Year🕹️</a>
+          <a class="nav-link" href="{% url 'year'%}">Year</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'signup'%}">Login</a>
         </li>
       </ul>
     </div>
@@ -59,20 +62,19 @@
     </form> -->
     <table class="data_table" style="width:100%">
       <tr>
-        <th>Year</th>
-        <!-- <th>URL</th> -->
+        <th>Publisher</th>
       </tr>
-      {% for year in years %}
+      {% for publisher in publishers %}
       <tr>
-        <td><a href="{%url 'yeargame' id=year.id%}">{{year.year_no}}</td>
+        <td><a href="{%url 'pugame' id=publisher.id%}">{{publisher.publisher_name}}</td>
       </tr>
       {% endfor %}
     </table>
     <!-- <h1>DB verification</h1>
-    {% for year in year %}
+    {% for publisher in publisher %}
     <p>
-      {{year.id}} | 
-      {{year.year_no}} | 
+      {{publisher.id}} | 
+      {{publisher.publisher_name}} | 
     </p>
     {% endfor %} -->
   </div>

@@ -1,9 +1,14 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from games.models import Year, Genre, Platform, Publisher, Game
-from games.forms import SignUpForm
+from games.models import Year, Genre, Platform, Publisher, Game,  Cart, Customer, LineItem, Order
+from games.forms import SignUpForm, BasketAddProductForm, GameForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
+from decimal import Decimal
+from django.conf import settings
+from django.views.decorators.http import require_POST
+from django.contrib.auth.models import User
+
 
 # Create your views here.
 def index(request):
@@ -20,7 +25,7 @@ def index(request):
     content=games
     # print(game.publisher.id)
 
-    return render(request, 'games/game_full_list.html', {'games':games, 'platforms':platforms, 'years':years, 'genres':genres, 'publishers':publishers})
+    return render(request, 'games/base/game_full_list.html', {'games':games, 'platforms':platforms, 'years':years, 'genres':genres, 'publishers':publishers})
 
 def gamefilter(request):
 
@@ -89,44 +94,44 @@ def gamefilter(request):
     else:
         filgame=Game.objects.filter(platform__platform_name=pl).filter(year__year_no=y).filter(genre__genre_name=g).filter(publisher__publisher_name=pu)
     
-    return render(request, 'games/game_filter.html', {'filgame':filgame, 'games':games, 'platforms':platforms, 'years':years, 'genres':genres, 'publishers':publishers})
+    return render(request, 'games/base/game_filter_list.html', {'filgame':filgame, 'games':games, 'platforms':platforms, 'years':years, 'genres':genres, 'publishers':publishers})
 
 def year(request):
     years=Year.objects.all()
-    return render(request, 'games/year.html', {'years':years})
+    return render(request, 'games/base/year.html', {'years':years})
 
 def yeargame(request,id):
     # games=Game.objects.all()
     # years.Year.objects.all()
     year=get_object_or_404(Year,id=id)
     games=Game.objects.filter(year__id=id)
-    return render(request, 'games/year_game.html', {'year': year, 'games':games})
+    return render(request, 'games/base/year_game.html', {'year': year, 'games':games})
 
 def genre(request):
     genres=Genre.objects.all()
-    return render(request, 'games/genre.html', {'genres':genres})
+    return render(request, 'games/base/genre.html', {'genres':genres})
 
 def genregame(request,id):
     # games=Game.objects.all()
     # genres=Genre.objects.all()
     genre=get_object_or_404(Genre,id=id)
     games=Game.objects.filter(genre__id=id)
-    return render(request, 'games/genre_game.html', {'genre':genre, 'games':games})
+    return render(request, 'games/base/genre_game.html', {'genre':genre, 'games':games})
 
 def platform(request):
     platforms=Platform.objects.all()
-    return render(request, 'games/platform.html', {'platforms':platforms})
+    return render(request, 'games/base/platform.html', {'platforms':platforms})
 
 def platformgame(request,id):
     # game=get_object_or_404(Game,id=id)
     # publishers=Publisher.objects.all()
     platform=get_object_or_404(Platform,id=id)
     games=Game.objects.filter(platform__id=id)
-    return render(request, 'games/platform_game.html', {'platform':platform, 'games':games})
+    return render(request, 'games/base/platform_game.html', {'platform':platform, 'games':games})
 
 def publisher(request):
     publishers=Publisher.objects.all()
-    return render(request, 'games/publisher.html', {'publishers':publishers})
+    return render(request, 'games/base/publisher.html', {'publishers':publishers})
 
 def pugame(request,id):
     # games=Game.objects.all()
@@ -134,12 +139,12 @@ def pugame(request,id):
     publisher=get_object_or_404(Publisher,id=id)
     games=Game.objects.filter(publisher__id=id)
     print("publisher: ",id, request)
-    return render(request, 'games/publisher_game.html', {'publisher':publisher, 'games':games})
+    return render(request, 'games/base/publisher_game.html', {'publisher':publisher, 'games':games})
 
 def gamedetail(request,id):
     # games=Game.objects.all()
     game=get_object_or_404(Game,id=id)
-    return render(request, 'games/game_detail.html', {'game':game})
+    return render(request, 'games/base/game_detail.html', {'game':game})
 
 # def game_list(request):
 #     games=Game.obejcts.all()
@@ -155,3 +160,220 @@ def gamedetail(request,id):
 #     game.delete()
 #     return redirect('index')
 
+def signup(request):
+    form = SignUpForm(request.POST)
+    if form.is_valid():
+        user = form.save()
+        user.refresh_from_db()
+        user.customer.first_name = form.cleaned_data.get('first_name')
+        user.customer.last_name = form.cleaned_data.get('last_name')
+        user.customer.address = form.cleaned_data.get('address')
+        user.save()
+        username = form.cleaned_data.get('username')
+        password = form.cleaned_data.get('password1')
+        user = authenticate(username=username, password= password)
+        login(request, user)
+        return redirect('/')
+    return render(request, 'games/shop/signup.html', {'form': form})
+
+@login_required
+def dashboard(request):
+    user = request.user
+    if user.is_authenticated & user.is_staff:
+        return render(request, 'games/shop/dashboard.html')
+    else:
+        return redirect('games:login')
+
+# save order, clear basket and thank customer
+def payment(request):
+    basket = Basket(request)
+    user = request.user
+    customer = get_object_or_404(Customer, user_id=user.id)
+    order = Order.objects.create(customer=customer)
+    order.refresh_from_db()
+    for item in basket:
+        game_item = get_object_or_404(Game, id=item['game_id'])
+        cart = Cart.objects.create(game = game_item, quantity=item['quantity'])
+        cart.refresh_from_db()
+        line_item = LineItem.objects.create(quantity=item['quantity'], game=game_item, cart=cart,  order = order)
+
+    basket.clear()
+    request.session['deleted'] = 'thanks for your purchase'
+    return redirect('games:game_list' )
+
+def purchase(request):
+    if request.user.is_authenticated:
+        user = request.user
+        basket = Basket(request)
+        
+        return render(request, 'games/shop/purchase.html', {'basket': basket, 'user': user})
+    else:
+        return redirect('games:login')
+
+@login_required
+def customer_list(request):
+    user = request.user
+    if user.is_authenticated & user.is_staff:
+        users = User.objects.all()
+        return render(request, 'games/shop/customer_list.html', {'users' : users})
+    else:
+        return redirect('games:login')
+
+@login_required
+def customer_detail(request, id):
+    user = get_object_or_404(User, id=id)
+    return render(request, 'games/shop/customer_detail.html', {'user' : user})
+
+def order_list(request):
+    orders = Order.objects.all()
+    return render(request, 'games/shop/order_list.html', {'orders' : orders})
+
+def order_detail(request, id):
+    order = get_object_or_404(Order, id=id)
+    customer = order.customer
+    user = get_object_or_404(User, id=customer.pk)
+    line_items = LineItem.objects.filter(order_id=order.id)
+    return render(request, 'games/shop/order_detail.html', {'order' : order, 'user': user, 'line_items': line_items})
+
+
+# def game_list(request):
+#     games = Game.objects.all()    
+#     return render(request, 'games/game_list.html', {'games' : games })
+
+def game_detail(request, id):
+    game = get_object_or_404(Game, id=id)
+    basket_product_form = BasketAddProductForm()
+    return render(request, 'games/shop/games_detail.html', {'game' : game, 'basket_product_form': basket_product_form })
+
+# def game_new(request):
+#     if request.method=="POST":
+#         form = ProductForm(request.POST)
+#         if form.is_valid():
+#             game = form.save(commit=False)
+#             game.created_date = timezone.now()
+#             game.save()
+#             return redirect('shop:games_detail', id=game.id)
+#     else:
+#         form = ProductForm()
+#     return render(request, 'shop/product_edit.html', {'form': form})
+
+# def product_edit(request, id):
+#     product = get_object_or_404(Product, id=id)
+#     if request.method=="POST":
+#         form = ProductForm(request.POST, instance=product)
+#         if form.is_valid():
+#             product = form.save(commit=False)
+#             product.created_date = timezone.now()
+#             product.save()
+#             return redirect('shop:product_detail', id=product.id)
+#     else:
+#         form = ProductForm(instance=product)
+#     return render(request, 'shop/product_edit.html', {'form': form})
+
+# def product_delete(request, id):
+#     product = get_object_or_404(Product, id=id)
+#     deleted = request.session.get('deleted', 'empty')
+#     request.session['deleted'] = product.name
+#     product.delete()
+#     return redirect('shop:product_list' )
+
+class Basket(object):
+    # a data transfer object to shift items from cart to page
+    # inspired by Django 3 by Example (2020) by Antonio Mele
+    # https://github.com/PacktPublishing/Django-3-by-Example/
+    
+    def __init__(self, request):
+        self.session = request.session
+        basket = self.session.get(settings.BASKET_SESSION_ID)
+        if not basket:
+            # save an empty basket in the session
+            basket = self.session[settings.BASKET_SESSION_ID] = {}
+        self.basket = basket
+
+    def __iter__(self):
+        """
+        Iterate over the items in the basket and get the products
+        from the database.
+        """
+        print(f'basket: { self.basket }')
+        game_ids = self.basket.keys()
+        # get the product objects and add them to the basket
+        games = Game.objects.filter(id__in=game_ids)
+
+        basket = self.basket.copy()
+        for game in games:
+            basket[str(game.id)]['game'] = game
+            basket[str(game.id)]['game_id'] = game.id
+
+        # for item in basket.values():
+        #     # item['price'] = Decimal(item['price'])
+        #     item['total_price'] = item['price'] * item['quantity']
+        #     yield item
+
+    def __len__(self):
+        """
+        Count all items in the basket.
+        """
+        return sum(item['quantity'] for item in self.basket.values())
+
+    def add(self, product, quantity=1, override_quantity=False):
+        """
+        Add a product to the basket or update its quantity.
+        """
+        game_id = str(game.id)
+        if game_id not in self.basket:
+            self.basket[game_id] = {'quantity': 0}
+                                    #   'price': str(product.price)}
+        if override_quantity:
+            self.basket[game_id]['quantity'] = quantity
+        else:
+            self.basket[game_id]['quantity'] += quantity
+        self.save()
+
+    def save(self):
+        # mark the session as "modified" to make sure it gets saved
+        self.session.modified = True
+
+    def remove(self, game):
+        """
+        Remove a product from the basket.
+        """
+        game_id = str(game.id)
+        if game_id in self.basket:
+            del self.basket[game_id]
+            self.save()
+
+    def clear(self):
+        # remove basket from session
+        del self.session[settings.BASKET_SESSION_ID]
+        self.save()
+
+    def get_total_quantity(self):
+        return sum(item['quantity'] for item in self.basket.values())
+
+
+@require_POST
+def basket_add(request, game_id):
+    basket = Basket(request)
+    game = get_object_or_404(Game, id=game_id)
+    form = BasketAddProductForm(request.POST)
+    if form.is_valid():
+        cd = form.cleaned_data
+        basket.add(game=game,
+                 quantity=cd['quantity'],
+                 override_quantity=cd['override'])
+    return redirect('games:basket_detail')
+
+@require_POST
+def basket_remove(request, game_id):
+    basket = Basket(request)
+    game = get_object_or_404(Game, id=game_id)
+    basket.remove(game)
+    return redirect('games:basket_detail')
+
+def basket_detail(request):
+    basket = Basket(request)
+    for item in basket:
+        item['update_quantity_form'] = BasketAddProductForm(initial={'quantity': item['quantity'],
+                                                                   'override': True})
+    return render(request, 'games/shop/basket.html', {'basket': basket})

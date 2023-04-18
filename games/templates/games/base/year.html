@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>{{platform.platform_name}} 🎮</title>
+  <title>Year 🎮</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -23,7 +23,7 @@
     <!-- heading with navigation bar -->
     <div class="sticky-top">
       <!--header need to be responsive to the window changing-->
-      <h1>Video Games using {{platform.platform_name}}</h1>
+      <h1>Year</h1>
       <ul class="nav nav-tabs">
         <!--bootstrap navigation tab with custom background color-->
         <li class="nav-item">
@@ -33,55 +33,49 @@
           <a class="nav-link" href="{% url 'genre'%}">Genre</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="{% url 'platform'%}">Platform🕹️</a>
+          <a class="nav-link" href="{% url 'platform'%}">Platform</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'publisher'%}">Publisher</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'year'%}">Year</a>
+          <a class="nav-link active" href="{% url 'year'%}">Year🕹️</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'signup'%}">Login</a>
         </li>
       </ul>
     </div>
   </header>
   <div class="content">
     <br>
+    <!-- search bar -->
+    <!-- <form method="POST" action="{%url 'gamefilter' %}">
+      {% csrf_token %}
+      <select id="plfilter" name="plfilter" platform="platform">
+        <option selected disabled=true>--Select Platform--</option>
+        {% for platform in platforms %}
+        <option value="{{game.platform.platform_name}}">{{game.platform.platform_name}}</option>
+        {% endfor %}
+      </select>
+      <button type="submit" class="btn btn-success">Search</button>
+    </form> -->
     <table class="data_table" style="width:100%">
-      <h2>{{platform.platform_name}}</h2>
-      <img src="{{platform.url}}" alt="platform image" style="width:200px">
-      <br><br>
       <tr>
-        <th>Video Game Name</th>
-        <th>Platform</th>
         <th>Year</th>
-        <th>Genre</th>
-        <th>Publisher</th>
+        <!-- <th>URL</th> -->
       </tr>
-      {% for game in games %}
+      {% for year in years %}
       <tr>
-        <td><a href="{%url 'gamedetail' id=game.id%}">{{game.name}}</td>
-        <td><a href="{%url 'platformgame' id=game.platform.id%}">{{game.platform.platform_name}}</td>
-        <td><a href="{%url 'yeargame' id=game.year.id%}">{{game.year}}</td>
-        <td><a href="{%url 'genregame' id=game.genre.id%}">{{game.genre.genre_name}}</td>
-        <td><a href="{%url 'pugame' id=game.publisher.id%}">{{game.publisher.publisher_name}}</td>
+        <td><a href="{%url 'yeargame' id=year.id%}">{{year.year_no}}</td>
       </tr>
       {% endfor %}
     </table>
     <!-- <h1>DB verification</h1>
-    {% for game in game %}
+    {% for year in year %}
     <p>
-      {{game.id}} | 
-      {{game.rank}} | 
-      {{game.name}} | 
-      {{game.platform}} | 
-      {{game.year}} | 
-      {{game.genre}} |
-      {{game.publisher}} |
-      {{game.na_sales}} | 
-      {{game.eu_sales}} |
-      {{game.jp_sales}} | 
-      {{game.other_sales}} |
-      {{game.global_sales}} | 
+      {{year.id}} | 
+      {{year.year_no}} | 
     </p>
     {% endfor %} -->
   </div>

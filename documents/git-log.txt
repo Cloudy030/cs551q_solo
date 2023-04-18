@@ -1,3 +1,4 @@
+* b2bcdae - POK NGA HO, Mon Apr 17 16:42:21 2023 +0000 : merge full list and filter list using same index.html
 * d6a5590 - POK NGA HO, Mon Apr 17 12:36:26 2023 +0000 : add <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"rel="stylesheet"/> in index.html
 * 2b9b96d - POK NGA HO, Mon Apr 17 12:26:33 2023 +0000 : add https://cs551q-games.onrender.com/ to settings.py in mysite
 * a8637c3 - POK NGA HO, Mon Apr 17 12:22:41 2023 +0000 : add https://cs551q-games.onrender.com/ to allowed hosts for render deploy

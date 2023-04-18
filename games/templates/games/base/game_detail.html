@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Video Games 🎮</title>
+  <title>{{game.name}} 🎮</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -13,8 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@400;700&display=swap" rel="stylesheet">
-  <!-- google text -->
-  <!-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"rel="stylesheet"/> -->
+  <!-- goole text -->
   <link rel="stylesheet" href="{%static 'games/style.css'%}">
   <!--all pages link to same stylesheet to keep look and feel-->
 </head>
@@ -24,7 +23,7 @@
     <!-- heading with navigation bar -->
     <div class="sticky-top">
       <!--header need to be responsive to the window changing-->
-      <h1>Top 3000 Video Games</h1>
+      <h1>{{game.name}}</h1>
       <ul class="nav nav-tabs">
         <!--bootstrap navigation tab with custom background color-->
         <li class="nav-item">
@@ -42,13 +41,16 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'year'%}">Year</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'signup'%}">Login</a>
+        </li>
       </ul>
     </div>
   </header>
   <div class="content">
     <br>
     <!-- search bar -->
-    <form method="POST" action="{%url 'gamefilter' %}">
+    <!-- <form method="POST" action="{%url 'gamefilter' %}">
       {% csrf_token %}
       <select id="plfilter" name="plfilter" platform="platform">
         <option selected disabled=true>--Select Platform--</option>
@@ -75,32 +77,59 @@
         {% endfor %}
       </select>
       <button type="submit" class="btn btn-success">Search</button>
-    </form>
-    <br>
-    {% block content %}
-    {% endblock %}
-    <!-- {% if content %}
+    </form> -->
     <table class="data_table" style="width:100%">
       <tr>
         <th>Video Game Name</th>
-        <th>Platform</th>
-        <th>Year</th>
-        <th>Genre</th>
-        <th>Publisher</th>
+        <td>{{game.name}}</td>
       </tr>
-      {% for game in content %}
       <tr>
-        <td><a href="{%url 'gamedetail' id=game.id%}">{{game.name}}</td>
-        <td><a href="{%url 'platformgame' id=game.platform.id%}">{{game.platform.platform_name}}</td>
-        <td><a href="{%url 'yeargame' id=game.year.id%}">{{game.year}}</td>
-        <td><a href="{%url 'genregame' id=game.genre.id%}">{{game.genre.genre_name}}</td>
-        <td>{{game.publisher.id}}: {{game.publisher.publisher_name}}</td>
+        <th>Sales Rank</th>
+        <td>{{game.rank}}</td>
       </tr>
-      {% endfor %}
+      <tr>
+        <th>Platform</th>
+        <td><a href="{%url 'platformgame' id=game.platform.id%}">{{game.platform.platform_name}}</td>
+      </tr>
+      <tr>
+        <th>Platform Image</th>
+        <!-- <td>{{game.platform.url}}</td> -->
+        <td><img src="{{game.platform.url}}" alt="platform image" style="width:200px"></td>
+      </tr>
+      <tr>
+        <th>Year</th>
+        <td><a href="{%url 'yeargame' id=game.year.id%}">{{game.year}}</td>
+      </tr>
+      <tr>
+        <th>Genre</th>
+        <td><a href="{%url 'genregame' id=game.genre.id%}">{{game.genre.genre_name}}</td>
+      </tr>
+      <tr>
+        <th>Publisher</th>
+        <td><a href="{%url 'pugame' id=game.publisher.id%}">{{game.publisher}}</td>
+      </tr>
+      <tr>
+        <th>Sales in North America (millions)</th>
+        <td>{{game.na_sales}}</td>
+      </tr>
+      <tr>
+        <th>Sales in Europe (millions)</th>
+        <td>{{game.eu_sales}}</td>
+      </tr>
+      <tr>
+        <th>Sales in Japan (millions)</th>
+        <td>{{game.jp_sales}}</td>
+      </tr>
+      <tr>
+        <th>Sales in the rest of the world (millions)</th>
+        <td>{{game.other_sales}}</td>
+      </tr>
+      <tr>
+        <th>Total worldwide sales (millions)</th>
+        <td>{{game.global_sales}}</td>
+      </tr>
     </table>
-    {% endif %} -->
     <!-- <h1>DB verification</h1>
-    {% for game in game %}
     <p>
       {{game.id}} | 
       {{game.rank}} | 
@@ -114,8 +143,7 @@
       {{game.jp_sales}} | 
       {{game.other_sales}} |
       {{game.global_sales}} | 
-    </p>
-    {% endfor %} -->
+    </p> -->
   </div>
 </body>
 
