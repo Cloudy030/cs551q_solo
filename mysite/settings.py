@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'games.apps.GamesConfig',
 ]
 
+# https://dev.to/marcbeaujean/deploying-your-django-app-on-render-2o5k
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
