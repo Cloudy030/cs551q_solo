@@ -1,4 +1,5 @@
 from django.urls import path, include
+from django.contrib import admin
 import django.contrib.auth.urls
 from . import views
 
@@ -19,12 +20,12 @@ urlpatterns=[
   # path('search/', SearchResult.as_view(), name="search_results"),
 
   # path('', views.products.product_list, name='product_list'),
-  # path('accounts/', include('django.contrib.auth.urls')),
+  path('accounts/', include('django.contrib.auth.urls')),
   # path('basket_add/<int:product_id>/', views.basket.basket_add, name ='basket_add'),
   # path('basket_remove/<int:product_id>/', views.basket.basket_remove, name ='basket_remove'),
   # path('basket_detail/', views.basket.basket_detail, name ='basket_detail'),
   path('signup/', views.signup, name='signup'),
-  # path('dashboard/', views.general.dashboard, name='dashboard'),
+  path('dashboard/', views.dashboard, name='dashboard'),
   # path('customer_list', views.customers.customer_list, name='customer_list'),
   # path('customer/<int:id>/', views.customers.customer_detail, name= 'customer_detail'),
   # path('order_list/', views.orders.order_list, name='order_list'),

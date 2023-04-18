@@ -1,12 +1,64 @@
-{% extends 'shop/base.html' %}
-{% block content %}
-    <h1>Acme Shopping: Your Order</h1>
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Registration 🎮</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <!-- goole text -->
+  <!-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"rel="stylesheet"/> -->
+  <link rel="stylesheet" href="{%static 'games/style.css'%}">
+  <!--all pages link to same stylesheet to keep look and feel-->
+</head>
+
+<body>
+  <header>
+    <!-- heading with navigation bar -->
+    <div class="sticky-top">
+      <!--header need to be responsive to the window changing-->
+      <h1>Registration</h1>
+      <ul class="nav nav-tabs">
+        <!--bootstrap navigation tab with custom background color-->
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'index'%}">Video Games</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'genre'%}">Genre</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'platform'%}">Platform</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'publisher'%}">Publisher</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'year'%}">Year</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'signup'%}">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'signup'%}">Order</a>
+        </li>
+      </ul>
+    </div>
+  </header>
+  <div class="content">
+    <h2>Purchase: Your Order</h2>
     
 <h2>You have these in your basket:</h2>
   {% for item in basket %}
-    {% with product=item.product %}
+    {% with game=item.game %}
  
-<p>You put {{product.quantity }} of our <b> {{ product.name }} </b> which each cost {{ item.price }} and cost {{ item.total_price }} for in your basket.</p>
+<p>You put {{game.quantity }} of our <b> {{ game.name }} </b> and have total {{ item.total_quantity }} items in your basket.</p>
      {% endwith %}
    {% endfor %}
  <p>The total for all of this fun is: {{ basket.get_total_price }} </p>
@@ -17,8 +69,11 @@
        <input type='text' name='first_name' value="{{user.first_name}}" disabled>
        <input type='text' name='last_name' value="{{user.last_name}}" disabled><br>
        <label for 'payment'>Card Type:</label><input type='text' size=5 name='payment'>
-       <input type="number" name="total" value="Total Payment:">
+       <!-- <input type="number" name="total" value="Total Payment:"> -->
        <input type="submit" value="Payment">
        </form>
        </p>
- {% endblock %}
+  </div>
+</body>
+
+</html>

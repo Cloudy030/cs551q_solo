@@ -8,6 +8,7 @@ from decimal import Decimal
 from django.conf import settings
 from django.views.decorators.http import require_POST
 from django.contrib.auth.models import User
+import json
 
 
 # Create your views here.
@@ -180,7 +181,22 @@ def signup(request):
 def dashboard(request):
     user = request.user
     if user.is_authenticated & user.is_staff:
-        return render(request, 'games/shop/dashboard.html')
+        
+        games=Game.objects.all()
+        sources=Game.objects.filter(rank=1)
+        sources_temp=[]
+        for source in sources:
+            # sources_temp.append(source.name)
+            sources_temp.append(source.na_sales)
+            sources_temp.append(source.eu_sales)
+            sources_temp.append(source.jp_sales)
+            sources_temp.append(source.other_sales)
+            sources_temp.append(source.global_sales)
+        sources_list=json.dumps(sources_temp)
+        print(sources)
+        print(sources_temp)
+
+        return render(request, 'games/shop/dashboard.html',{'sources_list':sources_list, 'sources':sources})
     else:
         return redirect('games:login')
 
