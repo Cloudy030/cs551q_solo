@@ -196,7 +196,7 @@ def dashboard(request):
         print(sources)
         print(sources_temp)
 
-        return render(request, 'games/shop/dashboard.html',{'sources_list':sources_list, 'sources':sources})
+        return render(request, 'games/shop/dashboard.html',{'sources_list':sources_list, 'sources':sources, 'games':games})
     else:
         return redirect('games:login')
 

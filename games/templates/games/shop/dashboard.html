@@ -50,6 +50,19 @@
     </div>
   </header>
   <div class="content">
+
+    <form method="POST" action="{%url 'dashboard' %}">
+      {% csrf_token %}
+      <select id="gamef" name="gamef" game="game">
+        <option selected disabled=true>--Select Game--</option>
+        {% for game in games %}
+        <option value="{{game.name}}">{{game.name}}</option>
+        {% endfor %}
+      </select>
+      <button type="submit" class="btn btn-success">Search</button>
+    </form>
+
+
     <canvas id="myChart"></canvas>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script type= 'text/javascript'>
@@ -65,7 +78,7 @@
             label: 'Sales of {{sources.name}}',
             //order: number //put your own numebr here with an extra comma, otherwise remove this line
             backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 222, 161)',
             data: {{sources_list}}
           }]
         },

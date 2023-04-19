@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'games.apps.GamesConfig',
 ]
 
+#use this for the shoping basket/cart
+BASKET_SESSION_ID = 'basket'
+
 # https://dev.to/marcbeaujean/deploying-your-django-app-on-render-2o5k
 
 MIDDLEWARE = [
@@ -55,6 +58,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# Redirect to home URL after login (Default redirects to /accounts/profile/)
+# https://docs.djangoproject.com/en/4.1/topics/auth/default/ 
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/' 
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 ROOT_URLCONF = 'mysite.urls'
