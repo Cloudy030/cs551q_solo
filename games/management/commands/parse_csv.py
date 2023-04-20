@@ -175,7 +175,7 @@ class Command(BaseCommand):
       random_id = random.randint(1,9)
       cart = Cart.objects.create(
       game = games[random_id],
-      quantity = random.randrange(1,30),
+      quantity = random.randrange(1,10),
       )
       cart.save()
 

@@ -88,6 +88,10 @@
         <td>{{game.rank}}</td>
       </tr>
       <tr>
+        <th>Price(£)</th>
+        <td>{{game.price}}</td>
+      </tr>
+      <tr>
         <th>Platform</th>
         <td><a href="{%url 'platformgame' id=game.platform.id%}">{{game.platform.platform_name}}</td>
       </tr>
@@ -108,8 +112,6 @@
         <th>Publisher</th>
         <td><a href="{%url 'pugame' id=game.publisher.id%}">{{game.publisher}}</td>
       </tr>
-        <th>Price</th>
-        <td>{{game.price}}</td>
       <tr>
         <th>Sales in North America (millions)</th>
         <td>{{game.na_sales}}</td>
@@ -131,6 +133,11 @@
         <td>{{game.global_sales}}</td>
       </tr>
     </table>
+    <form action="{% url 'basket_add' game.id %}" method="post">
+      {{ basket_product_form }}
+      {% csrf_token %}
+      <input type="submit" value="Add to Basket">
+    </form>
     <!-- <h1>DB verification</h1>
     <p>
       {{game.id}} | 

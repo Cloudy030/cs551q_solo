@@ -22,7 +22,7 @@
     <!-- heading with navigation bar -->
     <div class="sticky-top">
       <!--header need to be responsive to the window changing-->
-      <h1>Staff View</h1>
+      <h1>Shop</h1>
       <ul class="nav nav-tabs">
         <!--bootstrap navigation tab with custom background color-->
         <li class="nav-item">
@@ -41,33 +41,35 @@
           <a class="nav-link" href="{% url 'year'%}">Year</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'login'%}">Login</a>
+          <a class="nav-link active">Login View🕹️</a>
         </li>
-        <!-- 🕹️ -->
       </ul>
     </div>
   </header>
   <div class="content">
     <br>
-    {% block content %}
-    {% if user.is_staff %} <p>
-      <!-- <a href = "{% url 'shop:product_list' %}">Acme Shopping Home</a> -->
+
+    {% if user.is_staff %}
+    <p>
       <a href="{% url 'dashboard' %}">Dashboard</a> | 
-      <a href="{% url 'shop:basket_detail' %}">Basket</a>
+      <a href="{% url 'basket_detail' %}">Basket</a> |
       <a href="{% url 'customer_list' %}">Customers</a> | 
-      <a href="{% url 'shop:order_list' %}">Orders</a> | 
+      <a href="{% url 'order_list' %}">Orders</a> | 
+    </p>
       {% else %}
     <p>
-      <!-- <a href = "{% url 'shop:product_list' %}">Acme Shopping Home</a> | -->
       <a href="{% url 'basket_detail' %}">Basket</a> 
       {% endif %} 
-      {% if user.is_authenticated %} 
-      <a href="{% url 'shop:logout' %}">Log Out</a>
+    {% if user.is_authenticated %} 
     </p> 
+      <p class="text-right"><a href="{% url 'logout' %}">Log Out</a></p>
     {% else %} 
-    <a href="{% url 'login' %}">Log In</a>
+    </p> 
+      <p class="text-right"><a href="{% url 'login' %}">Log In</a>
     </p> 
     {% endif %}
+
+    {% block content %}
     {% endblock %}
   </div>
 </body>

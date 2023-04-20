@@ -22,9 +22,9 @@ class GameForm (forms.ModelForm):
 
     class Meta:
         model = Game
-        fields = ('name',)
+        fields = ('name','price',)
 
-GAME_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 30)]
+GAME_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 10)]
 
 class BasketAddProductForm(forms.Form):
     quantity = forms.TypedChoiceField(

@@ -145,7 +145,8 @@ def pugame(request,id):
 def gamedetail(request,id):
     # games=Game.objects.all()
     game=get_object_or_404(Game,id=id)
-    return render(request, 'games/base/game_detail.html', {'game':game})
+    basket_product_form=BasketAddProductForm()
+    return render(request, 'games/base/game_detail.html', {'game':game, 'basket_product_form':basket_product_form})
 
 # def game_list(request):
 #     games=Game.obejcts.all()
@@ -183,22 +184,62 @@ def dashboard(request):
     if user.is_authenticated & user.is_staff:
         
         games=Game.objects.all()
-        sources=Game.objects.filter(rank=1)
-        sources_temp=[]
-        for source in sources:
-            # sources_temp.append(source.name)
-            sources_temp.append(source.na_sales)
-            sources_temp.append(source.eu_sales)
-            sources_temp.append(source.jp_sales)
-            sources_temp.append(source.other_sales)
-            sources_temp.append(source.global_sales)
-        sources_list=json.dumps(sources_temp)
-        print(sources)
-        print(sources_temp)
+            # filter function
+        g=request.POST.get('gamef')
+        print('game: ',g,request)
+
+        # # 0 filter
+        # if pl==None and y==None and g==None and pu==None:
+        #     filgame=games
+        #     # show all data rows if no filter requirements are given
+
+        # 1 filter
+        if g==None:
+            # show data for Wii Sports if no filter requirements are given
+            sources=Game.objects.filter(name="Wii Sports")
+            sources_temp=[]
+            for source in sources:
+                # sources_temp.append(source.name)
+                sources_temp.append(source.na_sales)
+                sources_temp.append(source.eu_sales)
+                sources_temp.append(source.jp_sales)
+                sources_temp.append(source.other_sales)
+                sources_temp.append(source.global_sales)
+            sources_list=json.dumps(sources_temp) # convert to json
+            print(sources)
+            print(sources_temp)
+
+        else:
+            sources=Game.objects.filter(name=g)
+            # filter get the game
+            sources_temp=[]
+            for source in sources:
+                # sources_temp.append(source.name)
+                sources_temp.append(source.na_sales)
+                sources_temp.append(source.eu_sales)
+                sources_temp.append(source.jp_sales)
+                sources_temp.append(source.other_sales)
+                sources_temp.append(source.global_sales)
+            sources_list=json.dumps(sources_temp)
+            print(sources)
+            print(sources_temp)
+
+        # sources=Game.objects.filter(name='Wii Sports')
+        # sources_temp=[]
+        # for source in sources:
+        #     # sources_temp.append(source.name)
+        #     sources_temp.append(source.na_sales)
+        #     sources_temp.append(source.eu_sales)
+        #     sources_temp.append(source.jp_sales)
+        #     sources_temp.append(source.other_sales)
+        #     sources_temp.append(source.global_sales)
+        # sources_list=json.dumps(sources_temp)
+        # print(sources)
+        # print(sources_temp)
 
         return render(request, 'games/shop/dashboard.html',{'sources_list':sources_list, 'sources':sources, 'games':games})
     else:
-        return redirect('games:login')
+        return redirect('login')
 
 # save order, clear basket and thank customer
 def payment(request):
@@ -215,7 +256,7 @@ def payment(request):
 
     basket.clear()
     request.session['deleted'] = 'thanks for your purchase'
-    return redirect('games:game_list' )
+    return redirect('index' )
 
 def purchase(request):
     if request.user.is_authenticated:
@@ -224,7 +265,7 @@ def purchase(request):
         
         return render(request, 'games/shop/purchase.html', {'basket': basket, 'user': user})
     else:
-        return redirect('games:login')
+        return redirect('login')
 
 @login_required
 def customer_list(request):
@@ -243,7 +284,7 @@ def customer_detail(request, id):
 
 def order_list(request):
     orders = Order.objects.all()
-    return render(request, 'games/shop/order_list.html', {'user' : user,'orders' : orders})
+    return render(request, 'games/shop/order_list.html', {'orders' : orders})
 
 def order_detail(request, id):
     order = get_object_or_404(Order, id=id)
@@ -370,23 +411,23 @@ class Basket(object):
 
 
 @require_POST
-def basket_add(request, game_id):
+def basket_add(request, id):
     basket = Basket(request)
-    game = get_object_or_404(Game, id=game_id)
+    game = get_object_or_404(Game, id=id)
     form = BasketAddProductForm(request.POST)
     if form.is_valid():
         cd = form.cleaned_data
         basket.add(game=game,
                  quantity=cd['quantity'],
                  override_quantity=cd['override'])
-    return redirect('games:basket_detail')
+    return redirect('basket_detail')
 
 @require_POST
-def basket_remove(request, game_id):
+def basket_remove(request, id):
     basket = Basket(request)
-    game = get_object_or_404(Game, id=game_id)
+    game = get_object_or_404(Game, id=id)
     basket.remove(game)
-    return redirect('games:basket_detail')
+    return redirect('basket_detail')
 
 def basket_detail(request):
     basket = Basket(request)

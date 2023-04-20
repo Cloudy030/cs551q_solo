@@ -1,56 +1,7 @@
-<!DOCTYPE html> {%load static%} <html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Dashboard 🎮</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@400;700&display=swap" rel="stylesheet">
-  <!-- goole text -->
-  <!-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"rel="stylesheet"/> -->
-  <link rel="stylesheet" href="{%static 'games/style.css'%}">
-  <!--all pages link to same stylesheet to keep look and feel-->
-</head>
-
-<body>
-  <header>
-    <!-- heading with navigation bar -->
-    <div class="sticky-top">
-      <!--header need to be responsive to the window changing-->
-      <h1>Dashboard</h1>
-      <ul class="nav nav-tabs">
-        <!--bootstrap navigation tab with custom background color-->
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'index'%}">Video Games</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'genre'%}">Genre</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'platform'%}">Platform</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'publisher'%}">Publisher</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'year'%}">Year</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'login'%}">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="{% url 'dashboard'%}">Dashboard🕹️</a>
-        </li>
-      </ul>
-    </div>
-  </header>
-  <div class="content">
-
+{% extends 'games/shop/base.html' %}
+{% block content %}
+<br>
+<h2>Dashboard</h2>
     <form method="POST" action="{%url 'dashboard' %}">
       {% csrf_token %}
       <select id="gamef" name="gamef" game="game">
@@ -75,7 +26,7 @@
         data: {
           labels: ['North America Sales', 'Europe Sales', 'Japan Sales', 'Other part of world Sales', 'Global Sales'],
           datasets: [{
-            label: 'Sales of {{sources.name}}',
+            label: 'Sales of {{game.name}}',
             //order: number //put your own numebr here with an extra comma, otherwise remove this line
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgb(255, 222, 161)',
@@ -94,7 +45,4 @@
         }
       });
     </script>
-  </div>
-</body>
-
-</html>
+    {% endblock %}
