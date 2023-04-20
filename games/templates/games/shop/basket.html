@@ -1,19 +1,19 @@
-{% extends 'shop/base.html' %}
+{% extends 'games/shop/base.html' %}
 {% block content %}
-    <h1>Acme Shopping: Your Basket</h1>
+    <h1>Your Basket</h1>
     
 <h2>You have these in your basket:</h2>
  <table>
   {% for item in basket %}
-        {% with product=item.product %}
+        {% with game=item.game %}
           <tr>
             <td>
-              <a href="{% url 'shop:product_detail' id=product.id %}">
+              <a href="{% url 'gamedetail' id=game.id %}">
               </a>
             </td>
-            <td>{{ product.name }}</td>
+            <td>{{ game.name }}</td>
             <td>
-              <form action="{% url 'shop:basket_add' product.id %}" method="post">
+              <form action="{% url 'shop:basket_add' game.id %}" method="post">
                 {{ item.update_quantity_form.quantity }}
                 {{ item.update_quantity_form.override }}
                 <input type="submit" value="Update">
@@ -21,7 +21,7 @@
               </form>
             </td>
             <td>
-              <form action="{% url 'shop:basket_remove' product.id %}" method="post">
+              <form action="{% url 'shop:basket_remove' game.id %}" method="post">
                 <input type="submit" value="Remove">
                 {% csrf_token %}
               </form>
@@ -38,8 +38,7 @@
       </tr>
   </table>
   <p class="text-right">
-    <a href="{% url "shop:product_list" %}" class="button
-    light">Continue shopping</a>
+    <a href="{% url "shop:product_list" %}" class="buttonlight">Continue shopping</a>
   </p>
  
    <a href="{% url 'shop:purchase' %}">Purchase</a>

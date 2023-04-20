@@ -67,9 +67,10 @@ class Game(models.Model):
     # sales in rest of the world (in millions)
   global_sales=models.FloatField()
     # total worldwide sales (in millions)
+  price=models.DecimalField(max_digits=6, decimal_places=2)
 
   def __str__(self):
-    return f'{self.rank}, {self.name}, {self.platform}, {self.year}, {self.genre}, {self.publisher}, {self.na_sales}, {self.eu_sales}, {self.jp_sales}, {self.other_sales}, {self.global_sales}'
+    return f'{self.rank}, {self.name}, {self.platform}, {self.year}, {self.genre}, {self.publisher}, {self.na_sales}, {self.eu_sales}, {self.jp_sales}, {self.other_sales}, {self.global_sales}, {self.price}'
 
 class Cart(models.Model):
   game = models.ForeignKey('Game', on_delete=models.CASCADE, related_name='carts')

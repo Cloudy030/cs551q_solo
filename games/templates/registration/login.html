@@ -2,13 +2,13 @@
 {% block content %}
     <h2>Login</h2>
     {% if form.errors %}
-       <p>Your username and password didn't match. Please try again.</p>
+       <p style="color:red;">Your username and password didn't match. Please try again.</p>
     {% endif %}
     {%if next %}
     {% if request.user.is_authenticated %}
     <!-- proceed to requested page-->
     {% else %}
-    <p>Your account doesn't have access to this page. To proceed,
+    <p style="color:red;">Your account doesn't have access to this page. To proceed,
       please login with an account that has access.</p>
      
     {% endif %}

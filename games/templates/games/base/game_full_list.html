@@ -8,6 +8,7 @@
         <th>Year</th>
         <th>Genre</th>
         <th>Publisher</th>
+        <th>Price</th>
       </tr>
       {% for game in games %}
       <tr>
@@ -16,6 +17,7 @@
         <td><a href="{%url 'yeargame' id=game.year.id%}">{{game.year}}</td>
         <td><a href="{%url 'genregame' id=game.genre.id%}">{{game.genre.genre_name}}</td>
         <td>{{game.publisher.id}}: {{game.publisher.publisher_name}}</td>
+        <td>{{game.price}}</td>
       </tr>
       {% endfor %}
     </table>

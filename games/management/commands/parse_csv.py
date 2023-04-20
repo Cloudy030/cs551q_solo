@@ -126,6 +126,7 @@ class Command(BaseCommand):
               jp_sales=float(row[8]),
               other_sales=float(row[9]),
               global_sales =float(row[10]),
+              price= int( decimal.Decimal(random.randrange(3000,9999))/100),
             )
             game.save()
           except (ValueError, DatabaseError) as error:
@@ -178,7 +179,7 @@ class Command(BaseCommand):
       )
       cart.save()
 
-      print('Cart Table Created Successfully')
+    print('Cart Table Created Successfully')
 
     # create orders from customers
     customers = Customer.objects.all()
@@ -189,7 +190,7 @@ class Command(BaseCommand):
         )
         order.save()
 
-        print('Order Table Created Successfully')
+    print('Order Table Created Successfully')
           
     # attach line_items to orders
     orders = Order.objects.all()

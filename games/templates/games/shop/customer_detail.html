@@ -1,11 +1,15 @@
-{% extends 'shop/base.html' %}
+{% extends 'games/shop/base.html' %}
 {% block content %}
-    <h1>Acme Shopping: Customer Details</h1>
-    
+    <h2>Customer Details</h2>
+    <br>
     <p>Customer: 
       This is {{ user.first_name }} {{ user.last_name }} who lives at 
       {{user.customer.address}}. You can reach them at {{ user.email }} 
    </p>
-  <p>Modify the method to also supply the customer's orders</p>
-   
+   <br>
+  <!-- <p>Modify the method to also supply the customer's orders</p> -->
+   <h2>Customer Orders</h2>
+   <br>
+
+   <br>
     {% endblock %}

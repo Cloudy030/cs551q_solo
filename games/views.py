@@ -238,7 +238,8 @@ def customer_list(request):
 @login_required
 def customer_detail(request, id):
     user = get_object_or_404(User, id=id)
-    return render(request, 'games/shop/customer_detail.html', {'user' : user})
+    orders=Order.objects.all()
+    return render(request, 'games/shop/customer_detail.html', {'user' : user, 'orders' : orders})
 
 def order_list(request):
     orders = Order.objects.all()
@@ -321,10 +322,10 @@ class Basket(object):
             basket[str(game.id)]['game'] = game
             basket[str(game.id)]['game_id'] = game.id
 
-        # for item in basket.values():
-        #     # item['price'] = Decimal(item['price'])
-        #     item['total_price'] = item['price'] * item['quantity']
-        #     yield item
+        for item in basket.values():
+            item['price'] = Decimal(item['price'])
+            item['total_price'] = item['price'] * item['quantity']
+            yield item
 
     def __len__(self):
         """
@@ -332,14 +333,14 @@ class Basket(object):
         """
         return sum(item['quantity'] for item in self.basket.values())
 
-    def add(self, product, quantity=1, override_quantity=False):
+    def add(self, game, quantity=1, override_quantity=False):
         """
         Add a product to the basket or update its quantity.
         """
         game_id = str(game.id)
         if game_id not in self.basket:
-            self.basket[game_id] = {'quantity': 0}
-                                    #   'price': str(product.price)}
+            self.basket[game_id] = {'quantity': 0,
+                                    'price': str(game.price)}
         if override_quantity:
             self.basket[game_id]['quantity'] = quantity
         else:
@@ -364,8 +365,8 @@ class Basket(object):
         del self.session[settings.BASKET_SESSION_ID]
         self.save()
 
-    def get_total_quantity(self):
-        return sum(item['quantity'] for item in self.basket.values())
+    def get_total_price(self):
+        return sum(Decimal(item['price']) * item['quantity'] for item in self.basket.values())
 
 
 @require_POST
