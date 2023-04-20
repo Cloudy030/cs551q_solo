@@ -2,14 +2,24 @@
 {% block content %}
     <h2>Customer Details</h2>
     <br>
-    <p>Customer: 
-      This is {{ user.first_name }} {{ user.last_name }} who lives at 
-      {{user.customer.address}}. You can reach them at {{ user.email }} 
+    <p>Name: {{ user.first_name }} {{ user.last_name }} 
+      <br>
+      Address: {{user.customer.address}}
+      <br>
+      Email: {{ user.email }} 
+      <!-- {{user.id}} -->
    </p>
-   <br>
+   <br><br>
   <!-- <p>Modify the method to also supply the customer's orders</p> -->
    <h2>Customer Orders</h2>
+   <p>
    <br>
-
+   Order ID:<br>
+   {% for order in orders %}
+   <a href="{% url 'order_detail' id=order.id %}">{{order.id}}</a>
+     <br>
+    <!-- {{order}} <br> -->
+   {% endfor %}
    <br>
+   </p>
     {% endblock %}

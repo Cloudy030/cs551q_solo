@@ -2,7 +2,7 @@
 {% block content %}
     <h2>Order Details</h2>
     <br>
-    <p>Order: 
+    <p>
       This is order {{ order.id }} for
       <a href="{% url 'customer_detail' id=user.pk %}">{{user.first_name}} {{user.last_name}}</a>. 
       The order was placed on: {{ order.created_date }} 

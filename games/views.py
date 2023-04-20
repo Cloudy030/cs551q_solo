@@ -238,12 +238,12 @@ def customer_list(request):
 @login_required
 def customer_detail(request, id):
     user = get_object_or_404(User, id=id)
-    orders=Order.objects.all()
+    orders=Order.objects.filter(customer_id=id)
     return render(request, 'games/shop/customer_detail.html', {'user' : user, 'orders' : orders})
 
 def order_list(request):
     orders = Order.objects.all()
-    return render(request, 'games/shop/order_list.html', {'orders' : orders})
+    return render(request, 'games/shop/order_list.html', {'user' : user,'orders' : orders})
 
 def order_detail(request, id):
     order = get_object_or_404(Order, id=id)
