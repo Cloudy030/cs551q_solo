@@ -13,6 +13,10 @@
       <button type="submit" class="btn btn-success">Search</button>
     </form>
 
+    <script>
+      var name=JSON.parse('{{name}}');
+    </script>
+
 
     <canvas id="myChart"></canvas>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
@@ -26,7 +30,7 @@
         data: {
           labels: ['North America Sales', 'Europe Sales', 'Japan Sales', 'Other part of world Sales', 'Global Sales'],
           datasets: [{
-            label: 'Sales of {{game.name}}',
+            label: 'Sales of {{name}}',
             //order: number //put your own numebr here with an extra comma, otherwise remove this line
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgb(255, 222, 161)',
