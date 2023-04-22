@@ -1,3 +1,4 @@
+* 412fc73 - POK NGA HO, Fri Apr 21 22:05:01 2023 +0000 : <a href="{%url pugame id=game.publisher.id|add:0%}"> solve noreversefound error
 * be039f1 - POK NGA HO, Thu Apr 20 20:42:40 2023 +0000 : game name filter in dashboard work
 * 9f4df97 - POK NGA HO, Thu Apr 20 17:40:03 2023 +0000 : finish customer list order list and respective details html
 * 11d8d84 - POK NGA HO, Thu Apr 20 16:59:08 2023 +0000 : customer list order list and details html add
