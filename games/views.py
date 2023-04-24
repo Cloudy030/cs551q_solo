@@ -206,6 +206,7 @@ def dashboard(request):
                 sources_temp.append(source.other_sales)
                 sources_temp.append(source.global_sales)
             sources_list=json.dumps(sources_temp) # convert to json
+            sname=g
             print(sources)
             print(sources_temp)
 
@@ -214,13 +215,14 @@ def dashboard(request):
             # filter get the game
             sources_temp=[]
             for source in sources:
-                # sources_temp.append(source.name)
+                # sname.append(source.name)
                 sources_temp.append(source.na_sales)
                 sources_temp.append(source.eu_sales)
                 sources_temp.append(source.jp_sales)
                 sources_temp.append(source.other_sales)
                 sources_temp.append(source.global_sales)
             sources_list=json.dumps(sources_temp)
+            sname=g
             print(sources)
             print(sources_temp)
 
@@ -237,7 +239,7 @@ def dashboard(request):
         # print(sources)
         # print(sources_temp)
 
-        return render(request, 'games/shop/dashboard.html',{'sources_list':sources_list, 'sources':sources, 'games':games})
+        return render(request, 'games/shop/dashboard.html',{'sources_list':sources_list, 'sources':sources, 'games':games, 'sname':sname})
     else:
         return redirect('login')
 

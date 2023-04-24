@@ -1,3 +1,4 @@
+* f140e26 - POK NGA HO, Sat Apr 22 19:32:56 2023 +0000 : change to basket view instead of login view
 * 412fc73 - POK NGA HO, Fri Apr 21 22:05:01 2023 +0000 : <a href="{%url pugame id=game.publisher.id|add:0%}"> solve noreversefound error
 * be039f1 - POK NGA HO, Thu Apr 20 20:42:40 2023 +0000 : game name filter in dashboard work
 * 9f4df97 - POK NGA HO, Thu Apr 20 17:40:03 2023 +0000 : finish customer list order list and respective details html
