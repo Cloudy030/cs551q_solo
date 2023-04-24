@@ -194,6 +194,8 @@ def dashboard(request):
         #     # show all data rows if no filter requirements are given
 
         # 1 filter
+        '''
+        '''
         if g==None:
             # show data for Wii Sports if no filter requirements are given
             sources=Game.objects.filter(name="Wii Sports")

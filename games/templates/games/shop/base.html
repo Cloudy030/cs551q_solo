@@ -62,7 +62,7 @@
       {% endif %} 
     {% if user.is_authenticated %} 
     </p> 
-      <p>Welcome back, <strong>{{user.first_name}}</strong></p>
+      <h3>Welcome back, <strong>{{user.first_name}}</strong></h3>
       <p class="text-right"><a href="{% url 'logout' %}">Log Out</a></p>
     {% else %} 
     </p> 
