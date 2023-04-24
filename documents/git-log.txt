@@ -1,3 +1,4 @@
+* 2477a42 - POK NGA HO, Mon Apr 24 16:11:18 2023 +0000 : add graph label in dashboard
 * ea37c48 - POK NGA HO, Mon Apr 24 15:53:27 2023 +0000 : break views.py and parse_csv.py into smaller files in a folder for easier management
 * 7c6b046 - POK NGA HO, Mon Apr 24 13:30:28 2023 +0000 : change color of graph
 * 0ffae0a - POK NGA HO, Mon Apr 24 12:45:58 2023 +0000 : add staff and general account
