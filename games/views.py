@@ -206,7 +206,7 @@ def dashboard(request):
                 sources_temp.append(source.other_sales)
                 sources_temp.append(source.global_sales)
             sources_list=json.dumps(sources_temp) # convert to json
-            sname=g
+            sname="Wii Sports"
             print(sources)
             print(sources_temp)
 
