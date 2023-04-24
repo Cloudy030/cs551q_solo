@@ -3,6 +3,7 @@
 <br>
 <h2>Dashboard</h2>
 <br>
+<h3>Video Games Sales Data</h3>
     <form method="POST" action="{%url 'dashboard' %}">
       {% csrf_token %}
       <select id="gamef" name="gamef" game="game">
@@ -19,7 +20,6 @@
          // var name=JSON.parse('{{name|safe}}');
 
     </script> -->
-
 
     <canvas id="myChart"></canvas>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
@@ -43,7 +43,19 @@
         // Configuration options go here
         options: {
           scales: {
+//            xAxes: [{
+  //           scaleLabel: {
+    //            display: true,
+      //          labelString: 'Parts of world',
+        //        fontSize: 12,
+          //    }
+            //}], 
             yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Sales (million(s))',
+                fontSize: 12,
+              },
               ticks: {
                 beginAtZero: true
               }
@@ -52,4 +64,49 @@
         }
       });
     </script>
+
+    <canvas id="myChart"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script type= 'text/javascript'>
+    var ctx = document.getElementById('myChart').getContext('2d');
+
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'bar',
+        // The data for our dataset
+        data: {
+          labels: ['North America Sales', 'Europe Sales', 'Japan Sales', 'Other part of world Sales', 'Global Sales'],
+          datasets: [{
+            label: '{{sname}}',
+            //order: number //put your own numebr here with an extra comma, otherwise remove this line
+            backgroundColor: 'rgb(255,195,85)', //color of bar
+            borderColor: 'rgb(255,195,85)', //bolor of lines
+            data: {{sources_list}}
+          }]
+        },
+        // Configuration options go here
+        options: {
+          scales: {
+//            xAxes: [{
+  //           scaleLabel: {
+    //            display: true,
+      //          labelString: 'Parts of world',
+        //        fontSize: 12,
+          //    }
+            //}], 
+            yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Sales (million(s))',
+                fontSize: 12,
+              },
+              ticks: {
+                beginAtZero: true
+              }
+            }]
+          }
+        }
+      });
+    </script>
+
     {% endblock %}
