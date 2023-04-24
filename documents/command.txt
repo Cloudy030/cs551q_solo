@@ -6,3 +6,6 @@ python3 manage.py test games/tests
 
 create requirements.txt with command (remember to change the Django version to 3.2.18):
 pip freeze > requirements.txt
+
+create superuser
+python3 manage.py createsuperuser

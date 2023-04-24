@@ -1,3 +1,4 @@
+* 7c6b046 - POK NGA HO, Mon Apr 24 13:30:28 2023 +0000 : change color of graph
 * 0ffae0a - POK NGA HO, Mon Apr 24 12:45:58 2023 +0000 : add staff and general account
 * 5525133 - POK NGA HO, Mon Apr 24 09:47:21 2023 +0000 : add |add:0 for customer_detail
 * beed1de - POK NGA HO, Mon Apr 24 09:44:34 2023 +0000 : remove space for |add:0

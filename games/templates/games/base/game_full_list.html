@@ -4,6 +4,7 @@
     <table class="data_table" style="width:100%">
       <tr>
         <th>Video Game Name</th>
+        <th>Rank</th>
         <th>Platform</th>
         <th>Year</th>
         <th>Genre</th>
@@ -13,6 +14,7 @@
       {% for game in games %}
       <tr>
         <td><a href="{%url 'gamedetail' id=game.id%}">{{game.name}}</td>
+                <td>{{game.rank}}</td>
         <td><a href="{%url 'platformgame' id=game.platform.id%}">{{game.platform.platform_name}}</td>
         <td><a href="{%url 'yeargame' id=game.year.id%}">{{game.year}}</td>
         <td><a href="{%url 'genregame' id=game.genre.id%}">{{game.genre.genre_name}}</td>

@@ -67,7 +67,7 @@
       </tr>
       {% for platform in platforms %}
       <tr>
-        <td><a href="{%url 'platformgame' id=platform.id%}">{{platform.platform_name}}</td>
+        <td><a href="{%url 'platformgame' id=platform.id|add:'0'%}">{{platform.platform_name}}</td>
         <!-- https://stackoverflow.com/questions/1393202/django-add-image-in-an-imagefield-from-image-url -->
         <td><img src="{{platform.url}}" alt="platform image" style="width:200px"></td>
         <!-- <td>{{platform.url}}</td> -->
