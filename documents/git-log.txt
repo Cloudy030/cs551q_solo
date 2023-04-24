@@ -1,3 +1,4 @@
+* 5525133 - POK NGA HO, Mon Apr 24 09:47:21 2023 +0000 : add |add:0 for customer_detail
 * beed1de - POK NGA HO, Mon Apr 24 09:44:34 2023 +0000 : remove space for |add:0
 * 8527533 - POK NGA HO, Mon Apr 24 09:34:04 2023 +0000 : add |add:0 for render order_list error
 * 2517fb9 - POK NGA HO, Mon Apr 24 09:23:06 2023 +0000 : "Wii Sports" to dashboard default
