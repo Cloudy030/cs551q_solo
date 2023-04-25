@@ -1,3 +1,4 @@
+* 9fde7ab - POK NGA HO, Tue Apr 25 11:53:06 2023 +0000 : behave setting work
 * 8f145bc - POK NGA HO, Mon Apr 24 16:12:06 2023 +0000 : before start behave
 * 2477a42 - POK NGA HO, Mon Apr 24 16:11:18 2023 +0000 : add graph label in dashboard
 * ea37c48 - POK NGA HO, Mon Apr 24 15:53:27 2023 +0000 : break views.py and parse_csv.py into smaller files in a folder for easier management
