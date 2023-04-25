@@ -25,3 +25,6 @@ password: 7890efgh
 first name: Gfirst
 last name: Glast
 email: g@b.com
+
+pip install behave
+pip install selenium

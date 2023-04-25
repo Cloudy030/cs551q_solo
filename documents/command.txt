@@ -9,3 +9,6 @@ pip freeze > requirements.txt
 
 create superuser
 python3 manage.py createsuperuser
+
+behave tests
+behave

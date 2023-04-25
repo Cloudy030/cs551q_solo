@@ -49,35 +49,6 @@
   </header>
   <div class="content">
     <br>
-    <!-- search bar -->
-    <!-- <form method="POST" action="{%url 'gamefilter' %}">
-      {% csrf_token %}
-      <select id="plfilter" name="plfilter" platform="platform">
-        <option selected disabled=true>--Select Platform--</option>
-        {% for platform in platforms %}
-        <option value="{{platform.platform_name}}">{{platform.platform_name}}</option>
-        {% endfor %}
-      </select>
-      <select id="yfilter" name="yfilter" platform="year">
-        <option selected disabled=true>--Select Year--</option>
-        {% for year in years %}
-        <option value="{{year.year_no}}">{{year.year_no}}</option>
-        {% endfor %}
-      </select>
-      <select id="gfilter" name="gfilter" platform="genre">
-        <option selected disabled=true>--Select Genre--</option>
-        {% for genre in genres %}
-        <option value="{{genre.genre_name}}">{{genre.genre_name}}</option>
-        {% endfor %}
-      </select>
-      <select id="pufilter" name="pufilter" platform="publisher">
-        <option selected disabled=true>--Select Publisher--</option>
-        {% for publisher in publishers %}
-        <option value="{{publisher.publisher_name}}">{{publisher.publisher_name}}</option>
-        {% endfor %}
-      </select>
-      <button type="submit" class="btn btn-success">Search</button>
-    </form> -->
     <table class="data_table" style="width:100%">
       <tr>
         <th>Video Game Name</th>
@@ -136,8 +107,7 @@
     <form action="{% url 'basket_add' game.id %}" method="post">
       {% csrf_token %}
       {{ basket_product_form }}
-      <!-- {% csrf_token %} -->
-      <input type="submit" value="Add to Basket">
+      <input type="submit" name="submit" value="Add to Basket">
     </form>
     <!-- <h1>DB verification</h1>
     <p>
