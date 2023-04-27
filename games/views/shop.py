@@ -40,6 +40,8 @@ def dashboard(request):
     # 1 filter
     '''
     try to move to models
+    like bear details
+    or merge together
     '''
     if g==None:
       # show data for Wii Sports if no filter requirements are given
@@ -102,8 +104,11 @@ def payment(request):
     cart = Cart.objects.create(game = game_item, quantity=item['quantity'])
     cart.refresh_from_db()
     line_item = LineItem.objects.create(quantity=item['quantity'], game=game_item, cart=cart,  order = order)
-
+  
   basket.clear()
+  '''
+  maybe add a message to notify has successfully pay
+  '''
   request.session['deleted'] = 'thank you for your purchase'
   return redirect('index' )
 

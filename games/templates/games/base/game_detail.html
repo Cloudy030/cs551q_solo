@@ -104,11 +104,13 @@
         <td>{{game.global_sales}}</td>
       </tr>
     </table>
+    <p>
     <form action="{% url 'basket_add' game.id %}" method="post">
       {% csrf_token %}
-      {{ basket_product_form }}
+      {{ basket_product_form.as_p }}
       <input type="submit" name="submit" value="Add to Basket">
     </form>
+    </p>
     <!-- <h1>DB verification</h1>
     <p>
       {{game.id}} | 

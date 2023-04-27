@@ -26,13 +26,20 @@ chrome_options = Options() # other such as firefox / safari
 # comment out the line below if you want to see the browser launch for tests
 # possibly add time.sleep() if required
 chrome_options.add_argument("--headless") # run in terminal not in new webpage (looks good to open in webpage but it is slower)
+# chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument('--no-proxy-server')
 chrome_options.add_argument("--proxy-server='direct://'")
 chrome_options.add_argument("--proxy-bypass-list=*")
 
 '''
+sudo apt uninstall -h
+(from prof)
+sudo apt remove chromium-browser
+for in chromium-browser in codio not in local google chrome
 sudo apt-get update
 sudo apt-get install -y chromium-browser
+HOOK-ERROR in before_all: SessionNotCreatedException: Message: session not created: This version of ChromeDriver only supports Chrome version 112
+Current browser version is 111.0.5563.64 with binary path /usr/bin/chromium-browser
 WebDriverException: Message: Service chromedriver unexpectedly exited. Status code was: 127
 https://community.atlassian.com/t5/Bitbucket-questions/Chromedriver-unexpectedly-exits-during-pipeline-run/qaq-p/1962260
 '''

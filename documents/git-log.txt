@@ -1,3 +1,4 @@
+* 0ef832e - POK NGA HO, Tue Apr 25 11:55:01 2023 +0000 : behave setting work
 * 9fde7ab - POK NGA HO, Tue Apr 25 11:53:06 2023 +0000 : behave setting work
 * 8f145bc - POK NGA HO, Mon Apr 24 16:12:06 2023 +0000 : before start behave
 * 2477a42 - POK NGA HO, Mon Apr 24 16:11:18 2023 +0000 : add graph label in dashboard

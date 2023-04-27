@@ -10,5 +10,5 @@ pip freeze > requirements.txt
 create superuser
 python3 manage.py createsuperuser
 
-behave tests
+behave tests in cs5511_solo folder in virtual environment
 behave
