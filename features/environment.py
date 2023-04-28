@@ -1,11 +1,13 @@
 from behave import fixture, use_fixture
 import os, urllib
 import django
+from django import db
+from django.test import Client
 from django.shortcuts import resolve_url
 from django.test import selenium
 from django.test.testcases import TestCase
 from django.test.runner import DiscoverRunner
-from django.test.testcases import LiveServerTestCase
+from django.test.testcases import LiveServerTestCase, TransactionTestCase
 # from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 
@@ -25,8 +27,10 @@ CHROME_DRIVER = os.path.join(current_dir, '/driver/chromedriver') #have / before
 chrome_options = Options() # other such as firefox / safari
 # comment out the line below if you want to see the browser launch for tests
 # possibly add time.sleep() if required
-chrome_options.add_argument("--headless") # run in terminal not in new webpage (looks good to open in webpage but it is slower)
 # chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--headless") # run in terminal not in new webpage (looks good to open in webpage but it is slower)
+# try remove headless later to see if that work
+# chrome_options.add_argument('--disable-dev-shm-usage')
 chrome_options.add_argument('--no-proxy-server')
 chrome_options.add_argument("--proxy-server='direct://'")
 chrome_options.add_argument("--proxy-bypass-list=*")
@@ -42,6 +46,10 @@ HOOK-ERROR in before_all: SessionNotCreatedException: Message: session not creat
 Current browser version is 111.0.5563.64 with binary path /usr/bin/chromium-browser
 WebDriverException: Message: Service chromedriver unexpectedly exited. Status code was: 127
 https://community.atlassian.com/t5/Bitbucket-questions/Chromedriver-unexpectedly-exits-during-pipeline-run/qaq-p/1962260
+
+Exception WebDriverException: Message: unknown error: Chrome failed to start: crashed.
+  (chrome not reachable)
+  (The process started from chrome location /usr/bin/chromium-browser is no longer running, so ChromeDriver is assuming that Chrome has crashed.)
 '''
 
 # add our browser to the context object so that it can be used in all steps
@@ -49,15 +57,18 @@ def before_all(context):
   use_fixture(django_test_runner, context)
   browser = webdriver.Chrome(options=chrome_options, executable_path=CHROME_DRIVER)
   browser.set_page_load_timeout(time_to_wait=200) #if tests take longer to load put larger number here
+  # browser.get('https://www.google.nl/')
   context.browser = browser
 
 def before_scenario(context, scenario):
-  context.test = TestCase()
+  context.test = TransactionTestCase()
   context.test.setUpClass()
+  context.test.client=Client()
   use_fixture(django_test_case, context)
 
 def after_scenario(context, scenario):
   context.test.tearDownClass()
+  db.connections.close_all()
   del context.test
 
 def after_all(context):

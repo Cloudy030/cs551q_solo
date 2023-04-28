@@ -14,8 +14,7 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'password1', 'password2', 
-        'address', 'first_name', 'last_name', )
+        fields = ('username', 'email', 'password1', 'password2', 'address', 'first_name', 'last_name', )
 
 class GameForm (forms.ModelForm):
     name= forms.CharField(max_length=200)

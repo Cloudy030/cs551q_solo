@@ -1,28 +1,25 @@
 import urllib
 from urllib.parse import urljoin
 from behave import given, when, then
-
-# @given(u'we want to add Super Mario World to basket')
-# def step_impl(context):
-#     raise NotImplementedError(u'STEP: Given we want to add Super Mario World to basket')
-
-
-# @when(u'we click add to basket button')
-# def step_impl(context):
-#     raise NotImplementedError(u'STEP: When we click add to basket button')
-
-
-# @then(u'it succeds')
-# def step_impl(context):
-#     raise NotImplementedError(u'STEP: Then it succeds')
+from games.models import Year, Genre, Platform, Publisher, Game
 
 @given(u'we want to add Super Mario World to basket')
 def user_on_gamedetailpage(context):
-  base_url = 'https://wheelpioneer-bananashock-8000.codio-box.uk'
+
+  year,_=Year.objects.get_or_create(year_no='2000')
+  genre,_=Genre.objects.get_or_create(genre_name='Action', genre_description='test description for Action')
+  platform,_=Platform.objects.get_or_create(platform_name='PC', url='https://tse1.mm.bing.net/th?id=OIP.FgBGMlSrG14nR-JQZbWUaQHaEJ&pid=Api')
+  publisher,_=Publisher.objects.get_or_create(publisher_name='Nintendo')
+  game,_=Game.objects.get_or_create(id='9019', rank='20', name='Super Mario World', platform=platform, year=year, genre=genre, publisher=publisher,
+  na_sales='1.1', eu_sales='2.2', jp_sales='3.3', other_sales='4.4', global_sales='11', price='50.3')
+
+  print(Game.objects.all())
+
+  # base_url = 'https://wheelpioneer-bananashock-8000.codio-box.uk'
   '''
   only work if the server is alreay already running
   '''
-  # base_url = urllib.request.url2pathname(context.test_case.live_server_url)
+  base_url = urllib.request.url2pathname(context.test_case.live_server_url)
   print('*****************',base_url,'**********************')
   # open_url = urljoin(base_url,'')
   open_url = urljoin(base_url,'/gamedetail/9019')

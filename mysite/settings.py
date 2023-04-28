@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-q$p40k!!@kw00#tv5gajd=$ow%t#ra&z$$e^_egk3ge-*z@fmi
 DEBUG = True
 
 ALLOWED_HOSTS = ['wheelpioneer-bananashock-8000.codio-box.uk','cs551q-games.onrender.com','localhost']
-CSRF_TRUSTED_ORIGINS=['https://wheelpioneer-bananashock-8000.codio-box.uk','https://cs551q-games.onrender.com/','http://localhost']
+CSRF_TRUSTED_ORIGINS=['https://wheelpioneer-bananashock-8000.codio-box.uk','https://cs551q-games.onrender.com','http://localhost']
 
 # Application definition
 
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'games.apps.GamesConfig',
+    'behave_django',
 ]
 
 #use this for the shoping basket/cart
@@ -93,6 +94,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        'OPTIONS': {
+            'timeout': 30,
+        },
+        'TEST':{
+            'NAME':'testdb.sqlite3'
+        }
     }
 }
 
@@ -131,10 +138,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = '/games/static/'
+STATIC_URL = 'static/'
+
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

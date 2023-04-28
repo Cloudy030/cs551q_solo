@@ -12,3 +12,5 @@ python3 manage.py createsuperuser
 
 behave tests in cs5511_solo folder in virtual environment
 behave
+
+<your_name>-CS551Q.zip
