@@ -1,3 +1,4 @@
+* f9c3821 - POK NGA HO, Sat Apr 29 14:58:18 2023 +0000 : change requirements.txt for render fail
 * ffc1697 - POK NGA HO, Sat Apr 29 14:53:58 2023 +0000 : try update requirements.txt after render autodeploy fail
 * 9513370 - POK NGA HO, Fri Apr 28 17:46:40 2023 +0000 : behave work on localhost
 * ebfc47e - POK NGA HO, Thu Apr 27 16:24:03 2023 +0000 : behave using codio website as base link work
