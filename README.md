@@ -1,6 +1,21 @@
-# cs551q_solo
-This is an individual assignment of course CS551Q for making a database-driven Django web application.
+# Top 3000 Video Games
 
+## Main features
+## Templates in the website
+## Models in the web application
+## Accounts for the Shop part
+## Basic setup of the virtual environment
+## Reset database
+## Starting the server
+## Maintenance
+## Testing
+### Unit Testing
+### Behave Testing
+## Documents
+## License
+## Dependencies
+## Documentation
+## Background
 
 top 3000 video games sales
 from 1980-2020 with some N/A
@@ -28,3 +43,5 @@ email: g@b.com
 
 pip install behave
 pip install selenium
+
+This is an individual assignment of course CS551Q for making a database-driven Django web application.
