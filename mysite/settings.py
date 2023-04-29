@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'games.apps.GamesConfig',
-    'behave-django',
+    # 'behave-django',
 ]
 
 #use this for the shoping basket/cart
