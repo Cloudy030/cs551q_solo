@@ -4,7 +4,7 @@ git log --pretty=format:"%h - %an, %ad : %s" --graph > documents/git-log.txt
 test running command in cs551q_solo folder in virtual environment:
 python3 manage.py test games/tests
 
-create requirements.txt with command (remember to change the Django version to 3.2.18):
+create requirements.txt with command (remember to change the Django version to 3.2.18, python-dotenv==0.21.1):
 pip freeze > requirements.txt
 
 create superuser
