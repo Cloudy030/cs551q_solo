@@ -30,6 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['wheelpioneer-bananashock-8000.codio-box.uk','cs551q-games.onrender.com']
 CSRF_TRUSTED_ORIGINS=['https://wheelpioneer-bananashock-8000.codio-box.uk','https://cs551q-games.onrender.com/']
+# need to have / for https://cs551q-games.onrender.com/
 
 # Application definition
 

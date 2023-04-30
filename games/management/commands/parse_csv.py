@@ -20,12 +20,12 @@ class Command(BaseCommand):
     Publisher.objects.all().delete()
     Game.objects.all().delete()
 
-    Cart.objects.all().delete()
-    LineItem.objects.all().delete()
-    Order.objects.all().delete()
-    Customer.objects.all().delete()
-    User.objects.all().delete()
-    print('tables dropped successfully')
+    # Cart.objects.all().delete()
+    # LineItem.objects.all().delete()
+    # Order.objects.all().delete()
+    # Customer.objects.all().delete()
+    # User.objects.all().delete()
+    print('base-related tables dropped successfully')
 
     # open year.csv data files to parse them into the database
     # year table
