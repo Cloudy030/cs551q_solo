@@ -28,8 +28,8 @@ SECRET_KEY = 'django-insecure-q$p40k!!@kw00#tv5gajd=$ow%t#ra&z$$e^_egk3ge-*z@fmi
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['wheelpioneer-bananashock-8000.codio-box.uk','cs551q-games.onrender.com','localhost']
-CSRF_TRUSTED_ORIGINS=['https://wheelpioneer-bananashock-8000.codio-box.uk','https://cs551q-games.onrender.com','http://localhost']
+ALLOWED_HOSTS = ['wheelpioneer-bananashock-8000.codio-box.uk','cs551q-games.onrender.com']
+CSRF_TRUSTED_ORIGINS=['https://wheelpioneer-bananashock-8000.codio-box.uk','https://cs551q-games.onrender.com/']
 
 # Application definition
 
@@ -142,16 +142,17 @@ STATIC_URL = 'static/'
 
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+# STATICFILES_DIRS = [
+#     BASE_DIR / "static",
+# ]
 
-# STATICFILES_DIRS = (
-#     os.path.join(BASE_DIR, 'static'),
-# )
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')

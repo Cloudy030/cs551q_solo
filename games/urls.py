@@ -3,6 +3,8 @@ from django.contrib import admin
 import django.contrib.auth.urls
 from . import views
 from games.views import base, basket, customer, shop, order
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns=[
   path('',views.base.index, name='index'),
@@ -37,4 +39,4 @@ urlpatterns=[
   # path('product/<int:id>/edit/', views.products.product_edit, name= 'product_edit'),
   # path('product/<int:id>/delete/', views.products.product_delete, name= 'product_delete'),
   path('purchase/', views.shop.purchase, name ='purchase'),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
