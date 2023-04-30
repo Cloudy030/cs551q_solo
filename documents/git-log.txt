@@ -1,3 +1,8 @@
+* b89d04c - POK NGA HO, Sun Apr 30 16:51:15 2023 +0000 : add back static related items in settings.py
+* 7fcdfcc - POK NGA HO, Sun Apr 30 16:43:52 2023 +0000 : try solve render 502 2
+* 6906500 - POK NGA HO, Sun Apr 30 16:39:00 2023 +0000 : try solve render 502
+* 6f407f6 - POK NGA HO, Sun Apr 30 14:40:58 2023 +0000 : tryadd static un urls.py
+* 441130e - POK NGA HO, Sat Apr 29 20:26:03 2023 +0000 : deploy test
 * 3ff9858 - POK NGA HO, Sat Apr 29 18:38:55 2023 +0000 : remove django-behave from installed app in settings.py
 * 6190860 - POK NGA HO, Sat Apr 29 18:34:47 2023 +0000 : change behave_django in settings.py
 * 64d94b2 - POK NGA HO, Sat Apr 29 15:31:05 2023 +0000 : change python-dotenv==0.21.1 in requirements.txt
