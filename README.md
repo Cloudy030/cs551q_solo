@@ -14,37 +14,194 @@ Web application deployed on Codio virtual environment: https://wheelpioneer-bana
 ## Main features
 There are two major parts in this web application where one of them is the base part for displaying pages related to the video games and the other part is for e-commerce part allowing customers to purchase the listed video games where authorization and authentication are added.
 
+Details of the video games are displayed in tabular form.
+By clicking onto particular video game name, year, platform, genre, or publisher, details page of the selected parameter will be displayed.
+
+Filtering function is implemented in two parts of the web application with different criteria.
+- Video games list
+  - Platform
+  - Year
+  - Genre
+  - Publisher
+- Dashboard
+  - Video Game name
+
+Data visual components are implemented in the web application.
+- Dashboard bar graph
+
+Authentication system is implemented in the web application.
+- Login and registration system
+- Customer accounts, staff accounts, admin accounts
+
+A horizontal navigation bar is shown in the top of every web page allowing users to navigate to the respective pages.
+Links are embedded into the data shown in the table columns.
+
+For the e-commerce part, users can add the video games into the cart and can only purchase the video games after logged into the system.
+Users can register if they do not have an account previously.
+
+Using customer accounts, customers can only add video games into the cart and purchase them.
+
+Using staff and admin accounts, staffs and admin can view all e-commerce related web pages including dashboard, customer related and order related pages other than the normal purchase pages.
+
+Django administration system is activated so users using staff and admin accounts can login.
+Staff account users are only allowed to view in the administration website.
+Admin account users can perform every actions with all permissions in the administration website.
+
 ## Templates in the website
+There are total twenty two templates in this web application.
+These 22 templates can be grouped in two major parts which are video games related models and e-commerce related models.
+
+### Video games related
+First, there are twelve templates which are video games related.
+
+These templates are located in:
+~~~
+ cs551q_solo/games/templates/games/base
+~~~
+All pages have respective web links linked to the corresponding web pages.
+
+- Main Pages
+  - Video Games list (index.html)
+    ~ This is a base page for the following 2 html for showing the video game list.
+    - Showing full list of video games with 3000 entries (game_full_list.html)
+    - Showing filtered list of video games with users' inputted parameters (game_filter_list.html)
+  - Year (year.html)
+    ~ This is a page for showing the list of years that the video games are released in.
+  - Genre (genre.html)
+    ~ This is a page for showing the list of genres with their descriptions for the video games.
+  - Platform (platform.html)
+    ~ This is a page for showing the list of platforms with the respective images for the video games to be published on.
+  - Publisher (publisher.html)
+    ~ This is a page for showing the list of publishers publishing the video games.
+
+- Detail pages
+  - Video Game detail page (game_detail.html)
+    ~ This is a page for showing the details of the chosen video games. There is also an add to cart link at the bottom of the page.
+  - Year Game page (year_game.html)
+    ~ This is a page for showing the list of video games with the selected year of release.
+  - Genre Game page (genre_game.html)
+    ~ This is a page for showing the list of video games with the selected genre with the description.
+  - Platform Game page (platform_game.html)
+    ~ This is a page for showing the list of video games with the selected platform with the platform image.
+  - Publisher Game page (publisher_game.html)
+    ~ This is a page for showing the list of video games with the selected publisher.
+
+### E-commerce related
+Second, there are ten templates which are e-commerce related.
+
+There are three sub-parts for the e-commerce templates which are stored in two separate folders.
+
+For base part and e-commerce part, the templates are located in:
+~~~
+cs551q_solo/games/templates/games/shop
+~~~
+
+For registration part, the templates are located in:
+~~~
+cs551q_solo/games/templates/registration
+~~~
+#### Base part
+There is one template in the base part.
+  - Base header, navigation bar for e-commerce related templates (base.html)
+    ~ This is a base page for all e-commerce related templates. The showing of web page is related to the account permissions. Customer accounts can only see the basket page where staff accounts and admin accounts can see all web pages including basket, dashboard, customer pages and orders pages.
+
+#### E-commerce part
+There are eight templates in the e-commerce part.
+
+These two templates are accessible to everyone using the web application including users who are not logged into the system:
+  - Basket (basket.html)
+    ~ This is a basket page for all users of that session showing the video games added into their basket.
+  - Register page (signup.html)
+    ~ This is a registration page for all users to register a new account if they do not have one.
+
+All remaining templates access in e-commerce part require account login.
+The number of pages accessible depend on the type of accounts the user is using.
+
+This template is accessible to all logged-in users
+  - Purchase (purchase.html)
+    ~ This is a purchase page for logged-in users to input their card details in to do the payment action for the video games added in the cart in that session.
+
+Following templates are only accessible to staff accounts and admin accounts:
+  - Dashboard (dashboard.html)
+    ~ This is a dashboard page showing the graph displaying sales details of each video game after the user has chosen it in the filter.
+  - Customer list (customer_list.html)
+    ~ This is a customer list page showing all users who have an account in the web application including staff accounts and admin accounts holders.
+  - Customer detail (customer_detail.html)
+    ~ This is a customer detail page showing all details of the chosen user and displaying the order IDs which has been purchased by this user.
+  - Order list (order_list.html)
+    ~ This is a order list page showing all orders made by all users according to time sequence.
+  - Order detail (order_detail.html)
+    ~ This is a order detail page showing all video games with the respective quantity in the chosen order.
+
+#### Registration part
+There are one template in the registration part.
+  - Login (login.html)
+    ~ This is the login page for the users to input their username and password to login. If the user does not have an account, a new account can be registered using the Register link.
+
 ## Models in the web application
+There are total nine models in this web application.
+These 9 models can be grouped in two major parts which are video games related models and e-commerce related models.
 
+### Video games related
+First, there are five class objects which are video games related.
 
-top 3000 video games sales
-from 1980-2020 with some N/A
+- Year
+  - This table refers to the years where the video games are released.
+  - According to the database obtained, this table consist from 1980 to 2020 with some N/A which do not have any data
+  - column name: year_no
 
-Fields include
+- Genre
+  - This table refers to the genres and the respective genre descriptions where the video games belong to.
+  - column name: genre_name, genre_description
 
-    Rank - Ranking of overall sales
+- Platform
+  - This table refers to the platform with the respective platform image url where the video games have been published onto.
+  - column names: platform_name, url
 
-    Name - The games name
+- Publisher
+  - This table refers to the publisher of each video game.
+  - column name: publisher_name
 
-    Platform - Platform of the games release (i.e. PC,PS4, etc.)
+- Game
+  - This table refers to the video games with top 3000 sales with the sales data from different parts of the world.
+  - This table is linked to the other tables in this video games related part using primary and foreign key pair.
+  - For the columns meaning in this table:
+    - rank - Ranking of overall sales from 1 to 3001 where 654th data is lost
+    - name - Name of video game
+    - platform - Platform of the video game release (i.e. PC, PS4, etc.)
+    - year - Year of the video game's release
+    - genre - Genre of the video game
+    - publisher - Publisher of the video game
+    - na_sales - Sales in North America (in millions)
+    - eu_sales - Sales in Europe (in millions)
+    - jp_sales - Sales in Japan (in millions)
+    - other_sales - Sales in the rest of the world (in millions)
+    - global_sales - Total worldwide sales (in millions)
+    - price - Randomly generated price of the video game
+  - column names:rank, name, platform, year, genre, publisher, na_sales, eu_sales, jp_sales, other_sales, global_sales, price
 
-    Year - Year of the game's release
+### E-commerce related
+Second, there are four class objects which are e-commerce related.
 
-    Genre - Genre of the game
+- Cart
+  - This table refers to the added items in cart for the customer of current session.
+  - This table is linked to Game table with primary and foreign key pair.
+  - column names: game, quantity, created_date
 
-    Publisher - Publisher of the game
+- Customer
+  - This table refers to the users saved as customer for easy usage of Django components.
+  - All users' information will be saved in this table, including admin accounts, staff accounts and customer accounts.
+  - column names: user, address, created_date
 
-    NA_Sales - Sales in North America (in millions)
+- LineItem
+  - This table refers to the different video games added into the cart.
+  - This table is linked to Game table, Cart table and Order tables with primary and foreign key pair.
+  - column names: quantity, game, cart, order, created_date
 
-    EU_Sales - Sales in Europe (in millions)
-
-    JP_Sales - Sales in Japan (in millions)
-
-    Other_Sales - Sales in the rest of the world (in millions)
-
-    Global_Sales - Total worldwide sales.
-
+- Order
+  - This table refers to the time when customers place the order.
+  - This table is linked to Customer table with primary and foreign key pair.
+  - column names: customer, created_date
 
 ## Basic setup of the virtual environment
 A virtual environment with Python version 3.10.7 is created. 
