@@ -62,29 +62,29 @@ All pages have respective web links linked to the corresponding web pages.
 
 - Main Pages
   - Video Games list (index.html)
-    ~ This is a base page for the following 2 html for showing the video game list.
+    - This is a base page for the following 2 html for showing the video game list.
     - Showing full list of video games with 3000 entries (game_full_list.html)
     - Showing filtered list of video games with users' inputted parameters (game_filter_list.html)
   - Year (year.html)
-    ~ This is a page for showing the list of years that the video games are released in.
+    - This is a page for showing the list of years that the video games are released in.
   - Genre (genre.html)
-    ~ This is a page for showing the list of genres with their descriptions for the video games.
+    - This is a page for showing the list of genres with their descriptions for the video games.
   - Platform (platform.html)
-    ~ This is a page for showing the list of platforms with the respective images for the video games to be published on.
+    - This is a page for showing the list of platforms with the respective images for the video games to be published on.
   - Publisher (publisher.html)
-    ~ This is a page for showing the list of publishers publishing the video games.
+    - This is a page for showing the list of publishers publishing the video games.
 
 - Detail pages
   - Video Game detail page (game_detail.html)
-    ~ This is a page for showing the details of the chosen video games. There is also an add to cart link at the bottom of the page.
+    - This is a page for showing the details of the chosen video games. There is also an add to cart link at the bottom of the page.
   - Year Game page (year_game.html)
-    ~ This is a page for showing the list of video games with the selected year of release.
+    - This is a page for showing the list of video games with the selected year of release.
   - Genre Game page (genre_game.html)
-    ~ This is a page for showing the list of video games with the selected genre with the description.
+    - This is a page for showing the list of video games with the selected genre with the description.
   - Platform Game page (platform_game.html)
-    ~ This is a page for showing the list of video games with the selected platform with the platform image.
+    - This is a page for showing the list of video games with the selected platform with the platform image.
   - Publisher Game page (publisher_game.html)
-    ~ This is a page for showing the list of video games with the selected publisher.
+    - This is a page for showing the list of video games with the selected publisher.
 
 ### E-commerce related
 Second, there are ten templates which are e-commerce related.
@@ -102,41 +102,41 @@ cs551q_solo/games/templates/registration
 ~~~
 #### Base part
 There is one template in the base part.
-  - Base header, navigation bar for e-commerce related templates (base.html)
-    ~ This is a base page for all e-commerce related templates. The showing of web page is related to the account permissions. Customer accounts can only see the basket page where staff accounts and admin accounts can see all web pages including basket, dashboard, customer pages and orders pages.
+- Base header, navigation bar for e-commerce related templates (base.html)
+  - This is a base page for all e-commerce related templates. The showing of web page is related to the account permissions. Customer accounts can only see the basket page where staff accounts and admin accounts can see all web pages including basket, dashboard, customer pages and orders pages.
 
 #### E-commerce part
 There are eight templates in the e-commerce part.
 
 These two templates are accessible to everyone using the web application including users who are not logged into the system:
-  - Basket (basket.html)
-    ~ This is a basket page for all users of that session showing the video games added into their basket.
-  - Register page (signup.html)
-    ~ This is a registration page for all users to register a new account if they do not have one.
+- Basket (basket.html)
+  - This is a basket page for all users of that session showing the video games added into their basket.
+- Register page (signup.html)
+  - This is a registration page for all users to register a new account if they do not have one.
 
 All remaining templates access in e-commerce part require account login.
 The number of pages accessible depend on the type of accounts the user is using.
 
 This template is accessible to all logged-in users
-  - Purchase (purchase.html)
-    ~ This is a purchase page for logged-in users to input their card details in to do the payment action for the video games added in the cart in that session.
+- Purchase (purchase.html)
+  - This is a purchase page for logged-in users to input their card details in to do the payment action for the video games added in the cart in that session.
 
 Following templates are only accessible to staff accounts and admin accounts:
-  - Dashboard (dashboard.html)
-    ~ This is a dashboard page showing the graph displaying sales details of each video game after the user has chosen it in the filter.
-  - Customer list (customer_list.html)
-    ~ This is a customer list page showing all users who have an account in the web application including staff accounts and admin accounts holders.
-  - Customer detail (customer_detail.html)
-    ~ This is a customer detail page showing all details of the chosen user and displaying the order IDs which has been purchased by this user.
-  - Order list (order_list.html)
-    ~ This is a order list page showing all orders made by all users according to time sequence.
-  - Order detail (order_detail.html)
-    ~ This is a order detail page showing all video games with the respective quantity in the chosen order.
+- Dashboard (dashboard.html)
+  - This is a dashboard page showing the graph displaying sales details of each video game after the user has chosen it in the filter.
+- Customer list (customer_list.html)
+  - This is a customer list page showing all users who have an account in the web application including staff accounts and admin accounts holders.
+- Customer detail (customer_detail.html)
+  - This is a customer detail page showing all details of the chosen user and displaying the order IDs which has been purchased by this user.
+- Order list (order_list.html)
+  - This is a order list page showing all orders made by all users according to time sequence.
+- Order detail (order_detail.html)
+  - This is a order detail page showing all video games with the respective quantity in the chosen order.
 
 #### Registration part
 There are one template in the registration part.
-  - Login (login.html)
-    ~ This is the login page for the users to input their username and password to login. If the user does not have an account, a new account can be registered using the Register link.
+- Login (login.html)
+  - This is the login page for the users to input their username and password to login. If the user does not have an account, a new account can be registered using the Register link.
 
 ## Models in the web application
 There are total nine models in this web application.
