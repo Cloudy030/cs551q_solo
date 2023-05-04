@@ -44,6 +44,9 @@
           <a class="nav-link" href="{% url 'year'%}">Year</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="{% url 'compare'%}">Comparision</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link active">Shop🕹️</a>
         </li>
       </ul>
@@ -57,7 +60,7 @@
       <a href="{% url 'dashboard' %}">Dashboard</a> | 
       <a href="{% url 'basket_detail' %}">Basket</a> |
       <a href="{% url 'customer_list' %}">Customers</a> | 
-      <a href="{% url 'order_list' %}">Orders</a> | 
+      <a href="{% url 'order_list' %}">Orders</a> 
     </p>
       {% else %}
     <p>

@@ -18,6 +18,7 @@ urlpatterns=[
   path('genre/<int:id>',views.base.genregame, name='genregame'),
   path('platform/<int:id>',views.base.platformgame, name='platformgame'),
   path('publisher/<int:id>',views.base.pugame, name='pugame'),
+  path('compare',views.base.compare, name='compare'),
   # path('search/', SearchResult.as_view(), name="search_results"),
 
   # path('', views.products.product_list, name='product_list'),

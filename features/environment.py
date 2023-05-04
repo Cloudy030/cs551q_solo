@@ -27,13 +27,14 @@ CHROME_DRIVER = os.path.join(current_dir, '/driver/chromedriver') #have / before
 chrome_options = Options() # other such as firefox / safari
 # comment out the line below if you want to see the browser launch for tests
 # possibly add time.sleep() if required
-# chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--headless") # run in terminal not in new webpage (looks good to open in webpage but it is slower)
 # try remove headless later to see if that work
 # chrome_options.add_argument('--disable-dev-shm-usage')
 chrome_options.add_argument('--no-proxy-server')
 chrome_options.add_argument("--proxy-server='direct://'")
 chrome_options.add_argument("--proxy-bypass-list=*")
+chrome_options.add_argument("--disable-dev-shm-usage")
 
 '''
 sudo apt uninstall -h
@@ -50,12 +51,16 @@ https://community.atlassian.com/t5/Bitbucket-questions/Chromedriver-unexpectedly
 Exception WebDriverException: Message: unknown error: Chrome failed to start: crashed.
   (chrome not reachable)
   (The process started from chrome location /usr/bin/chromium-browser is no longer running, so ChromeDriver is assuming that Chrome has crashed.)
+
+HOOK-ERROR in after_all: SessionNotCreatedException: Message: session not created: This version of ChromeDriver only supports Chrome version 113
+Current browser version is 112.0.5615.49 with binary path /usr/bin/chromium-browser
 '''
 
 # add our browser to the context object so that it can be used in all steps
 def before_all(context):
   use_fixture(django_test_runner, context)
-  browser = webdriver.Chrome(options=chrome_options, executable_path=CHROME_DRIVER)
+  # browser = webdriver.Chrome(options=chrome_options, executable_path=CHROME_DRIVER)
+  browser = webdriver.Chrome(options=chrome_options, executable_path=ChromeDriverManager("112.0.5615.49").install())
   browser.set_page_load_timeout(time_to_wait=200) #if tests take longer to load put larger number here
   # browser.get('https://www.google.nl/')
   context.browser = browser

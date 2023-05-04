@@ -40,3 +40,75 @@ def user_click_add_to_basket_button(context):
 @then(u'it succeds')
 def game_add_in_basket(context):
   assert 'Super Mario World' in context.browser.page_source
+
+###
+
+# @given(u'we have Super Mario World in basket')
+# def step_impl(context):
+#   print(Game.objects.all())
+#   base_url = urllib.request.url2pathname(context.test_case.live_server_url)
+#   print('*****************',base_url,'**********************')
+#   # open_url = urljoin(base_url,'')
+#   open_url = urljoin(base_url,'/basket_detail')
+#   context.browser.get(open_url)
+#   print('-----------------',open_url,'--------------------')
+#   print(context.browser.page_source)
+#   assert 'Super Mario World' in context.browser.page_source
+
+# @when(u'we change quantity to two')
+# def step_impl(context):
+#   print(context.browser.page_source)
+#   quantity_option = context.browser.find_element('name', 'quantity')
+#   quantity_option.send_keys(2)
+
+
+# @then(u'total price is 100.6')
+# def step_impl(context):
+#   assert '100.6' in context.browser.page_source
+
+# ###
+
+
+# @given(u'we are not login and press the purchase button')
+# def step_impl(context):
+#     raise NotImplementedError(u'STEP: Given we are not login and press the purchase button')
+
+
+# @when(u'we input registered account credentials')
+# def step_impl(context):
+#     raise NotImplementedError(u'STEP: When we input registered account credentials')
+
+# @then(u'we go to index page')
+# def step_impl(context):
+#     raise NotImplementedError(u'STEP: Then we go to index page')
+
+# ###
+
+# @given(u'we have two Super Mario World in basket')
+# def step_impl(context):
+#     raise NotImplementedError(u'STEP: Given we have two Super Mario World in basket')
+
+
+# @when(u'we press purchase button')
+# def step_impl(context):
+#     raise NotImplementedError(u'STEP: When we press purchase button')
+
+
+# @then(u'we go to purchase page')
+# def step_impl(context):
+#     raise NotImplementedError(u'STEP: Then we go to purchase page')
+
+# ###
+
+# @given(u'we go to purchase page')
+# def step_impl(context):
+#     raise NotImplementedError(u'STEP: Given we go to purchase page')
+
+
+# @when(u'we input card type and number and press payment button')
+# def step_impl(context):
+#     raise NotImplementedError(u'STEP: When we input card type and number and press payment button')
+
+# @then(u'we go to index page')
+# def step_impl(context):
+#     raise NotImplementedError(u'STEP: Then we go to index page')

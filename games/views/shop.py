@@ -26,69 +26,44 @@ def signup(request):
 def dashboard(request):
   user = request.user
   if user.is_authenticated & user.is_staff:
-      
+    # l=LineItem.objects.all(game)
+    # print(l)
+    # customer=Customer.objects.all()
+    # cdate=Customer.objects.all(created_date)
+    # print(customer)
+    # cdate=Customer.objects.count()
+    # print(cdate)
+    # s=Customer.objects.staff_status()
+    # print(s)
+ 
     games=Game.objects.all()
         # filter function
     g=request.POST.get('gamef')
     print('game: ',g,request)
 
-    # # 0 filter
-    # if pl==None and y==None and g==None and pu==None:
-    #     filgame=games
-    #     # show all data rows if no filter requirements are given
-
-    # 1 filter
-    '''
-    try to move to models
-    like bear details
-    or merge together
-    '''
     if g==None:
       # show data for Wii Sports if no filter requirements are given
-      sources=Game.objects.filter(name="Wii Sports")
-      sources_temp=[]
-      for source in sources:
-        # sources_temp.append(source.name)
-        sources_temp.append(source.na_sales)
-        sources_temp.append(source.eu_sales)
-        sources_temp.append(source.jp_sales)
-        sources_temp.append(source.other_sales)
-        sources_temp.append(source.global_sales)
-      sources_list=json.dumps(sources_temp) # convert to json
-      sname="Wii Sports"
-      print(sources)
-      print(sources_temp)
+      g="Wii Sports"
 
     else:
-      sources=Game.objects.filter(name=g)
-      # filter get the game
-      sources_temp=[]
-      for source in sources:
-        # sname.append(source.name)
-        sources_temp.append(source.na_sales)
-        sources_temp.append(source.eu_sales)
-        sources_temp.append(source.jp_sales)
-        sources_temp.append(source.other_sales)
-        sources_temp.append(source.global_sales)
-      sources_list=json.dumps(sources_temp)
-      sname=g
-      print(sources)
-      print(sources_temp)
+      g=g
 
-    # sources=Game.objects.filter(name='Wii Sports')
-    # sources_temp=[]
-    # for source in sources:
-    #     # sources_temp.append(source.name)
-    #     sources_temp.append(source.na_sales)
-    #     sources_temp.append(source.eu_sales)
-    #     sources_temp.append(source.jp_sales)
-    #     sources_temp.append(source.other_sales)
-    #     sources_temp.append(source.global_sales)
-    # sources_list=json.dumps(sources_temp)
-    # print(sources)
-    # print(sources_temp)
+    sources=Game.objects.filter(name=g)
+    # filter get the game
+    sources_temp=[]
+    for source in sources:
+      # sname.append(source.name)
+      sources_temp.append(source.na_sales)
+      sources_temp.append(source.eu_sales)
+      sources_temp.append(source.jp_sales)
+      sources_temp.append(source.other_sales)
+      sources_temp.append(source.global_sales)
+    sources_list=json.dumps(sources_temp)
+    sname=g
+    print(sources)
+    print(sources_temp)
 
-    return render(request, 'games/shop/dashboard.html',{'sources_list':sources_list, 'sources':sources, 'games':games, 'sname':sname})
+    return render(request, 'games/shop/dashboard.html',{'sources_list':sources_list, 'games':games, 'sname':sname})
   else:
     return redirect('login')
 

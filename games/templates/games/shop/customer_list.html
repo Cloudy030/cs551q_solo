@@ -2,11 +2,17 @@
   {% block content %}
     <h2>Customer List</h2>
     <br>
-    {% for user in users %}
-    <p><b> <a href="{% url 'customer_detail' id=user.pk %}"> {{user.first_name }} {{user.last_name }} </a></b>
+    {% for customer in customers %}
+    <p><b> <a href="{% url 'customer_detail' id=customer.pk|add:'0' %}"> {{customer.user.first_name}} {{customer.user.last_name }} </a></b>
+      Their username is {{ customer.user.username }} and they live at 
+       {{ customer.address }}. You can reach them at {{ customer.user.email }} 
+    </p>
+    {% endfor %}
+    <!-- {% for user in users %}
+    <p><b> <a href="{% url 'customer_detail' id=user.pk|add:'0' %}"> {{user.first_name}} {{user.last_name }} </a></b>
       Their username is {{ user.username }} and they live at 
        {{ user.customer.address }}. You can reach them at {{ user.email }} 
     </p>
-    {% endfor %}
+    {% endfor %} -->
 
 {% endblock %}

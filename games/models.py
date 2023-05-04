@@ -90,7 +90,7 @@ class Customer(models.Model):
   created_date = models.DateTimeField(auto_now_add=True)
 
   def __str__(self):
-    return f'{self.user.email}, {self.address}'
+    return f'{self.user.email}, {self.address}, {self.created_date}'
 
   class Meta:
     db_table = 'customer'

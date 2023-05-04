@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="{%static './favicon.ico'%}" type="image/x-icon" />
+  <link rel="shortcut icon" href="{%static './favicon.ico'%}" type="image/x-icon" />
+  <!-- https://stackoverflow.com/questions/16375592/favicon-not-showing-up-in-google-chrome/16375622#16375622 -->
+  <title>Comparision 🎮</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <!-- goole text -->
+  <link rel="stylesheet" href="{%static './style.css'%}">
+  <!--all pages link to same stylesheet to keep look and feel-->
+</head>
+
+<body>
+  <header>
+    <!-- heading with navigation bar -->
+    <div class="sticky-top">
+      <!--header need to be responsive to the window changing-->
+      <h1>Games Comparision</h1>
+      <ul class="nav nav-tabs">
+        <!--bootstrap navigation tab with custom background color-->
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'index'%}">Video Games</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'genre'%}">Genre</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'platform'%}">Platform</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'publisher'%}">Publisher</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'year'%}">Year</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'compare'%}">Comparision🕹️</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'basket_detail'%}">Shop</a>
+        </li>
+      </ul>
+    </div>
+  </header>
+  <div class="content">
+    <br>
+<h3>Video Games Details Comparision</h3>
+
+    <form method="POST" action="{%url 'compare' %}">
+      {% csrf_token %}
+      <select id="gamec1" name="gamec1" game="gamec1">
+        <option selected disabled=true>--Select First Game To Compare--</option>
+        {% for game in games %}
+        <option value="{{game.rank}}">{{game.name}}</option>
+        {% endfor %}
+      </select>
+      <select id="gamec2" name="gamec2" game="gamec2">
+        <option selected disabled=true>--Select Second Game To Compare--</option>
+        {% for game in games %}
+        <option value="{{game.rank}}">{{game.name}}</option>
+        {% endfor %}
+      </select>
+      <button type="submit" class="btn btn-success">Search</button>
+    </form>
+    <br>
+    {% for g1 in game1 %}
+    <!-- {% for g2 in game2 %} -->
+    <table class="data_table" style="width:100%">
+      <tr>
+        <th>Video Game Name</th>
+        <td>{{g1.name}}</td>
+        <td>{{g2.name}}</td>
+      </tr>
+      <tr>
+        <th>Sales Rank</th>
+        <td>{{g1.rank}}</td>
+        <td>{{g2.rank}}</td>
+      </tr>
+      <tr>
+        <th>Price(£)</th>
+        <td>{{g1.price}}</td>
+        <td>{{g2.price}}</td>
+      </tr>
+      <tr>
+        <th>Platform</th>
+        <td><a href="{%url 'platformgame' id=g1.platform.id|add:'0'%}">{{g1.platform.platform_name}}</td>
+        <td><a href="{%url 'platformgame' id=g2.platform.id|add:'0'%}">{{g2.platform.platform_name}}</td>
+      </tr>
+      <tr>
+        <th>Platform Image</th>
+        <!-- <td>{{game.platform.url}}</td> -->
+        <td><img src="{{g1.platform.url}}" alt="platform image" style="width:200px"></td>
+        <td><img src="{{g2.platform.url}}" alt="platform image" style="width:200px"></td>      
+      </tr>
+      <tr>
+        <th>Year</th>
+        <td><a href="{%url 'yeargame' id=g1.year.id|add:'0'%}">{{g1.year}}</td>
+        <td><a href="{%url 'yeargame' id=g2.year.id|add:'0'%}">{{g2.year}}</td>
+      </tr>
+      <tr>
+        <th>Genre</th>
+        <td><a href="{%url 'genregame' id=g1.genre.id|add:'0'%}">{{g1.genre.genre_name}}</td>
+        <td><a href="{%url 'genregame' id=g2.genre.id|add:'0'%}">{{g2.genre.genre_name}}</td>
+      </tr>
+      <tr>
+        <th>Publisher</th>
+        <td><a href="{%url 'pugame' id=g1.publisher.id|add:'0'%}">{{g1.publisher}}</td>
+        <td><a href="{%url 'pugame' id=g2.publisher.id|add:'0'%}">{{g2.publisher}}</td>      
+      </tr>
+    </table>
+    <!-- {% endfor %} -->
+    {% endfor %}
+    <br>
+    <h3>Sales Data Comparision</h3>
+    <br>
+    <canvas id="myChart"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script type= 'text/javascript'>
+    var ctx = document.getElementById('myChart').getContext('2d');
+
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'bar',
+        // The data for our dataset
+        data: {
+          labels: ['North America Sales', 'Europe Sales', 'Japan Sales', 'Other part of world Sales', 'Global Sales'],
+          // https://stackoverflow.com/questions/28180871/grouped-bar-charts-in-chart-js
+          datasets: [{
+            label: '{{sname}}',
+            //order: number //put your own numebr here with an extra comma, otherwise remove this line
+            backgroundColor: 'rgb(255,195,85)', //color of bar
+            borderColor: 'rgb(255,195,85)', //color of border
+            data: {{sources_list}}
+          },
+          {
+            label: '{{sname2}}',
+            //order: number //put your own numebr here with an extra comma, otherwise remove this line
+            backgroundColor: 'rgb(178,136,59)', //color of bar
+            borderColor: 'rgb(178,136,59)', //color of border
+            data: {{sources_list2}}
+          }]
+        },
+        // Configuration options go here
+        options: {
+          scales: {
+//            xAxes: [{
+  //           scaleLabel: {
+    //            display: true,
+      //          labelString: 'Parts of world',
+        //        fontSize: 12,
+          //    }
+            //}], 
+            yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Sales (million(s))',
+                fontSize: 12,
+              },
+              ticks: {
+                beginAtZero: true
+              }
+            }]
+          }
+        }
+      });
+    </script>
+  </div>
+</body>
+
+</html>

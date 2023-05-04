@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from games.models import Year, Genre, Platform, Publisher, Game
 from games.forms import BasketAddProductForm
 from decimal import Decimal
+import json
 
 # Create your views here.
 def index(request):
@@ -139,3 +140,63 @@ def gamedetail(request,id):
     game=get_object_or_404(Game,id=id)
     basket_product_form=BasketAddProductForm()
     return render(request, 'games/base/game_detail.html', {'game':game, 'basket_product_form':basket_product_form})
+
+def compare(request):
+
+    games=Game.objects.all()
+        # filter function
+    g1=request.POST.get('gamec1')
+    print('game1: ',g1,request)
+    g2=request.POST.get('gamec2')
+    print('game2: ',g2,request)
+
+    if g1==None:
+      # show data for Wii Sports if no filter requirements are given
+      g1="1"
+    if g2==None:
+      g2="2"
+    else:
+      g1=g1
+      g2=g2
+
+    # game1=Game.objects.filter(name=g1)
+    # print('game1: ',game1)
+    # game2=Game.objects.filter(name=g2)
+    # print('game2: ',game2)
+
+    sources=Game.objects.filter(rank=g1)
+    game1=sources
+    print('game1: ',game1)
+    # filter get the game
+    sources_temp=[]
+    for source in sources:
+      sname1=source.name
+      sources_temp.append(source.na_sales)
+      sources_temp.append(source.eu_sales)
+      sources_temp.append(source.jp_sales)
+      sources_temp.append(source.other_sales)
+      sources_temp.append(source.global_sales)
+    sources_list1=json.dumps(sources_temp)
+    # sname1=game1.name
+    # print(sources)
+    # print(sources_temp)
+    # print(sname1)
+
+    sources=Game.objects.filter(rank=g2)
+    game2=sources
+    print('game2: ',game2)
+    # filter get the game
+    sources_temp=[]
+    for source in sources:
+      sname2=source.name
+      sources_temp.append(source.na_sales)
+      sources_temp.append(source.eu_sales)
+      sources_temp.append(source.jp_sales)
+      sources_temp.append(source.other_sales)
+      sources_temp.append(source.global_sales)
+    sources_list2=json.dumps(sources_temp)
+    # sname2=g2
+    # print(sources)
+    # print(sources_temp)
+
+    return render(request, 'games/base/compare.html',{'sources_list':sources_list1,'sources_list2':sources_list2, 'games':games, 'sname':sname1, 'sname2':sname2, 'game1':game1, 'game2':game2})

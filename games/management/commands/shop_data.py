@@ -48,6 +48,61 @@ class Command(BaseCommand):
       customer.address = str(customer.address[0])
       customer.save()
 
+    # sample admin account
+    # first_name = "Afirst",
+    first_name = str('Afirst1')
+    # last_name = "Alast",
+    last_name = str('Afirst1')
+    username = 'admin1'
+    # username = username[0]
+    user = User.objects.create_user(
+    username = username,
+    first_name = first_name,
+    last_name = last_name,
+    email = str('a@b.com'),
+    password = '1234')
+    customer = Customer.objects.get(user = user)
+    customer.address = fake.address(),
+    customer.address = str(customer.address[0])
+    customer.save()
+    print('Admin account Created Successfully')
+
+    # sample staff account
+    first_name = str('Sfirst')
+    # last_name = "Alast",
+    last_name = str('Sfirst')
+    username = 'staff'
+    # username = username[0]
+    user = User.objects.create_user(
+    username = username,
+    first_name = first_name,
+    last_name = last_name,
+    email = str('s@b.com'), 
+    password = '5678')
+    customer = Customer.objects.get(user = user)
+    customer.address = fake.address(),
+    customer.address = str(customer.address[0])
+    customer.save()
+    print('Staff account Created Successfully')
+
+    # sample customer account
+    first_name = str('Cfirst')
+    # last_name = "Alast",
+    last_name = str('Cfirst')
+    username = 'customer'
+    # username = username[0]
+    user = User.objects.create_user(
+    username = username,
+    first_name = first_name,
+    last_name = last_name,
+    email = str('c@b.com'), 
+    password = '7890')
+    customer = Customer.objects.get(user = user)
+    customer.address = fake.address(),
+    customer.address = str(customer.address[0])
+    customer.save()
+    print('Customer account Created Successfully')
+
     print('Customer Table Created Successfully')
 
     # # create some products

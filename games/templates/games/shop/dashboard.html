@@ -1,9 +1,47 @@
 {% extends 'games/shop/base.html' %}
+{% load static %}
 {% block content %}
 <br>
 <h2>Dashboard</h2>
 <br>
-<h3>Video Games Sales Data</h3>
+  <h3>Account numbers</h3>
+    <canvas id="accounts"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script type= 'text/javascript'>
+    var ctx = document.getElementById('accounts').getContext('2d');
+
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
+
+        // The data for our dataset
+        data: {
+        labels: ['Male', 'Female', 'Left Ear', 'Right Ear'],
+        datasets: [{
+            label: 'Polar Bears',
+            //order: number //put your own numebr here with an extra comma, otherwise remove this line
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: ['1', '2', '3', '4']
+        }]
+        },
+
+        // Configuration options go here
+        options: {
+          scales:{
+            yAxes:[{
+              ticks:{
+                beginAtZero:true
+              }
+            }]
+          }
+        }
+        });
+
+    </script>
+
+
+  <h3>Video Games Sales Data</h3>
     <form method="POST" action="{%url 'dashboard' %}">
       {% csrf_token %}
       <select id="gamef" name="gamef" game="game">
@@ -36,7 +74,7 @@
             label: '{{sname}}',
             //order: number //put your own numebr here with an extra comma, otherwise remove this line
             backgroundColor: 'rgb(255,195,85)', //color of bar
-            borderColor: 'rgb(255,195,85)', //bolor of lines
+            borderColor: 'rgb(255,195,85)', //color of border
             data: {{sources_list}}
           }]
         },
