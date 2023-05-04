@@ -27,8 +27,9 @@ Filtering function is implemented in two parts of the web application with diffe
   - Video Game rank
 
 Data visual components are implemented in the web application.
-- Dashboard pie graph
-- Comparison bar graph
+- Dashboard pie graph for showing the proportion of registered account types
+- Dashboard bar graph for showing the number of orders made by each customer
+- Comparison bar graph for comparing sales of two video games
 
 Authentication system is implemented in the web application.
 - Login and registration system
@@ -253,6 +254,9 @@ To create shop-related data with Faker into the database, run the following comm
 ~~~
 python3 manage.py shop_data
 ~~~
+In the shop-related data generated, Faker and Random are used to create customers, carts, orders and lineitems.
+In this web application, admin and staff accounts can also order and purchase video games through the web application.
+So all registered users using any account types can place random numbers of orders  and purchase random number of video games.
 
 ## Starting the server
 For starting the server in local machine, run the following command in terminal:
