@@ -30,6 +30,7 @@ class TestFilterSearch(TestCase):
       jp_sales=7.9,
       other_sales=3.77,
       global_sales=21.87,
+      price=34.23,
     )
     self.game2=Game.objects.create(
       rank=112,
@@ -43,12 +44,18 @@ class TestFilterSearch(TestCase):
       jp_sales=7.8,
       other_sales=3.78,
       global_sales=18.43,
+      price=20.33,
     )
 
   def test_filter_search(self):
-    response=self.client.post(reverse('gamefilter'),{'plfilter': self.platform1.platform_name, 'gfilter': self.genre1.genre_name, 'yfilter': self.year1.year_no, 'pufilter': self.publisher1.publisher_name})
-    response=self.client.post(reverse('gamefilter'),{'plfilter': self.platform2.platform_name, 'gfilter': self.genre2.genre_name, 'yfilter': self.year2.year_no, 'pufilter': self.publisher2.publisher_name})
+    response1=self.client.post(reverse('gamefilter'),{'plfilter': self.platform1.platform_name, 'gfilter': self.genre1.genre_name, 'yfilter': self.year1.year_no, 'pufilter': self.publisher1.publisher_name})
+    response2=self.client.post(reverse('gamefilter'),{'plfilter': self.platform2.platform_name, 'gfilter': self.genre2.genre_name, 'yfilter': self.year2.year_no, 'pufilter': self.publisher2.publisher_name})
+    self.assertEqual(response1.status_code, 200)
+    self.assertEqual(response2.status_code, 200)
+    self.assertContains(response1, "Pokemon")
+    self.assertContains(response2, "Pokemon2")
+
+  def test_filter_search_rank(self):
+    response=self.client.post(reverse('compare'),{'gamec1': 111})
     self.assertEqual(response.status_code, 200)
     self.assertContains(response, "Pokemon")
-    self.assertContains(response, "Pokemon2")
-   

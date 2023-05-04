@@ -166,6 +166,7 @@ def compare(request):
 
     sources=Game.objects.filter(rank=g1)
     game1=sources
+    sname1=0
     print('game1: ',game1)
     # filter get the game
     sources_temp=[]
@@ -184,6 +185,7 @@ def compare(request):
 
     sources=Game.objects.filter(rank=g2)
     game2=sources
+    sname2=1
     print('game2: ',game2)
     # filter get the game
     sources_temp=[]

@@ -44,12 +44,13 @@ class Command(BaseCommand):
       email = fake.ascii_free_email(), 
       password = 'p@ssw0rd')
       customer = Customer.objects.get(user = user)
+      customer.user_type = 'Customer'
       customer.address = fake.address(),
       customer.address = str(customer.address[0])
       customer.save()
 
-    # sample admin account
-    # first_name = "Afirst",
+    # first sample admin account will be required to be created by command
+    first_name = "Afirst",
     first_name = str('Afirst1')
     # last_name = "Alast",
     last_name = str('Afirst1')
@@ -62,6 +63,7 @@ class Command(BaseCommand):
     email = str('a@b.com'),
     password = '1234')
     customer = Customer.objects.get(user = user)
+    customer.user_type = 'Admin'
     customer.address = fake.address(),
     customer.address = str(customer.address[0])
     customer.save()
@@ -80,6 +82,7 @@ class Command(BaseCommand):
     email = str('s@b.com'), 
     password = '5678')
     customer = Customer.objects.get(user = user)
+    customer.user_type = 'Staff'
     customer.address = fake.address(),
     customer.address = str(customer.address[0])
     customer.save()
@@ -98,6 +101,7 @@ class Command(BaseCommand):
     email = str('c@b.com'), 
     password = '7890')
     customer = Customer.objects.get(user = user)
+    customer.user_type = 'Customer'
     customer.address = fake.address(),
     customer.address = str(customer.address[0])
     customer.save()

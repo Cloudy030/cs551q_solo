@@ -94,6 +94,7 @@ class GameModelTestCase(TestCase):
       jp_sales=7.9,
       other_sales=3.77,
       global_sales=21.87,
+      price=34.23,
     )
     Game.objects.create(
       rank=112,
@@ -107,6 +108,7 @@ class GameModelTestCase(TestCase):
       jp_sales=7.8,
       other_sales=3.78,
       global_sales=18.43,
+      price=20.33,
     )
 
   def test_game(self):
@@ -114,3 +116,7 @@ class GameModelTestCase(TestCase):
     self.assertEqual(game.rank,111)
     games=Game.objects.all()
     self.assertEqual(games.count(),2)
+
+# class CartModelTestCase(TestCase):
+# @classmethod
+# def setUpTestData(cls):

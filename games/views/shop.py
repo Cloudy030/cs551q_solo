@@ -26,6 +26,16 @@ def signup(request):
 def dashboard(request):
   user = request.user
   if user.is_authenticated & user.is_staff:
+    # a=Customer.objects.all()
+    # a=Model.
+    # print(a)
+    #https://stackoverflow.com/questions/15635790/how-to-count-the-number-of-rows-in-a-database-table-in-django
+    an=Customer.objects.filter(user_type ="Admin").count()
+    print('*************',an,"***********************")
+    sn=Customer.objects.filter(user_type ="Staff").count()
+    print('---------------',sn,"-----------------")
+    cn=Customer.objects.filter(user_type ="Customer").count()
+    print('============',cn,"=============")
     # l=LineItem.objects.all(game)
     # print(l)
     # customer=Customer.objects.all()
@@ -36,34 +46,35 @@ def dashboard(request):
     # s=Customer.objects.staff_status()
     # print(s)
  
-    games=Game.objects.all()
-        # filter function
-    g=request.POST.get('gamef')
-    print('game: ',g,request)
+    # games=Game.objects.all()
+    #     # filter function
+    # g=request.POST.get('gamef')
+    # print('game: ',g,request)
 
-    if g==None:
-      # show data for Wii Sports if no filter requirements are given
-      g="Wii Sports"
+    # if g==None:
+    #   # show data for Wii Sports if no filter requirements are given
+    #   g="Wii Sports"
 
-    else:
-      g=g
+    # else:
+    #   g=g
 
-    sources=Game.objects.filter(name=g)
-    # filter get the game
-    sources_temp=[]
-    for source in sources:
-      # sname.append(source.name)
-      sources_temp.append(source.na_sales)
-      sources_temp.append(source.eu_sales)
-      sources_temp.append(source.jp_sales)
-      sources_temp.append(source.other_sales)
-      sources_temp.append(source.global_sales)
-    sources_list=json.dumps(sources_temp)
-    sname=g
-    print(sources)
-    print(sources_temp)
+    # sources=Game.objects.filter(name=g)
+    # # filter get the game
+    # sources_temp=[]
+    # for source in sources:
+    #   # sname.append(source.name)
+    #   sources_temp.append(source.na_sales)
+    #   sources_temp.append(source.eu_sales)
+    #   sources_temp.append(source.jp_sales)
+    #   sources_temp.append(source.other_sales)
+    #   sources_temp.append(source.global_sales)
+    # sources_list=json.dumps(sources_temp)
+    # sname=g
+    # print(sources)
+    # print(sources_temp)
 
-    return render(request, 'games/shop/dashboard.html',{'sources_list':sources_list, 'games':games, 'sname':sname})
+    # return render(request, 'games/shop/dashboard.html',{'sources_list':sources_list, 'games':games, 'sname':sname})
+    return render(request, 'games/shop/dashboard.html',{'an':an, 'sn':sn, 'cn':cn})
   else:
     return redirect('login')
 

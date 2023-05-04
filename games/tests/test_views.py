@@ -53,6 +53,7 @@ class GameViewsTests(TestCase):
       jp_sales=7.9,
       other_sales=3.77,
       global_sales=21.87,
+      price=34.23,
     )
     Game.objects.create(
       rank=112,
@@ -66,6 +67,7 @@ class GameViewsTests(TestCase):
       jp_sales=7.8,
       other_sales=3.78,
       global_sales=18.43,
+      price=20.33,
     )
 
   def test_game(self):
@@ -87,7 +89,3 @@ class GameViewsTests(TestCase):
       self.assertContains(response, "2023")
       self.assertContains(response, "Racing")
       self.assertContains(response, "20th Century Fox Video Games")
-
-        
-        
-    

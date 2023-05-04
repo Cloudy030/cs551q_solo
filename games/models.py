@@ -85,12 +85,18 @@ class Cart(models.Model):
 # https://simpleisbetterthancomplex.com/tutorial/2016/07/22/how-to-extend-django-user-model.html#onetoone
 
 class Customer(models.Model):
+  USER_TYPES=(
+    ('Staff', 'staff'),
+    ('Customer', 'customer'),
+    ('Admin', 'admin')
+  )
   user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True,)
+  user_type = models.CharField(max_length=8, choices=USER_TYPES)
   address = models.TextField()
   created_date = models.DateTimeField(auto_now_add=True)
 
   def __str__(self):
-    return f'{self.user.email}, {self.address}, {self.created_date}'
+    return f'{self.user.email}, {self.user_type}, {self.address}, {self.created_date}'
 
   class Meta:
     db_table = 'customer'

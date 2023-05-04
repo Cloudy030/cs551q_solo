@@ -23,11 +23,12 @@ Filtering function is implemented in two parts of the web application with diffe
   - Year
   - Genre
   - Publisher
-- Dashboard
-  - Video Game name
+- Comparison
+  - Video Game rank
 
 Data visual components are implemented in the web application.
 - Dashboard bar graph
+- Comparison bar graph
 
 Authentication system is implemented in the web application.
 - Login and registration system
@@ -48,8 +49,8 @@ Staff account users are only allowed to view in the administration website.
 Admin account users can perform every actions with all permissions in the administration website.
 
 ## Templates in the website
-There are total twenty two templates in this web application.
-These 22 templates can be grouped in two major parts which are video games related models and e-commerce related models.
+There are total twenty three templates in this web application.
+These 23 templates can be grouped in two major parts which are video games related models and e-commerce related models.
 
 ### Video games related
 First, there are twelve templates which are video games related.
@@ -73,6 +74,8 @@ All pages have respective web links linked to the corresponding web pages.
     - This is a page for showing the list of platforms with the respective images for the video games to be published on.
   - Publisher (publisher.html)
     - This is a page for showing the list of publishers publishing the video games.
+  - Comparison Page (compare.html)
+    - This is a page for users to compare between 2 video games of their choice in form of tabular data and bar graph for showing sales data.
 
 - Detail pages
   - Video Game detail page (game_detail.html)
@@ -123,7 +126,7 @@ This template is accessible to all logged-in users
 
 Following templates are only accessible to staff accounts and admin accounts:
 - Dashboard (dashboard.html)
-  - This is a dashboard page showing the graph displaying sales details of each video game after the user has chosen it in the filter.
+  <!-- - This is a dashboard page showing the graph displaying sales details of each video game after the user has chosen it in the filter. -->
 - Customer list (customer_list.html)
   - This is a customer list page showing all users who have an account in the web application including staff accounts and admin accounts holders.
 - Customer detail (customer_detail.html)

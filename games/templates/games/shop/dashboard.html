@@ -4,147 +4,36 @@
 <br>
 <h2>Dashboard</h2>
 <br>
-  <h3>Account numbers</h3>
+  <h3>Proportion of Account Typs</h3>
     <canvas id="accounts"></canvas>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script type= 'text/javascript'>
     var ctx = document.getElementById('accounts').getContext('2d');
-
     var chart = new Chart(ctx, {
+      //https://stackoverflow.com/questions/42848673/configure-pie-chart-colors-using-chart-js-and-php
         // The type of chart we want to create
-        type: 'line',
+        type: 'pie',
 
         // The data for our dataset
         data: {
-        labels: ['Male', 'Female', 'Left Ear', 'Right Ear'],
+        labels: ['Customer', 'Staff', 'Admin'],
         datasets: [{
-            label: 'Polar Bears',
-            //order: number //put your own numebr here with an extra comma, otherwise remove this line
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: ['1', '2', '3', '4']
+            backgroundColor: [
+            'rgb(230,255,85)', //yellow: customer
+            'rgb(255,195,85)', //orange: staff
+            'rgb(255,110,85)', //red: admin
+            ],
+            borderColor: 'rgb(178,136,59)',
+            data: [{{cn}}, {{sn}}, {{an}}]
         }]
         },
 
         // Configuration options go here
         options: {
-          scales:{
-            yAxes:[{
-              ticks:{
-                beginAtZero:true
-              }
-            }]
-          }
+       //   scales:{}
         }
         });
 
     </script>
-
-
-  <h3>Video Games Sales Data</h3>
-    <form method="POST" action="{%url 'dashboard' %}">
-      {% csrf_token %}
-      <select id="gamef" name="gamef" game="game">
-        <option selected disabled=true>--Select Game--</option>
-        {% for game in games %}
-        <option value="{{game.name}}">{{game.name}}</option>
-        {% endfor %}
-      </select>
-      <button type="submit" class="btn btn-success">Search</button>
-    </form>
-    <br>
-    <!-- <script>
-      var name=JSON.parse('{{games|safe}}');
-         // var name=JSON.parse('{{name|safe}}');
-
-    </script> -->
-
-    <canvas id="myChart"></canvas>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <script type= 'text/javascript'>
-    var ctx = document.getElementById('myChart').getContext('2d');
-
-    var chart = new Chart(ctx, {
-        // The type of chart we want to create
-        type: 'bar',
-        // The data for our dataset
-        data: {
-          labels: ['North America Sales', 'Europe Sales', 'Japan Sales', 'Other part of world Sales', 'Global Sales'],
-          datasets: [{
-            label: '{{sname}}',
-            //order: number //put your own numebr here with an extra comma, otherwise remove this line
-            backgroundColor: 'rgb(255,195,85)', //color of bar
-            borderColor: 'rgb(255,195,85)', //color of border
-            data: {{sources_list}}
-          }]
-        },
-        // Configuration options go here
-        options: {
-          scales: {
-//            xAxes: [{
-  //           scaleLabel: {
-    //            display: true,
-      //          labelString: 'Parts of world',
-        //        fontSize: 12,
-          //    }
-            //}], 
-            yAxes: [{
-              scaleLabel: {
-                display: true,
-                labelString: 'Sales (million(s))',
-                fontSize: 12,
-              },
-              ticks: {
-                beginAtZero: true
-              }
-            }]
-          }
-        }
-      });
-    </script>
-
-    <!-- <canvas id="myChart"></canvas>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <script type= 'text/javascript'>
-    var ctx = document.getElementById('myChart').getContext('2d');
-
-    var chart = new Chart(ctx, {
-        // The type of chart we want to create
-        type: 'bar',
-        // The data for our dataset
-        data: {
-          labels: ['North America Sales', 'Europe Sales', 'Japan Sales', 'Other part of world Sales', 'Global Sales'],
-          datasets: [{
-            label: '{{sname}}',
-            //order: number //put your own numebr here with an extra comma, otherwise remove this line
-            backgroundColor: 'rgb(255,195,85)', //color of bar
-            borderColor: 'rgb(255,195,85)', //bolor of lines
-            data: {{sources_list}}
-          }]
-        },
-        // Configuration options go here
-        options: {
-          scales: {
-//            xAxes: [{
-  //           scaleLabel: {
-    //            display: true,
-      //          labelString: 'Parts of world',
-        //        fontSize: 12,
-          //    }
-            //}], 
-            yAxes: [{
-              scaleLabel: {
-                display: true,
-                labelString: 'Sales (million(s))',
-                fontSize: 12,
-              },
-              ticks: {
-                beginAtZero: true
-              }
-            }]
-          }
-        }
-      });
-    </script> -->
 
     {% endblock %}
