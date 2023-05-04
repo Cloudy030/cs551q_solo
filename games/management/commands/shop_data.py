@@ -51,10 +51,10 @@ class Command(BaseCommand):
 
     # first sample admin account will be required to be created by command
     first_name = "Afirst",
-    first_name = str('Afirst1')
+    first_name = str('Afirst2')
     # last_name = "Alast",
-    last_name = str('Afirst1')
-    username = 'admin1'
+    last_name = str('Afirst2')
+    username = 'admin2'
     # username = username[0]
     user = User.objects.create_user(
     username = username,
@@ -74,6 +74,44 @@ class Command(BaseCommand):
     # last_name = "Alast",
     last_name = str('Sfirst')
     username = 'staff'
+    # username = username[0]
+    user = User.objects.create_user(
+    username = username,
+    first_name = first_name,
+    last_name = last_name,
+    email = str('s@b.com'), 
+    password = '5678')
+    customer = Customer.objects.get(user = user)
+    customer.user_type = 'Staff'
+    customer.address = fake.address(),
+    customer.address = str(customer.address[0])
+    customer.save()
+    print('Staff account Created Successfully')
+
+    # sample staff account
+    first_name = str('Sfirst2')
+    # last_name = "Alast",
+    last_name = str('Sfirst2')
+    username = 'staff2'
+    # username = username[0]
+    user = User.objects.create_user(
+    username = username,
+    first_name = first_name,
+    last_name = last_name,
+    email = str('s@b.com'), 
+    password = '5678')
+    customer = Customer.objects.get(user = user)
+    customer.user_type = 'Staff'
+    customer.address = fake.address(),
+    customer.address = str(customer.address[0])
+    customer.save()
+    print('Staff account Created Successfully')
+
+    # sample staff account
+    first_name = str('Sfirst3')
+    # last_name = "Alast",
+    last_name = str('Sfirst3')
+    username = 'staff3'
     # username = username[0]
     user = User.objects.create_user(
     username = username,
@@ -131,12 +169,16 @@ class Command(BaseCommand):
 
     # create orders from customers
     customers = Customer.objects.all()
-    for customer in customers:  
-      for i in range(3):
+    for customer in customers: 
+      a=random.randrange(0,11)
+      print('-------------',a,'--------------')
+      for i in range(a): 
+      # for i in range(3):
         order = Order.objects.create(
         customer = customer,
         )
         order.save()
+        # print(order)
 
     print('Order Table Created Successfully')
           

@@ -14,3 +14,6 @@ behave tests in cs5511_solo folder in virtual environment
 behave
 
 <your_name>-CS551Q.zip
+
+test address for admin
+10 admin address road, add from administration page

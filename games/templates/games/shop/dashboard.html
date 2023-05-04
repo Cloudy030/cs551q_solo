@@ -5,6 +5,7 @@
 <h2>Dashboard</h2>
 <br>
   <h3>Proportion of Account Types</h3>
+  <br>
     <canvas id="accounts"></canvas>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script type= 'text/javascript'>
@@ -34,6 +35,53 @@
         }
         });
 
+    </script>
+    <br><br>
+    <h3>Number of Orders from each Customer</h3>
+    <br>
+    <canvas id="ordern"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script type= 'text/javascript'>
+    var ctx = document.getElementById('ordern').getContext('2d');
+
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'bar',
+        // The data for our dataset
+        data: {
+          labels: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+          // https://stackoverflow.com/questions/28180871/grouped-bar-charts-in-chart-js
+          datasets: [{
+            label: 'Number of Orders from each Customer',
+            //order: number //put your own numebr here with an extra comma, otherwise remove this line
+            backgroundColor: 'rgb(255,195,85)', //color of bar
+            borderColor: 'rgb(255,195,85)', //color of border
+            data: [{{zero}}, {{one}}, {{two}}, {{three}}, {{four}}, {{five}}, {{six}}, {{seven}}, {{eight}}, {{nine}}, {{ten}}]
+          },]
+        },
+        // Configuration options go here
+        options: {
+          scales: {
+            xAxes: [{
+             scaleLabel: {
+                display: true,
+                labelString: 'Number of orders',
+                fontSize: 12,
+              }
+            }], 
+            yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Number of customers',
+                fontSize: 12,
+              },
+              ticks: {
+                beginAtZero: true
+              }
+            }]
+          }
+        }
+      });
     </script>
 
     {% endblock %}
