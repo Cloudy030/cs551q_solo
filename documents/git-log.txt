@@ -1,3 +1,4 @@
+* 4d53672 - POK NGA HO, Thu May 4 14:15:05 2023 +0000 : add pie chart in dashboard to see proportion of account types
 * dfbb5b1 - POK NGA HO, Thu May 4 09:46:23 2023 +0000 : add game comparision.html
 * 3e4a0da - POK NGA HO, Mon May 1 19:56:21 2023 +0000 : complete read me 2
 * 04fee47 - POK NGA HO, Mon May 1 19:53:13 2023 +0000 : complete read me

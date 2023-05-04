@@ -27,7 +27,7 @@ Filtering function is implemented in two parts of the web application with diffe
   - Video Game rank
 
 Data visual components are implemented in the web application.
-- Dashboard bar graph
+- Dashboard pie graph
 - Comparison bar graph
 
 Authentication system is implemented in the web application.
@@ -126,7 +126,7 @@ This template is accessible to all logged-in users
 
 Following templates are only accessible to staff accounts and admin accounts:
 - Dashboard (dashboard.html)
-  <!-- - This is a dashboard page showing the graph displaying sales details of each video game after the user has chosen it in the filter. -->
+  - This is a dashboard page showing the graph displaying the proportion of registered account types.
 - Customer list (customer_list.html)
   - This is a customer list page showing all users who have an account in the web application including staff accounts and admin accounts holders.
 - Customer detail (customer_detail.html)
@@ -194,7 +194,7 @@ Second, there are four class objects which are e-commerce related.
 - Customer
   - This table refers to the users saved as customer for easy usage of Django components.
   - All users' information will be saved in this table, including admin accounts, staff accounts and customer accounts.
-  - column names: user, address, created_date
+  - column names: user, user_type, address, created_date
 
 - LineItem
   - This table refers to the different video games added into the cart.

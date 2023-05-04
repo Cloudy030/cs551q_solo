@@ -126,14 +126,3 @@ class Order(models.Model):
 
   def __str__(self):
     return f'{self.customer},{self.created_date}'
-
-# class Product(models.Model):
-#   game=models.ForeignKey('Game', on_delete=models.CASCADE, null=True)
-#   # name = models.CharField(max_length=200, db_index=True)
-#   # use decimal instead of float to avoid rounding errors
-#   # always use decimal for money values
-#   # price = models.DecimalField(max_digits=4, decimal_places=2) 
-#   # created_date = models.DateTimeField(auto_now_add=True)
-
-#   def __str__(self):
-#     return f'{self.game}'#,{self.price},{self.created_date}'

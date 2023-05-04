@@ -36,44 +36,7 @@ def dashboard(request):
     print('---------------',sn,"-----------------")
     cn=Customer.objects.filter(user_type ="Customer").count()
     print('============',cn,"=============")
-    # l=LineItem.objects.all(game)
-    # print(l)
-    # customer=Customer.objects.all()
-    # cdate=Customer.objects.all(created_date)
-    # print(customer)
-    # cdate=Customer.objects.count()
-    # print(cdate)
-    # s=Customer.objects.staff_status()
-    # print(s)
- 
-    # games=Game.objects.all()
-    #     # filter function
-    # g=request.POST.get('gamef')
-    # print('game: ',g,request)
-
-    # if g==None:
-    #   # show data for Wii Sports if no filter requirements are given
-    #   g="Wii Sports"
-
-    # else:
-    #   g=g
-
-    # sources=Game.objects.filter(name=g)
-    # # filter get the game
-    # sources_temp=[]
-    # for source in sources:
-    #   # sname.append(source.name)
-    #   sources_temp.append(source.na_sales)
-    #   sources_temp.append(source.eu_sales)
-    #   sources_temp.append(source.jp_sales)
-    #   sources_temp.append(source.other_sales)
-    #   sources_temp.append(source.global_sales)
-    # sources_list=json.dumps(sources_temp)
-    # sname=g
-    # print(sources)
-    # print(sources_temp)
-
-    # return render(request, 'games/shop/dashboard.html',{'sources_list':sources_list, 'games':games, 'sname':sname})
+    
     return render(request, 'games/shop/dashboard.html',{'an':an, 'sn':sn, 'cn':cn})
   else:
     return redirect('login')
@@ -92,11 +55,8 @@ def payment(request):
     line_item = LineItem.objects.create(quantity=item['quantity'], game=game_item, cart=cart,  order = order)
   
   basket.clear()
-  '''
-  maybe add a message to notify has successfully pay
-  '''
-  request.session['deleted'] = 'thank you for your purchase'
-  return redirect('index' )
+  request.session['deleted'] = 'Thank you for your purchase'
+  return redirect('index')
 
 def purchase(request):
   if request.user.is_authenticated:
