@@ -1,6 +1,7 @@
 from django.test import Client, TestCase
 from django.urls import reverse
 from games.models import Year, Genre, Platform, Publisher, Game, Customer
+from django.contrib.auth.models import User
 
 class TestViews(TestCase):
   @classmethod
@@ -69,53 +70,52 @@ class TestViews(TestCase):
     )
   # @classmethod
   # def setUpTestData(cls):
-  #   User.objects.create(
-  #     platform_name='Wii',
-  #     url='https://test_wii_url'
-  #     )
-  #   platform1=Platform.objects.get(platform_name='Wii')
-  #   Platform.objects.create(
-  #     platform_name='2600',
-  #     url='https://test_2600_url'
-  #     )
-  #   platform2=Platform.objects.get(platform_name='2600')
-  #   Platform.objects.create(
-  #     platform_name='2600',
-  #     url='https://test_2600_url'
-  #     )
-  #   platform2=Platform.objects.get(platform_name='2600')
+    User.objects.create_user(
+      first_name="cf1",
+      last_name="cl1",
+      username="ct",
+      email="ct@b.com",
+      password='ct1234',
+      )
+    c1=User.objects.get(username="ct")
+    User.objects.create_user(
+      first_name="sf1",
+      last_name="sl1",
+      username="st",
+      email="st@b.com",
+      password='st1234',
+      )
+    s1=User.objects.get(username="st")
+    User.objects.create_user(
+      first_name="af1",
+      last_name="al1",
+      username="at",
+      email="at@b.com",
+      password='at1234',
+      )
+    a1=User.objects.get(username="at")
 
-
-    # Customer.objects.create(
-    # user.first_name="cf1",
-    # user.last_name="cl1",
-    # user.username="ct",
-    # user.email="ct@b.com",
-    # user.password='ct1234',
-    # user_type='Customer',
-    # address="c test address",
-    # created_date="2023-05-04 11:56:29.432035+00:00"
-    # )
-    # Customer.objects.create(
-    #   user.first_name="sf1",
-    #   user.last_name="sl1",
-    #   user.username="st",
-    #   user.email="st@b.com",
-    #   user.password='st1234',
-    #   user_type='Staff',
-    #   address="s test address",
-    #   created_date="2023-05-04 11:56:29.432035+00:00"
-    # )
-    # Customer.objects.create(
-    #   user.first_name="af1",
-    #   user.last_name="al1",
-    #   user.username="at",
-    #   user.email="at@b.com",
-    #   user.password='at1234',
-    #   user_type='Admin',
-    #   address="a test address",
-    #   created_date="2023-05-04 11:56:29.432035+00:00"
-    # )
+    Customer.objects.create(
+    user=c1,
+    # user_id=1,
+    user_type='Customer',
+    address="c test address",
+    created_date="2023-05-04 11:56:29.432035+00:00"
+    )
+    Customer.objects.create(
+      user=s1,
+      # user_id=2,
+      user_type='Staff',
+      address="s test address",
+      created_date="2023-05-04 11:56:29.432035+00:00"
+    )
+    Customer.objects.create(
+      user=a1,
+      # user_id=3,
+      user_type='Admin',
+      address="a test address",
+      created_date="2023-05-04 11:56:29.432035+00:00"
+    )
 
   def test_index_view(self):
     url=reverse('index')
@@ -177,14 +177,14 @@ class TestViews(TestCase):
     self.assertEqual(response.status_code,200)
     self.assertContains(response, "You have these in your basket:")
 
-  # def test_customer_list_view(self):
-  #   self.client.login(username='st', password='st1234')
-  #   url=reverse('customer_list')
-  #   response=self.client.get(url)
-  #   self.assertEqual(response.status_code,200)
-  #   self.assertContains(response, "Their username is")
-  #   self.assertContains(response, "and they live at")
-  #   self.assertContains(response, ". You can reach them at ")
+  def test_customer_list_view(self):
+    self.client.login(username='st', password='st1234')
+    url=reverse('customer_list')
+    response=self.client.get(url)
+    self.assertEqual(response.status_code,200)
+    self.assertContains(response, "Their username is")
+    self.assertContains(response, "and they live at")
+    self.assertContains(response, ". You can reach them at ")
 
   # def test_dashboard_view(self):
   #   url=reverse('dashboard')

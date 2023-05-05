@@ -69,49 +69,32 @@ class Command(BaseCommand):
     customer.save()
     print('Admin account Created Successfully')
 
-    # sample staff account
+    # 3 sample staff account to make proportion look better
+    for i in range(2):
+      first_name = fake.first_name(),
+      first_name = str(first_name[0])
+      last_name = fake.last_name(),
+      last_name = str(last_name[0])
+      username = 'staff'+first_name + last_name,
+      username = username[0]
+      user = User.objects.create_user(
+      username = username,
+      first_name = first_name,
+      last_name = last_name,
+      email = fake.ascii_free_email(), 
+      password = 'p@ssw0rd')
+      customer = Customer.objects.get(user = user)
+      customer.user_type = 'Staff'
+      customer.address = fake.address(),
+      customer.address = str(customer.address[0])
+      customer.save()
+      print('Staff account Created Successfully')
+
+    # sample staff account with known credentials
     first_name = str('Sfirst')
     # last_name = "Alast",
     last_name = str('Sfirst')
     username = 'staff'
-    # username = username[0]
-    user = User.objects.create_user(
-    username = username,
-    first_name = first_name,
-    last_name = last_name,
-    email = str('s@b.com'), 
-    password = '5678')
-    customer = Customer.objects.get(user = user)
-    customer.user_type = 'Staff'
-    customer.address = fake.address(),
-    customer.address = str(customer.address[0])
-    customer.save()
-    print('Staff account Created Successfully')
-
-    # sample staff account
-    first_name = str('Sfirst2')
-    # last_name = "Alast",
-    last_name = str('Sfirst2')
-    username = 'staff2'
-    # username = username[0]
-    user = User.objects.create_user(
-    username = username,
-    first_name = first_name,
-    last_name = last_name,
-    email = str('s@b.com'), 
-    password = '5678')
-    customer = Customer.objects.get(user = user)
-    customer.user_type = 'Staff'
-    customer.address = fake.address(),
-    customer.address = str(customer.address[0])
-    customer.save()
-    print('Staff account Created Successfully')
-
-    # sample staff account
-    first_name = str('Sfirst3')
-    # last_name = "Alast",
-    last_name = str('Sfirst3')
-    username = 'staff3'
     # username = username[0]
     user = User.objects.create_user(
     username = username,
