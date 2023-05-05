@@ -1,5 +1,5 @@
 from django.test import TestCase, Client
-from games.models import Year, Genre, Platform, Publisher, Game, Cart, Customer, LineItem, Order
+from games.models import Year, Genre, Platform, Publisher, Game
 
 # Create your tests here.
 

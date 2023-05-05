@@ -37,7 +37,8 @@ def press_genre(context):
 @then(u'we go to genre page')
 def genre_page(context):
   URL = driver.current_url();
-  Assert.assertEquals(URL, "http://localhost:8080/genre" );
+  open_url = urljoin(base_url,'/genre')
+  Assert.assertEquals(URL, open_url );
   assert 'Genre' in context.browser.page_source
 
 ###
@@ -54,131 +55,139 @@ def press_platform(context):
   link.click()
 
 @then(u'we go to platform page')
+def platform_page(context):
+  URL = driver.current_url();
+  open_url = urljoin(base_url,'/platform')
+  Assert.assertEquals(URL, open_url );
+  assert 'Platform' in context.browser.page_source
+
+###
+@given(u'we are on index page')
+def on_index_page(context):
+  base_url = urllib.request.url2pathname(context.test_case.live_server_url)
+  print('*****************',base_url,'**********************')
+  context.browser.get(base_url)
+
+@when(u'press publisher on navigation bar')
+def publisher_page(context):
+  URL = driver.current_url();
+  open_url = urljoin(base_url,'/publisher')
+  Assert.assertEquals(URL, open_url );
+  assert 'Publisher' in context.browser.page_source
+
+@then(u'we go to publisher page')
+def publisher_page(context):
+  URL = driver.current_url();
+  open_url = urljoin(base_url,'/publisher')
+  Assert.assertEquals(URL, open_url );
+  assert 'Publisher' in context.browser.page_source
+
+###
+@given(u'we are on index page')
+def on_index_page(context):
+  base_url = urllib.request.url2pathname(context.test_case.live_server_url)
+  print('*****************',base_url,'**********************')
+  context.browser.get(base_url)
+
+@when(u'press year on navigation bar')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: Then we go to platform page')
+    raise NotImplementedError(u'STEP: When press year on navigation bar')
 
 
-# ###
-# @given(u'we are on index page')
-# def step_impl(context):
-#     raise NotImplementedError(u'STEP: Given we are on index page')
+@then(u'we go to year page')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: Then we go to year page')
+
+###
+
+@given(u'we are on index page')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: Given we are on index page')
 
 
-
-# @when(u'press publisher on navigation bar')
-# def step_impl(context):
-#     raise NotImplementedError(u'STEP: When press publisher on navigation bar')
-
-
-# @then(u'we go to publisher page')
-# def step_impl(context):
-#     raise NotImplementedError(u'STEP: Then we go to publisher page')
-# ###
-# @given(u'we are on index page')
-# def step_impl(context):
-#     raise NotImplementedError(u'STEP: Given we are on index page')
+@when(u'press comparision on navigation bar')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: When press shop on navigation bar')
 
 
-
-# @when(u'press year on navigation bar')
-# def step_impl(context):
-#     raise NotImplementedError(u'STEP: When press year on navigation bar')
-
-
-# @then(u'we go to year page')
-# def step_impl(context):
-#     raise NotImplementedError(u'STEP: Then we go to year page')
-
-# ###
-
-# @given(u'we are on index page')
-# def step_impl(context):
-#     raise NotImplementedError(u'STEP: Given we are on index page')
+@then(u'we go to compare page')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: Then we go to basket page')
 
 
-# @when(u'press comparision on navigation bar')
-# def step_impl(context):
-#     raise NotImplementedError(u'STEP: When press shop on navigation bar')
+###
+
+@given(u'we are on index page')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: Given we are on index page')
 
 
-# @then(u'we go to compare page')
-# def step_impl(context):
-#     raise NotImplementedError(u'STEP: Then we go to basket page')
+@when(u'press Super Mario World in table')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: When press Super Mario World in table')
 
 
-# ###
-
-# @given(u'we are on index page')
-# def step_impl(context):
-#     raise NotImplementedError(u'STEP: Given we are on index page')
-
-
-# @when(u'press Super Mario World in table')
-# def step_impl(context):
-#     raise NotImplementedError(u'STEP: When press Super Mario World in table')
-
-
-# @then(u'we go to Super Mario World detail page')
-# def step_impl(context):
-#     raise NotImplementedError(u'STEP: Then we go to Super Mario World detail page')
-# ###
-# @given(u'we are on index page')
-# def step_impl(context):
-#     raise NotImplementedError(u'STEP: Given we are on index page')
+@then(u'we go to Super Mario World detail page')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: Then we go to Super Mario World detail page')
+###
+@given(u'we are on index page')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: Given we are on index page')
 
 
 
-# @when(u'press Wii in table')
-# def step_impl(context):
-#     raise NotImplementedError(u'STEP: When press Wii in table')
+@when(u'press Wii in table')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: When press Wii in table')
 
 
-# @then(u'we go to Wii detail page')
-# def step_impl(context):
-#     raise NotImplementedError(u'STEP: Then we go to Wii detail page')
+@then(u'we go to Wii detail page')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: Then we go to Wii detail page')
 
-# ###
-# @given(u'we are on index page')
-# def step_impl(context):
-#     raise NotImplementedError(u'STEP: Given we are on index page')
-
-
-# @when(u'press 2006 in table')
-# def step_impl(context):
-#     raise NotImplementedError(u'STEP: When press 2006 in table')
+###
+@given(u'we are on index page')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: Given we are on index page')
 
 
-# @then(u'we go to 2006 game page')
-# def step_impl(context):
-#     raise NotImplementedError(u'STEP: Then we go to 2006 game page')
-
-# ###
-# @given(u'we are on index page')
-# def step_impl(context):
-#     raise NotImplementedError(u'STEP: Given we are on index page')
+@when(u'press 2006 in table')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: When press 2006 in table')
 
 
-# @when(u'press Puzzle in table')
-# def step_impl(context):
-#     raise NotImplementedError(u'STEP: When press Puzzle in table')
+@then(u'we go to 2006 game page')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: Then we go to 2006 game page')
+
+###
+@given(u'we are on index page')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: Given we are on index page')
 
 
-# @then(u'we go to Puzzle detail page')
-# def step_impl(context):
-#     raise NotImplementedError(u'STEP: Then we go to Puzzle detail page')
-
-# ###
-# @given(u'we are on index page')
-# def step_impl(context):
-#     raise NotImplementedError(u'STEP: Given we are on index page')
+@when(u'press Puzzle in table')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: When press Puzzle in table')
 
 
+@then(u'we go to Puzzle detail page')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: Then we go to Puzzle detail page')
 
-# @when(u'press Nitendo in table')
-# def step_impl(context):
-#     raise NotImplementedError(u'STEP: When press Nitendo in table')
+###
+@given(u'we are on index page')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: Given we are on index page')
 
 
-# @then(u'we go to Nitendo detail page')
-# def step_impl(context):
-#     raise NotImplementedError(u'STEP: Then we go to Nitendo detail page')
+
+@when(u'press Nitendo in table')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: When press Nitendo in table')
+
+
+@then(u'we go to Nitendo detail page')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: Then we go to Nitendo detail page')
