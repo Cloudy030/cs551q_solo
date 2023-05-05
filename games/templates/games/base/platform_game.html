@@ -72,7 +72,7 @@
         <td><a href="{%url 'platformgame' id=game.platform.id%}">{{game.platform.platform_name}}</td>
         <td><a href="{%url 'yeargame' id=game.year.id%}">{{game.year}}</td>
         <td><a href="{%url 'genregame' id=game.genre.id%}">{{game.genre.genre_name}}</td>
-        <td><a href="{%url 'pugame' id=game.publisher.id%}">{{game.publisher.publisher_name}}</td>
+        <td><a href="{%url 'pugame' id=game.publisher.id|add:'0'%}">{{game.publisher.publisher_name}}</td>
       </tr>
       {% endfor %}
     </table>

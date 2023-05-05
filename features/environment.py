@@ -73,11 +73,12 @@ def before_scenario(context, scenario):
 
 def after_scenario(context, scenario):
   context.test.tearDownClass()
-  db.connections.close_all()
+  # db.connections.close_all()
   del context.test
 
 def after_all(context):
   context.browser = webdriver.Chrome()
+  db.connections.close_all()
   # https://stackoverflow.com/questions/41846466/attributeerror-context-object-has-no-attribute-browser
   context.browser.quit()
 

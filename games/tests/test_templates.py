@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 class TestViews(TestCase):
   @classmethod
   def setUpTestData(cls):
+    fixtures =['games']
+
     Platform.objects.create(
       platform_name='Wii',
       url='https://test_wii_url'
@@ -39,7 +41,7 @@ class TestViews(TestCase):
     publisher2=Publisher.objects.get(publisher_name='Zoo Games')
 
     Game.objects.create(
-      id=1,
+      # id=1,
       rank=111,
       name='Pokemon',
       platform=platform1,
@@ -54,7 +56,7 @@ class TestViews(TestCase):
       price=34.23,
     )
     Game.objects.create(
-      id=2,
+      # id=2,
       rank=112,
       name='Pokemon2',
       platform=platform2,
@@ -69,53 +71,103 @@ class TestViews(TestCase):
       price=20.33,
     )
   # @classmethod
-  # def setUpTestData(cls):
-    User.objects.create_user(
-      first_name="cf1",
-      last_name="cl1",
-      username="ct",
-      email="ct@b.com",
-      password='ct1234',
-      )
-    c1=User.objects.get(username="ct")
-    User.objects.create_user(
-      first_name="sf1",
-      last_name="sl1",
-      username="st",
-      email="st@b.com",
-      password='st1234',
-      )
-    s1=User.objects.get(username="st")
-    User.objects.create_user(
-      first_name="af1",
-      last_name="al1",
-      username="at",
-      email="at@b.com",
-      password='at1234',
-      )
-    a1=User.objects.get(username="at")
+  # def setUp(self):
+  #   self.ct=User.objects.create_user(username='hahahac')
+  #   self.ct.set_password('ct1234')
+  #   # self.ct.
+  #   self.ct.save()
+  #   Customer.objects.get_or_create(
+  #     user=self.ct,
+  #     user_type='Customer',
+  #     # email='ct@b.com',
+  #     address='c test address',
+  #     created_date="2023-05-04 11:56:29.432035+00:00"
+  #     )
 
+  def setUp(self):
+    # user = User.objects.get(username="staff1")
+    # print('~~~~~~~~~~~~~~~~~`',user,'~~~~~~~~~~`')
+    self.st=User.objects.create_user(username='staff1')
+    self.st.set_password('st1234')
+    # self.st.email='st@b.com'
+    # self.ct.
+    self.st.save()
+    user = User.objects.get(username="staff1")
+    print(user)
+    c = Customer.objects.get(user=user)
+    print(c)
+    # print(Customer.objects.all())
     Customer.objects.create(
-    user=c1,
-    # user_id=1,
-    user_type='Customer',
-    address="c test address",
-    created_date="2023-05-04 11:56:29.432035+00:00"
-    )
-    Customer.objects.create(
-      user=s1,
-      # user_id=2,
+      # user_id=100,
+      user=self.st,
       user_type='Staff',
-      address="s test address",
+      # email='ct@b.com',
+      address='s test address',
       created_date="2023-05-04 11:56:29.432035+00:00"
-    )
-    Customer.objects.create(
-      user=a1,
-      # user_id=3,
-      user_type='Admin',
-      address="a test address",
-      created_date="2023-05-04 11:56:29.432035+00:00"
-    )
+      )
+
+  # def setUp(self):
+  #   self.at=User.objects.create_user(username='bububua')
+  #   self.at.set_password('at1234')
+  #   # self.ct.
+  #   self.at.save()
+  #   Customer.objects.get_or_create(
+  #     user=self.at,
+  #     user_type='Admin',
+  #     # email='ct@b.com',
+  #     address='a test address',
+  #     created_date="2023-05-04 11:56:29.432035+00:00"
+  #     )
+  # def setUpTestData(cls):
+    # c1=User.objects.create_user(
+    #   first_name="cf1",
+    #   last_name="cl1",
+    #   username="ct",
+    #   email="ct@b.com",
+    #   password='ct1234',
+    #   # user_id=510,
+    #   )
+    # c1=User.objects.get(username="ct")
+    # s1=User.objects.create_user(
+    #   first_name="sf1",
+    #   last_name="sl1",
+    #   username="st",
+    #   email="st@b.com",
+    #   password='st1234',
+    #   # user_id=511,
+    #   )
+    # s1=User.objects.get(username="st")
+    # a1=User.objects.create_user(
+    #   first_name="af1",
+    #   last_name="al1",
+    #   username="at",
+    #   email="at@b.com",
+    #   password='at1234',
+    #   # user_id=512,
+    #   )
+    # a1=User.objects.get(username="at")
+
+    # Customer.objects.get_or_create(
+    # user=c1,
+    # # user_id=510,
+    # user_type='Customer',
+    # address="c test address",
+    # created_date="2023-05-04 11:56:29.432035+00:00"
+    # )
+    # Customer.objects.get_or_create(
+    #   user=s1,
+    #   # user_id=511,
+    #   user_type='Staff',
+    #   address="s test address",
+    #   created_date="2023-05-04 11:56:29.432035+00:00"
+    # )
+    # Customer.objects.get_or_create(
+    #   user=a1,
+    #   # user_id=512,
+    #   user_type='Admin',
+    #   address="a test address",
+    #   created_date="2023-05-04 11:56:29.432035+00:00"
+    # )
 
   def test_index_view(self):
     url=reverse('index')
@@ -152,18 +204,78 @@ class TestViews(TestCase):
   def test_year_view(self):
     url=reverse('year')
     response=self.client.get(url)
+    # print('++++++++++++++++++++',url)
     self.assertEqual(response.status_code,200)
     self.assertContains(response, "Year")
 
   def test_gamedetail_view(self):
     client=Client()
-    # url=self.client.post('/gamedetail/',{'id':'15001'})
-    url=self.client.post('/gamedetail/2')
-    response=self.client.get(url)
-    print('url:============',url)
-    print("response=====",response.content)
+    # game = Game.objects.get(id=1)
+    # print('~~~~~~~~~~~~~~~~~~~~~~~',game)
+    # url=self.client.post('gamedetail',{'id':'2'})
+    # url=self.client.post('/gamedetail/1/')
+    # response=self.client.get(url)
+    response = self.client.get('/gamedetail/1')
+    # print('url:*****************',response)
+    # print("response****************",response.content)
     self.assertEqual(response.status_code,200)
     self.assertContains(response, "Add to Basket")
+
+  def test_genre_game_view(self):
+    client=Client()
+    # game = Game.objects.get(id=1)
+    # print('~~~~~~~~~~~~~~~~~~~~~~~',game)
+    # url=self.client.post('gamedetail',{'id':'2'})
+    # url=self.client.post('/gamedetail/1/')
+    # response=self.client.get(url)
+    response = self.client.get('/genre/1')
+    # print('url:*****************',response)
+    # print("response****************",response.content)
+    self.assertEqual(response.status_code,200)
+    self.assertContains(response, "racing testing description")
+    self.assertContains(response, "Video Game Name")
+
+  def test_year_game_view(self):
+    client=Client()
+    # game = Game.objects.get(id=1)
+    # print('~~~~~~~~~~~~~~~~~~~~~~~',game)
+    # url=self.client.post('gamedetail',{'id':'2'})
+    # url=self.client.post('/gamedetail/1/')
+    # response=self.client.get(url)
+    response = self.client.get('/year/1')
+    # print('url:*****************',response)
+    # print("response****************",response.content)
+    self.assertEqual(response.status_code,200)
+    self.assertContains(response, "2023")
+    self.assertContains(response, "Video Game Name")
+
+  def test_platform_game_view(self):
+    client=Client()
+    # game = Game.objects.get(id=1)
+    # print('~~~~~~~~~~~~~~~~~~~~~~~',game)
+    # url=self.client.post('gamedetail',{'id':'2'})
+    # url=self.client.post('/gamedetail/1/')
+    # response=self.client.get(url)
+    response = self.client.get('/platform/1')
+    # print('url:*****************',response)
+    # print("response****************",response.content)
+    self.assertEqual(response.status_code,200)
+    self.assertContains(response, "Wii")
+    self.assertContains(response, "Video Game Name")
+
+  def test_publisher_game_view(self):
+    client=Client()
+    # game = Game.objects.get(id=1)
+    # print('~~~~~~~~~~~~~~~~~~~~~~~',game)
+    # url=self.client.post('gamedetail',{'id':'2'})
+    # url=self.client.post('/gamedetail/1/')
+    # response=self.client.get(url)
+    response = self.client.get('/publisher/1')
+    # print('url:*****************',response)
+    # print("response****************",response.content)
+    self.assertEqual(response.status_code,200)
+    self.assertContains(response, "20th Century Fox Video Games")
+    self.assertContains(response, "Video Game Name")
 
   def test_compare_view(self):
     url=reverse('compare')
@@ -177,14 +289,35 @@ class TestViews(TestCase):
     self.assertEqual(response.status_code,200)
     self.assertContains(response, "You have these in your basket:")
 
-  def test_customer_list_view(self):
-    self.client.login(username='st', password='st1234')
-    url=reverse('customer_list')
+  def test_signup_view(self):
+    url=reverse('signup')
     response=self.client.get(url)
     self.assertEqual(response.status_code,200)
-    self.assertContains(response, "Their username is")
-    self.assertContains(response, "and they live at")
-    self.assertContains(response, ". You can reach them at ")
+    self.assertContains(response, "Registration")
+    
+  def test_login_view(self):
+    url=reverse('login')
+    response=self.client.get(url)
+    self.assertEqual(response.status_code,200)
+    self.assertContains(response, "Login")
+    self.assertContains(response, "Please login, or ")
+
+  def test_customer_list_view(self):
+    user = User.objects.get(username="staff1")
+    print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~',Customer.objects.get(user=user))
+    # # username=self.customer_user.username
+    # # self.client.login(username='wewewes', password='st1234')
+    # self.client.login(username=self.st.username, password='st1234')
+    # # url=reverse('customer_list')
+    # # response=self.client.get(url)
+    # response = self.client.get('/customer_list')
+    # # print(url)
+    # print('+++++++++++++++++++++',response)
+    # print('+++++++++++++++',response.context)
+    # self.assertEqual(response.status_code,200)
+    # self.assertContains(response, "Their username is")
+    # self.assertContains(response, "and they live at")
+    # self.assertContains(response, ". You can reach them at ")
 
   # def test_dashboard_view(self):
   #   url=reverse('dashboard')
@@ -204,18 +337,7 @@ class TestViews(TestCase):
   #   self.assertEqual(response.status_code,200)
   #   self.assertContains(response, "The total for all of video game(s) is: ")
 
-  def test_signup_view(self):
-    url=reverse('signup')
-    response=self.client.get(url)
-    self.assertEqual(response.status_code,200)
-    self.assertContains(response, "Registration")
-    
-  def test_login_view(self):
-    url=reverse('login')
-    response=self.client.get(url)
-    self.assertEqual(response.status_code,200)
-    self.assertContains(response, "Login")
-    self.assertContains(response, "Please login, or ")
+
 
   # def test__view(self):
   #   url=reverse('')

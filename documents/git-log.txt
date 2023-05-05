@@ -1,3 +1,4 @@
+* a583674 - POK NGA HO, Fri May 5 08:50:32 2023 +0000 : update shop_data.py
 * 1fcd874 - POK NGA HO, Fri May 5 08:12:11 2023 +0000 : add one page report
 * b96233f - POK NGA HO, Thu May 4 19:56:02 2023 +0000 : add db.sqlite3 to github
 * 592c45d - POK NGA HO, Thu May 4 19:38:14 2023 +0000 : update readme

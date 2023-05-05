@@ -37,7 +37,7 @@ def dashboard(request):
     # print('============',cn,"=============")
     o=Order.objects.all()
     oc=Order.objects.all().count()
-    print('@@@@@@@@@@@@@@@@@',oc,'@@@@@@@@@@@@@@@@@')
+    # print('@@@@@@@@@@@@@@@@@',oc,'@@@@@@@@@@@@@@@@@')
     cs=Customer.objects.all()
     fre=[]
     zero=0
@@ -54,7 +54,7 @@ def dashboard(request):
     for c in cs:
       count=Order.objects.filter(customer=c).count()
       fre.append(count)
-      print(count)
+      # print(count)
       if count==0:
         zero+=1
       elif count==1:
@@ -78,17 +78,17 @@ def dashboard(request):
       else:
         ten+=1
     print(fre)
-    print('zero:',zero)
-    print('one:',one)
-    print('two:',two)
-    print('three:',three)
-    print('four:',four)
-    print('five:',five)
-    print('six:',six)
-    print('seven:',seven)
-    print('eight:',eight)
-    print('nine:',nine)
-    print('ten:',ten)
+    # print('zero:',zero)
+    # print('one:',one)
+    # print('two:',two)
+    # print('three:',three)
+    # print('four:',four)
+    # print('five:',five)
+    # print('six:',six)
+    # print('seven:',seven)
+    # print('eight:',eight)
+    # print('nine:',nine)
+    # print('ten:',ten)
     # i=0
     # for i in fre:
     #   print('++++',fre[i],'++++')
