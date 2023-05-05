@@ -102,93 +102,118 @@ def year_page(context):
 ###
 
 @given(u'we are on index page')
-def step_impl(context):
-    raise NotImplementedError(u'STEP: Given we are on index page')
-
+def on_index_page(context):
+  base_url = urllib.request.url2pathname(context.test_case.live_server_url)
+  print('*****************',base_url,'**********************')
+  context.browser.get(base_url)
 
 @when(u'press comparision on navigation bar')
-def step_impl(context):
-    raise NotImplementedError(u'STEP: When press shop on navigation bar')
-
+def press_comparision(context):
+  link = driver.find_element_by_link_text('Comparison')
+  link.click()
 
 @then(u'we go to compare page')
-def step_impl(context):
-    raise NotImplementedError(u'STEP: Then we go to basket page')
-
+def platform_page(context):
+  URL = driver.current_url();
+  open_url = urljoin(base_url,'/compare')
+  Assert.assertEquals(URL, open_url );
+  assert 'Video Games Details Comparision' in context.browser.page_source
 
 ###
 
 @given(u'we are on index page')
-def step_impl(context):
-    raise NotImplementedError(u'STEP: Given we are on index page')
-
+def on_index_page(context):
+  base_url = urllib.request.url2pathname(context.test_case.live_server_url)
+  print('*****************',base_url,'**********************')
+  context.browser.get(base_url)
 
 @when(u'press Super Mario World in table')
-def step_impl(context):
-    raise NotImplementedError(u'STEP: When press Super Mario World in table')
-
+def press_game_name(context):
+  link = driver.find_element_by_link_text('Super Mario World')
+  link.click()
 
 @then(u'we go to Super Mario World detail page')
-def step_impl(context):
-    raise NotImplementedError(u'STEP: Then we go to Super Mario World detail page')
-###
-@given(u'we are on index page')
-def step_impl(context):
-    raise NotImplementedError(u'STEP: Given we are on index page')
+def gamedetail_page(context):
+  URL = driver.current_url();
+  open_url = urljoin(base_url,'/gamedetail/15019')
+  Assert.assertEquals(URL, open_url );
+  assert 'Super Mario World' in context.browser.page_source
 
+###
+
+@given(u'we are on index page')
+def on_index_page(context):
+  base_url = urllib.request.url2pathname(context.test_case.live_server_url)
+  print('*****************',base_url,'**********************')
+  context.browser.get(base_url)
 
 
 @when(u'press Wii in table')
-def step_impl(context):
-    raise NotImplementedError(u'STEP: When press Wii in table')
-
+def press_wii(context):
+  link = driver.find_element_by_link_text('Wii')
+  link.click()
 
 @then(u'we go to Wii detail page')
-def step_impl(context):
-    raise NotImplementedError(u'STEP: Then we go to Wii detail page')
+def wii_page(context):
+  URL = driver.current_url();
+  open_url = urljoin(base_url,'/platform/396')
+  Assert.assertEquals(URL, open_url );
+  assert 'Wii' in context.browser.page_source
 
 ###
 @given(u'we are on index page')
-def step_impl(context):
-    raise NotImplementedError(u'STEP: Given we are on index page')
-
+def on_index_page(context):
+  base_url = urllib.request.url2pathname(context.test_case.live_server_url)
+  print('*****************',base_url,'**********************')
+  context.browser.get(base_url)
 
 @when(u'press 2006 in table')
-def step_impl(context):
-    raise NotImplementedError(u'STEP: When press 2006 in table')
-
+def press_2006(context):
+  link = driver.find_element_by_link_text('2006')
+  link.click()
 
 @then(u'we go to 2006 game page')
-def step_impl(context):
-    raise NotImplementedError(u'STEP: Then we go to 2006 game page')
+def 2006_page(context):
+  URL = driver.current_url();
+  open_url = urljoin(base_url,'/year/635')
+  Assert.assertEquals(URL, open_url );
+  assert '2006' in context.browser.page_source
 
 ###
 @given(u'we are on index page')
-def step_impl(context):
-    raise NotImplementedError(u'STEP: Given we are on index page')
-
+def on_index_page(context):
+  base_url = urllib.request.url2pathname(context.test_case.live_server_url)
+  print('*****************',base_url,'**********************')
+  context.browser.get(base_url)
 
 @when(u'press Puzzle in table')
-def step_impl(context):
-    raise NotImplementedError(u'STEP: When press Puzzle in table')
-
+def press_puzzle(context):
+  link = driver.find_element_by_link_text('Puzzle')
+  link.click()
 
 @then(u'we go to Puzzle detail page')
-def step_impl(context):
-    raise NotImplementedError(u'STEP: Then we go to Puzzle detail page')
+def puzzle_page(context):
+  URL = driver.current_url();
+  open_url = urljoin(base_url,'/genre/186')
+  Assert.assertEquals(URL, open_url );
+  assert 'PlatfPuzzle games emphasis on problem-solving include logic, pattern recognition, sequence solving, spatial recognition and word completion.orm' in context.browser.page_source
 
 ###
 @given(u'we are on index page')
-def step_impl(context):
-    raise NotImplementedError(u'STEP: Given we are on index page')
-
+def on_index_page(context):
+  base_url = urllib.request.url2pathname(context.test_case.live_server_url)
+  print('*****************',base_url,'**********************')
+  context.browser.get(base_url)
 
 
 @when(u'press Nitendo in table')
-def step_impl(context):
-    raise NotImplementedError(u'STEP: When press Nitendo in table')
-
+def press_nitendo(context):
+  link = driver.find_element_by_link_text('Nitendo')
+  link.click()
 
 @then(u'we go to Nitendo detail page')
-def step_impl(context):
-    raise NotImplementedError(u'STEP: Then we go to Nitendo detail page')
+def nintendo_page(context):
+  URL = driver.current_url();
+  open_url = urljoin(base_url,'/publisher/2118')
+  Assert.assertEquals(URL, open_url );
+  assert 'Nitendo' in context.browser.page_source
