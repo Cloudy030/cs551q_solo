@@ -1,3 +1,4 @@
+* 9f30752 - POK NGA HO, Fri May 5 14:00:56 2023 +0000 : 39 tests successfult
 * b80ab3f - POK NGA HO, Fri May 5 13:08:08 2023 +0000 : change test_templates to use fixtures
 * f1e7741 - POK NGA HO, Fri May 5 12:12:56 2023 +0000 : update platform_game html
 * a583674 - POK NGA HO, Fri May 5 08:50:32 2023 +0000 : update shop_data.py

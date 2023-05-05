@@ -4,7 +4,7 @@ from games.models import Year, Genre, Platform, Publisher, Game
 # Create your tests here.
 
 class TestModel(TestCase):
-  fixtures =['games_test']
+  fixtures =['games_test.json']
 
   def test_year(self):
     year = Year.objects.get(pk=639)

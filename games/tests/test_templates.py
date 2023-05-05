@@ -1,14 +1,29 @@
 from django.test import Client, TestCase
 from django.urls import reverse
-from games.models import Year, Genre, Platform, Publisher, Game
+from games.models import Year, Genre, Platform, Publisher, Game, Customer
 from django.contrib.auth.models import User
 
 class TestGamesViews(TestCase):
-  fixtures =['games_test']
+  fixtures =['games_test.json']
 
   # def setUp(self):
-  #   self.ct=User.objects.create_user(username='ctest')
-  #   self.ct
+  #   # self.ct=User.objects.create_user(username='ctest')
+  #   # self.ct.set_password('testpwd')
+  #   # self.ct.save()
+  #   # Customer.objects.get_or_create(user=self.ct, user_id=510, user_type="Customer", address='test address')
+
+  #   # self.st=User.objects.create_user(username='stest')
+  #   # self.st.set_password('testpwd')
+  #   # self.st.save()
+  #   # Customer.objects.get_or_create(user=self.st, user_id=511, user_type="Staff", address='test address')
+
+  #   self.at=User.objects.get(username='admin')
+  #   self.at.set_password('1234')
+  #   self.at.save()
+  #   Customer.objects.get_or_create(user=self.at, user_type="Admin", address='test address')
+  #   # Customer.objects.get_or_create(user=self.at, user_id=522, user_type="Admin", address='test address')
+
+  #   self.client=Client()
 
   def test_index_view(self):
     url=reverse('index')
@@ -95,6 +110,7 @@ class TestGamesViews(TestCase):
     response=self.client.get(url)
     self.assertEqual(response.status_code,200)
     self.assertContains(response, "Games Comparision")
+    self.assertContains(response, "Sales Data Comparision")
 
   def test_basket_view(self):
     url=reverse('basket_detail')

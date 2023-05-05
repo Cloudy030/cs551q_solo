@@ -3,7 +3,7 @@ from django.urls import reverse
 from games.models import Year, Genre, Platform, Publisher, Game
 
 class TestFilterSearch(TestCase):
-  fixtures =['games_test']
+  fixtures =['games_test.json']
 
   def test_filter_search1_pl(self):
     response=self.client.post(reverse('gamefilter'),{'plfilter': 'N64'})

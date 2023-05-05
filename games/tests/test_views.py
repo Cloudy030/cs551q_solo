@@ -7,7 +7,7 @@ from games.models import Year, Genre, Platform, Publisher, Game
 #  print(response.content)
 
 class GameViewsTests(TestCase):
-  fixtures =['games_test']
+  fixtures =['games_test.json']
   # @classmethod
   # def setUpTestData(cls):
   #   Platform.objects.create(

@@ -69,17 +69,15 @@ def on_index_page(context):
   context.browser.get(base_url)
 
 @when(u'press publisher on navigation bar')
-def publisher_page(context):
-  URL = driver.current_url();
-  open_url = urljoin(base_url,'/publisher')
-  Assert.assertEquals(URL, open_url );
-  assert 'Publisher' in context.browser.page_source
+def press_publisher(context):
+  link = driver.find_element_by_link_text('Publisher')
+  link.click()
 
 @then(u'we go to publisher page')
 def publisher_page(context):
   URL = driver.current_url();
   open_url = urljoin(base_url,'/publisher')
-  Assert.assertEquals(URL, open_url );
+  Assert.assertEquals(URL, open_url);
   assert 'Publisher' in context.browser.page_source
 
 ###
@@ -90,13 +88,16 @@ def on_index_page(context):
   context.browser.get(base_url)
 
 @when(u'press year on navigation bar')
-def step_impl(context):
-    raise NotImplementedError(u'STEP: When press year on navigation bar')
-
+def press_year(context):
+  link = driver.find_element_by_link_text('Year')
+  link.click()
 
 @then(u'we go to year page')
-def step_impl(context):
-    raise NotImplementedError(u'STEP: Then we go to year page')
+def year_page(context):
+  URL = driver.current_url();
+  open_url = urljoin(base_url,'/year')
+  Assert.assertEquals(URL, open_url);
+  assert 'Year' in context.browser.page_source
 
 ###
 
