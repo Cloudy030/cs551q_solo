@@ -15,9 +15,9 @@
        {% csrf_token %}
        <p>Complete the form to buy this all for yourself</p>
        <input type='text' name='first_name' value="{{user.first_name}}" disabled>
-       <input type='text' name='last_name' value="{{user.last_name}}" disabled><br>
+       <input type='text' name='last_name' value="{{user.last_name}}" disabled><br><br>
        <label for 'payment'>Card Type:</label><input type='text' size=5 name='payment'>
-       <input type="number" name="total" value="Total Payment:">
+       <label for 'total'>Total Payment:<input type="number" name="total" value="Total Payment:">
        <input type="submit" value="Payment">
        </form>
        </p>

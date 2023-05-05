@@ -168,24 +168,3 @@ class TestGamesViews(TestCase):
   #   response=self.client.get(url)
   #   self.assertEqual(response.status_code,200)
   #   self.assertContains(response, "The total for all of video game(s) is: ")
-
-
-
-  # def test__view(self):
-  #   url=reverse('')
-  #   response=self.client.get(url)
-  #   self.assertEqual(response.status_code,200)
-  #   self.assertContains(response, "")
-
-  # def test__view(self):
-  #   url=reverse('')
-  #   response=self.client.get(url)
-  #   self.assertEqual(response.status_code,200)
-  #   self.assertContains(response, "")
-    
-  # def test__view(self):
-  #   url=reverse('')
-  #   response=self.client.get(url)
-  #   self.assertEqual(response.status_code,200)
-  #   self.assertContains(response, "")
-

@@ -12,7 +12,13 @@ Scenario: update quantity of Super Mario World to two
 
 Scenario: login required to purchase
   Given we are not login and press the purchase button
-  When we input registered account credentials
+  When we are directed to login page
+  Then we input registered account credentials
+  Then we go to index page
+
+Scenario: go to index page
+  Given we have two Super Mario World in basket
+  When we press continue shopping button
   Then we go to index page
 
 Scenario: go to purchase page

@@ -21,9 +21,9 @@ Scenario: check basket after login
   Then we see "Welcome back, " with our first name on the basket page
 
 Scenario: see available links in basket page
-  Given we are in customer account
+  Given we are in admin account
   When we are in basket page
-  Then we see "Dashboa", "Log Out", "Purchase", "Continue shopping"
+  Then we see "Dashboard", "Customers", "Orders", "Log Out", "Purchase", "Continue shopping"
 
 Scenario: see dashboard graph 
   Given we are in basket page
