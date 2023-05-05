@@ -1,3 +1,4 @@
+* d44e79a - POK NGA HO, Fri May 5 15:33:57 2023 +0000 : update one page report
 * 259c985 - POK NGA HO, Fri May 5 14:44:23 2023 +0000 : success 39 tests
 * 9f30752 - POK NGA HO, Fri May 5 14:00:56 2023 +0000 : 39 tests successfult
 * b80ab3f - POK NGA HO, Fri May 5 13:08:08 2023 +0000 : change test_templates to use fixtures

@@ -17,12 +17,15 @@ class TestGamesViews(TestCase):
   #   # self.st.save()
   #   # Customer.objects.get_or_create(user=self.st, user_id=511, user_type="Staff", address='test address')
 
-  #   self.at=User.objects.get(username='admin')
+  #   self.at=User.objects.create(username='admin')
   #   self.at.set_password('1234')
   #   self.at.save()
+  #   print('++++++++++',self.at)
+  #   user =  Customer.objects.all().filter(user=self.at)
+  #   print('~~~~~~~~~~~~~~',user)
   #   Customer.objects.get_or_create(user=self.at, user_type="Admin", address='test address')
   #   # Customer.objects.get_or_create(user=self.at, user_id=522, user_type="Admin", address='test address')
-
+  #   print('@@@@@@@@@@@@@@',Customer.objects.all())
   #   self.client=Client()
 
   def test_index_view(self):

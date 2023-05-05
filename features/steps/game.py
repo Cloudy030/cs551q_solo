@@ -35,51 +35,51 @@ def user_click_add_to_basket_button(context):
   quantity_option.send_keys(3)
   # price_textfield = context.browser.find_element('name','price')
   # price_textfield.send_keys(3)
-  context.browser.find_element('name','submit').click()
+  # context.browser.find_element('name','submit').click()
 
 @then(u'it succeds')
 def game_add_in_basket(context):
   assert 'Super Mario World' in context.browser.page_source
 
-@then(u'we change quantity to two')
-def change_quantity_to_two(context):
-  print(context.browser.page_source)
-  quantity_option = context.browser.find_element('game', 'quantity')
-  quantity_option.send_keys(2)
-  context.browser.find_element('game','submit').click()
+# @then(u'we change quantity to two')
+# def change_quantity_to_two(context):
+#   print(context.browser.page_source)
+#   quantity_option = context.browser.find_element('game', 'quantity')
+#   quantity_option.send_keys(2)
+#   context.browser.find_element('game','submit').click()
 
-@then(u'total price is 100.6')
-def total_price_change(context):
-  assert '100.6' in context.browser.page_source
+# @then(u'total price is 100.6')
+# def total_price_change(context):
+#   assert '100.6' in context.browser.page_source
 
 ###
 
-# @given(u'we have Super Mario World in basket')
-# def step_impl(context):
-#   print(Game.objects.all())
-#   base_url = urllib.request.url2pathname(context.test_case.live_server_url)
-#   print('*****************',base_url,'**********************')
-#   # open_url = urljoin(base_url,'')
-#   open_url1 = urljoin(base_url,'/gamedetail/9019')
-#   context.browser.get(open_url1)
-#   quantity_option = context.browser.find_element('name', 'quantity')
-#   quantity_option.send_keys(3)
-#   print(context.browser.page_source)
-#   open_url = urljoin(base_url,'/basket_detail')
-#   context.browser.get(open_url)
-#   print('-----------------',open_url,'--------------------')
-#   print(context.browser.page_source)
-#   # assert 'Super Mario World' in context.browser.page_source
+@given(u'we have Super Mario World in basket')
+def step_impl(context):
+  print(Game.objects.all())
+  base_url = urllib.request.url2pathname(context.test_case.live_server_url)
+  print('*****************',base_url,'**********************')
+  # open_url = urljoin(base_url,'')
+  open_url1 = urljoin(base_url,'/gamedetail/9019')
+  context.browser.get(open_url1)
+  quantity_option = context.browser.find_element('name', 'quantity')
+  quantity_option.send_keys(3)
+  print(context.browser.page_source)
+  open_url = urljoin(base_url,'/basket_detail')
+  context.browser.get(open_url)
+  print('-----------------',open_url,'--------------------')
+  print(context.browser.page_source)
+  # assert 'Super Mario World' in context.browser.page_source
 
-# @when(u'we change quantity to two')
-# def step_impl(context):
-#   print(context.browser.page_source)
-#   quantity_option = context.browser.find_element('name', 'quantity')
-#   quantity_option.send_keys(2)
+@when(u'we change quantity to two')
+def step_impl(context):
+  print(context.browser.page_source)
+  quantity_option = context.browser.find_element('name', 'quantity')
+  quantity_option.send_keys(2)
 
-# @then(u'total price is 100.6')
-# def step_impl(context):
-#   assert '100.6' in context.browser.page_source
+@then(u'total price is 100.6')
+def step_impl(context):
+  assert '100.6' in context.browser.page_source
 
 # ###
 

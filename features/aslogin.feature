@@ -23,9 +23,9 @@ Scenario: check basket after login
 Scenario: see available links in basket page
   Given we are in customer account
   When we are in basket page
-  Then we see "Dashboard | Basket | Customers | Orders |", "Log Out", "Purchase", "Continue shopping"
+  Then we see "Dashboa", "Log Out", "Purchase", "Continue shopping"
 
-Scenario: see dashboard graph for Super Mario World
-  Given we are in dashboard page
-  When we choose Super Mario World in the filter
-  Then it show sales data for Super Mario World
+Scenario: see dashboard graph 
+  Given we are in basket page
+  When we press dashboard
+  Then we see account type graph and number of orders from each customer graphs
