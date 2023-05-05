@@ -1,7 +1,7 @@
 from django.test import Client, TestCase
 from django.urls import reverse
-from games.models import Year, Genre, Platform, Publisher, Game, Customer
-from django.contrib.auth.models import User
+from games.models import Year, Genre, Platform, Publisher, Game#, Customer
+# from django.contrib.auth.models import User
 
 class TestGamesViews(TestCase):
   fixtures =['games_test.json']
@@ -133,38 +133,3 @@ class TestGamesViews(TestCase):
     self.assertEqual(response.status_code,200)
     self.assertContains(response, "Login")
     self.assertContains(response, "Please login, or ")
-
-  # def test_customer_list_view(self):
-  #   user = User.objects.get(username="staff1")
-  #   print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~',Customer.objects.get(user=user))
-    # # username=self.customer_user.username
-    # # self.client.login(username='wewewes', password='st1234')
-    # self.client.login(username=self.st.username, password='st1234')
-    # # url=reverse('customer_list')
-    # # response=self.client.get(url)
-    # response = self.client.get('/customer_list')
-    # # print(url)
-    # print('+++++++++++++++++++++',response)
-    # print('+++++++++++++++',response.context)
-    # self.assertEqual(response.status_code,200)
-    # self.assertContains(response, "Their username is")
-    # self.assertContains(response, "and they live at")
-    # self.assertContains(response, ". You can reach them at ")
-
-  # def test_dashboard_view(self):
-  #   url=reverse('dashboard')
-  #   response=self.client.get(url)
-  #   self.assertEqual(response.status_code,200)
-  #   self.assertContains(response, "Account numbers")
-
-  # def test_order_list_view(self):
-  #   url=reverse('order_list')
-  #   response=self.client.get(url)
-  #   self.assertEqual(response.status_code,200)
-  #   self.assertContains(response, "Order List")
-
-  # def test_purchase_view(self):
-  #   url=reverse('purchase')
-  #   response=self.client.get(url)
-  #   self.assertEqual(response.status_code,200)
-  #   self.assertContains(response, "The total for all of video game(s) is: ")
