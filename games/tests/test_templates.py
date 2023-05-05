@@ -1,10 +1,14 @@
 from django.test import Client, TestCase
 from django.urls import reverse
 from games.models import Year, Genre, Platform, Publisher, Game
-# from django.contrib.auth.models import User
+from django.contrib.auth.models import User
 
 class TestGamesViews(TestCase):
   fixtures =['games_test']
+
+  # def setUp(self):
+  #   self.ct=User.objects.create_user(username='ctest')
+  #   self.ct
 
   def test_index_view(self):
     url=reverse('index')

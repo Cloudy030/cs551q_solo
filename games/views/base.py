@@ -34,13 +34,13 @@ def gamefilter(request):
 
     # filter function
     pl=request.POST.get('plfilter')
-    print('platform: ',pl,request)
+    # print('platform: ',pl,request)
     y=request.POST.get('yfilter')
-    print('year: ',y,request)
+    # print('year: ',y,request)
     g=request.POST.get('gfilter')
-    print('genre: ',g,request)
+    # print('genre: ',g,request)
     pu=request.POST.get('pufilter')
-    print('publisher: ',pu,request)
+    # print('publisher: ',pu,request)
 
     # 0 filter
     if pl==None and y==None and g==None and pu==None:
@@ -132,7 +132,7 @@ def pugame(request,id):
     # publishers=Publisher.objects.all()
     publisher=get_object_or_404(Publisher,id=id)
     games=Game.objects.filter(publisher__id=id)
-    print("publisher: ",id, request)
+    # print("publisher: ",id, request)
     return render(request, 'games/base/publisher_game.html', {'publisher':publisher, 'games':games})
 
 def gamedetail(request,id):
@@ -146,9 +146,9 @@ def compare(request):
     games=Game.objects.all()
         # filter function
     g1=request.POST.get('gamec1')
-    print('game1: ',g1,request)
+    # print('game1: ',g1,request)
     g2=request.POST.get('gamec2')
-    print('game2: ',g2,request)
+    # print('game2: ',g2,request)
 
     if g1==None:
       # show data for Wii Sports if no filter requirements are given
@@ -167,7 +167,7 @@ def compare(request):
     sources=Game.objects.filter(rank=g1)
     game1=sources
     sname1=0
-    print('game1: ',game1)
+    # print('game1: ',game1)
     # filter get the game
     sources_temp=[]
     for source in sources:
@@ -186,7 +186,7 @@ def compare(request):
     sources=Game.objects.filter(rank=g2)
     game2=sources
     sname2=1
-    print('game2: ',game2)
+    # print('game2: ',game2)
     # filter get the game
     sources_temp=[]
     for source in sources:
