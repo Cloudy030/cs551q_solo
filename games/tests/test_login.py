@@ -38,7 +38,7 @@ class TestLogin(TestCase):
     first_name = first_name,
     last_name = last_name,
     email = str('s@b.com'), 
-    password = '5678')
+    password = '1234')
     customer = Customer.objects.get(user = user)
     customer.user_type = 'Staff'
     customer.address = fake.address(),
@@ -55,24 +55,24 @@ class TestLogin(TestCase):
     first_name = first_name,
     last_name = last_name,
     email = str('c@b.com'), 
-    password = '7890')
+    password = '1234')
     customer = Customer.objects.get(user = user)
     customer.user_type = 'Customer'
     customer.address = fake.address(),
     customer.address = str(customer.address[0])
     customer.save()
 
-  def test_login(self):
+  def test_loginc(self):
     c1 = Customer.objects.get(user_id=3)
     login_url = '/accounts/login/'
-    response = self.client.post(login_url, {'username': c1.user.username, 'password': '7890'})
+    response = self.client.post(login_url, {'username': c1.user.username, 'password': '1234'})
     self.assertEqual(response.url, '/')
     self.assertEqual(response.status_code, 302)
     # print(response.url)
     self.assertRedirects(response, '/')
     # print(user)
     url=reverse('basket_detail')
-    response=self.client.get(url)
+    # response=self.client.get(url)
     # print(url)
     response1 = self.client.get(url)
     # print('!!!!!!',response1.content)
@@ -80,17 +80,63 @@ class TestLogin(TestCase):
     # print(response1.content)
     self.assertContains(response1, f'Welcome back, <strong>{c1.user.first_name}</strong>')
 
+  def test_logins(self):
+    s1 = Customer.objects.get(user_id=2)
+    login_url = '/accounts/login/'
+    response = self.client.post(login_url, {'username': s1.user.username, 'password': '1234'})
+    self.assertEqual(response.url, '/')
+    self.assertEqual(response.status_code, 302)
+    # print(response.url)
+    self.assertRedirects(response, '/')
+    # print(user)
+    url=reverse('basket_detail')
+    # response=self.client.get(url)
+    # print(url)
+    response1 = self.client.get(url)
+    # print('!!!!!!',response1.content)
+    # response1 = self.client.get(response.url)
+    # print(response1.content)
+    self.assertContains(response1, f'Welcome back, <strong>{s1.user.first_name}</strong>')
+
+  def test_logina(self):
+    a1 = Customer.objects.get(user_id=1)
+    login_url = '/accounts/login/'
+    response = self.client.post(login_url, {'username': a1.user.username, 'password': '1234'})
+    self.assertEqual(response.url, '/')
+    self.assertEqual(response.status_code, 302)
+    # print(response.url)
+    self.assertRedirects(response, '/')
+    # print(user)
+    url=reverse('basket_detail')
+    # response=self.client.get(url)
+    # print(url)
+    response1 = self.client.get(url)
+    # print('!!!!!!',response1.content)
+    # response1 = self.client.get(response.url)
+    # print(response1.content)
+    self.assertContains(response1, f'Welcome back, <strong>{a1.user.first_name}</strong>')
+
+
   # def test_customer_list_view(self):
-  #   # username=self.customer_user.username
-  #   # self.client.login(username='wewewes', password='st1234')
-  #   self.client.login(username=self.st.username, password='st1234')
-  #   # url=reverse('customer_list')
-  #   # response=self.client.get(url)
-  #   response = self.client.get('/customer_list')
+  #   s1 = Customer.objects.get(user_id=2)
+  #   login_url = '/accounts/login/'
+  #   response = self.client.post(login_url, {'username': s1.user.username, 'password': '1234'})
+  #   self.assertEqual(response.url, '/')
+  #   self.assertEqual(response.status_code, 302)
+  #   print('@@@@@@@@@@@@',response.url)
+  #   self.assertRedirects(response, '/')
+  #   url1=reverse('basket_detail')
+  #   # print(user)
+  #   response1 = self.client.get(url1)
+  #   url=reverse('customer_list')
+  #   response=self.client.get(url)
+  #   print('~~~~~~~~~',url)
+  #   print('+++++++',response.content)
+  #   # response = self.client.get('/customer_list')
   #   # print(url)
-  #   print('+++++++++++++++++++++',response)
-  #   print('+++++++++++++++',response.context)
-  #   self.assertEqual(response.status_code,200)
+  #   # print('+++++++++++++++++++++',response)
+  #   # print('+++++++++++++++',response.context)
+  #   # self.assertEqual(response.status_code,200)
   #   self.assertContains(response, "Their username is")
   #   self.assertContains(response, "and they live at")
   #   self.assertContains(response, ". You can reach them at ")
