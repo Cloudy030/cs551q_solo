@@ -368,7 +368,7 @@ git log --pretty=format:"%h - %an, %ad : %s" --graph > documents/git-log.txt
 PyTest is used for Unit testing and Behave is used for Behavioral-based development (BDD) tests.
 
 ### Unit Testing
-Django tests for filter function, graph, HTML pages, views, model setup and data input are implemented.
+Django tests for filter function, graph, HTML pages, views, login, model setup and data input are implemented.
 
 If you change anything in the static folder, please run this command before running the next command:
 ~~~

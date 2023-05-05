@@ -1,5 +1,5 @@
 from django.test import TestCase, Client
-from games.models import Year, Genre, Platform, Publisher, Game
+from games.models import Year, Genre, Platform, Publisher, Game, Cart
 
 # Create your tests here.
 
@@ -30,6 +30,13 @@ class TestModel(TestCase):
     game = Game.objects.get(pk=15064)
     self.assertEqual(game.id, 15064)
     self.assertEqual(game.name, "Mario Kart 64")
+
+  def test_cart(self):
+    cart = Cart.objects.get(pk=319)
+    self.assertEqual(cart.id, 319)
+    self.assertEqual(cart.game.id, 15005)
+    self.assertEqual(cart.quantity, 3)
+      "created_date": "2023-05-05T08:44:34.289Z"
 
 # # class YearModelTestCase(TestCase):
 # #   @classmethod

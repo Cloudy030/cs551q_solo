@@ -149,6 +149,48 @@ class TestLogin(TestCase):
     # print(response1.content)
     self.assertContains(response3, 'Log In')
 
+  # def test_dashboard(self):
+  #   a1 = Customer.objects.get(user_id=1)
+  #   login_url = '/accounts/login/'
+  #   response = self.client.post(login_url, {'username': a1.user.username, 'password': '1234'})
+  #   self.assertEqual(response.url, '/')
+  #   self.assertEqual(response.status_code, 302)
+  #   # print(response.url)
+  #   self.assertRedirects(response, '/')
+  #   # print(user)
+  #   url=reverse('basket_detail')
+  #   # response=self.client.get(url)
+  #   # print(url)
+  #   response1 = self.client.get(url)
+  #   # print('!!!!!!',response1.content)
+  #   # response1 = self.client.get(response.url)
+  #   # print(response1.content)
+  #   self.assertContains(response1, f'Welcome back, <strong>{a1.user.first_name}</strong>')
+    
+
+  #   url1=reverse('dashboard')
+  #   response2=self.client.get(url1)
+  #   print('\\\\\\\\\\',url1)
+  #   self.assertRedirects(response2, url1)
+  #   # dashboard_url = '/dashboard/'
+  #   # response2 = self.client.post(dashboard_url, {'username': a1.user.username, 'password': '1234'})
+  #   # self.assertEqual(response2.status_code,200)
+  #   self.assertEqual(response2.status_code, 302)
+  #   print('++++++++',response2.url)
+  #   # self.assertRedirects(response2, '/')
+
+  #   url2=reverse('dashboard')
+  #   response3=self.client.get(url2)
+  #   print('~~~~~~~',url2)
+  #   print('????????',response3.url)
+  #   # url2=reverse('basket_detail')
+  #   # response=self.client.get(url)
+  #   # print(url)
+  #   # response3 = self.client.get(url)
+  #   # print('!!!!!!',response2.content)
+  #   # response1 = self.client.get(response.url)
+  #   # print(response1.content)
+  #   # self.assertContains(response2, 'Proportion of Registered Account Types')
 
   # def test_customer_list_view(self):
   #   s1 = Customer.objects.get(user_id=2)
